@@ -236,8 +236,17 @@ export const Login: React.FC = () => {
 
       {/* Forgot Password Modal */}
       {isForgotOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-xs animate-in fade-in">
-          <div className="bg-white rounded-3xl p-6 max-w-sm w-full border border-slate-100 shadow-2xl relative space-y-4">
+        <div 
+          onClick={() => {
+            setIsForgotOpen(false);
+            setForgotSent(false);
+          }}
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-xs animate-in fade-in cursor-pointer"
+        >
+          <div 
+            onClick={(e) => e.stopPropagation()}
+            className="bg-white rounded-3xl p-6 max-w-sm w-full border border-slate-100 shadow-2xl relative space-y-4 cursor-default"
+          >
             <button
               onClick={() => {
                 setIsForgotOpen(false);

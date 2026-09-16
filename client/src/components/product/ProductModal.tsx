@@ -56,10 +56,13 @@ export const ProductModal: React.FC<ProductModalProps> = ({ product, onClose }) 
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm animate-in fade-in">
+    <div 
+      onClick={onClose}
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm animate-in fade-in cursor-pointer"
+    >
       <div 
         onClick={(e) => e.stopPropagation()} 
-        className="bg-white rounded-3xl shadow-2xl border border-slate-100 max-w-2xl w-full max-h-[90vh] overflow-y-auto flex flex-col relative"
+        className="bg-white rounded-3xl shadow-2xl border border-slate-100 max-w-2xl w-full max-h-[90vh] overflow-y-auto flex flex-col relative cursor-default"
       >
         {/* Close Button */}
         <button

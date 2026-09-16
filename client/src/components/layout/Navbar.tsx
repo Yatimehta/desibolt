@@ -133,28 +133,34 @@ export const Navbar: React.FC<NavbarProps> = ({
           </button>
 
           {isLocalityOpen && (
-            <div className="absolute top-full mt-2 left-0 w-64 bg-white rounded-2xl shadow-2xl border border-[#E2DAD0] py-2 z-50 animate-in fade-in">
-              <div className="px-3 py-1.5 text-xs font-bold text-[#1F2421] border-b border-[#EAE4D9]">
-                Select Delivery Locality in Malta
+            <>
+              <div 
+                className="fixed inset-0 z-40" 
+                onClick={() => setIsLocalityOpen(false)} 
+              />
+              <div className="absolute top-full mt-2 left-0 w-64 bg-white rounded-2xl shadow-2xl border border-[#E2DAD0] py-2 z-50 animate-in fade-in">
+                <div className="px-3 py-1.5 text-xs font-bold text-[#1F2421] border-b border-[#EAE4D9]">
+                  Select Delivery Locality in Malta
+                </div>
+                <div className="max-h-60 overflow-y-auto py-1">
+                  {MALTA_LOCALITIES.map((loc) => (
+                    <button
+                      key={loc.name}
+                      onClick={() => {
+                        setSelectedLocality(loc);
+                        setIsLocalityOpen(false);
+                      }}
+                      className={`w-full text-left px-3 py-2 text-xs flex items-center justify-between hover:bg-[#FAF8F5] transition-colors ${
+                        selectedLocality.name === loc.name ? 'bg-red-50 text-[#E63946] font-bold' : 'text-slate-700'
+                      }`}
+                    >
+                      <span>{loc.name} <span className="text-[10px] text-slate-400">({loc.region})</span></span>
+                      <span className="text-[11px] text-emerald-700 font-semibold">{loc.deliveryTimeMins}m</span>
+                    </button>
+                  ))}
+                </div>
               </div>
-              <div className="max-h-60 overflow-y-auto py-1">
-                {MALTA_LOCALITIES.map((loc) => (
-                  <button
-                    key={loc.name}
-                    onClick={() => {
-                      setSelectedLocality(loc);
-                      setIsLocalityOpen(false);
-                    }}
-                    className={`w-full text-left px-3 py-2 text-xs flex items-center justify-between hover:bg-[#FAF8F5] transition-colors ${
-                      selectedLocality.name === loc.name ? 'bg-red-50 text-[#E63946] font-bold' : 'text-slate-700'
-                    }`}
-                  >
-                    <span>{loc.name} <span className="text-[10px] text-slate-400">({loc.region})</span></span>
-                    <span className="text-[11px] text-emerald-700 font-semibold">{loc.deliveryTimeMins}m</span>
-                  </button>
-                ))}
-              </div>
-            </div>
+            </>
           )}
         </div>
 
@@ -264,7 +270,12 @@ export const Navbar: React.FC<NavbarProps> = ({
             </button>
 
             {isUserMenuOpen && (
-              <div className="absolute right-0 mt-2 w-60 bg-white rounded-2xl shadow-2xl border border-[#E0D8CC] py-2 z-50 animate-in fade-in">
+              <>
+                <div 
+                  className="fixed inset-0 z-40" 
+                  onClick={() => setIsUserMenuOpen(false)} 
+                />
+                <div className="absolute right-0 mt-2 w-60 bg-white rounded-2xl shadow-2xl border border-[#E0D8CC] py-2 z-50 animate-in fade-in">
                 {user ? (
                   <>
                     <div className="px-4 py-2.5 border-b border-slate-100">
@@ -340,7 +351,8 @@ export const Navbar: React.FC<NavbarProps> = ({
                   </div>
                 )}
               </div>
-            )}
+            </>
+          )}
           </div>
 
           {/* Cart Button */}
