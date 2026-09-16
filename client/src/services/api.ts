@@ -162,6 +162,37 @@ class ApiClient {
   drivers = {
     list: () => this.request<{ drivers: any[]; total: number }>('/drivers'),
   };
+
+  // ── Admin Operations Endpoints ───────────────────────────────────────────
+
+  admin = {
+    getOverview: () => this.request<any>('/admin/overview'),
+
+    createProduct: (productData: any) =>
+      this.request<any>('/products', {
+        method: 'POST',
+        body: JSON.stringify(productData),
+      }),
+
+    updateProduct: (id: string, productData: any) =>
+      this.request<any>(`/products/${id}`, {
+        method: 'PUT',
+        body: JSON.stringify(productData),
+      }),
+
+    deleteProduct: (id: string) =>
+      this.request<any>(`/products/${id}`, {
+        method: 'DELETE',
+      }),
+
+    getPromos: () => this.request<{ promos: any[] }>('/promos'),
+
+    createPromo: (promoData: any) =>
+      this.request<any>('/promos', {
+        method: 'POST',
+        body: JSON.stringify(promoData),
+      }),
+  };
 }
 
 export const api = new ApiClient();

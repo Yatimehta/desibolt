@@ -4,8 +4,8 @@ import { useCart } from '../../context/CartContext';
 import { useOrders } from '../../context/OrderContext';
 
 interface MobileBottomNavProps {
-  currentView: 'store' | 'tracking' | 'admin';
-  setCurrentView: (view: 'store' | 'tracking' | 'admin') => void;
+  currentView: 'store' | 'tracking';
+  setCurrentView: (view: 'store' | 'tracking') => void;
   onOpenCategories: () => void;
 }
 
@@ -64,15 +64,13 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
           <span className="text-[10px]">Track</span>
         </button>
 
-        <button
-          onClick={() => setCurrentView('admin')}
-          className={`flex flex-col items-center gap-1 ${
-            currentView === 'admin' ? 'text-[#E63946] font-bold' : 'text-slate-400'
-          }`}
+        <a
+          href="/account"
+          className="flex flex-col items-center gap-1 text-slate-400 hover:text-slate-700"
         >
           <User className="w-5 h-5" />
-          <span className="text-[10px]">Admin</span>
-        </button>
+          <span className="text-[10px]">Account</span>
+        </a>
       </div>
     </div>
   );

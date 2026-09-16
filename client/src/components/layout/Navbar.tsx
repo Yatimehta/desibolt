@@ -29,8 +29,8 @@ interface NavbarProps {
   setSelectedCategory: (cat: any) => void;
   onSelectProduct: (product: Product) => void;
   allProducts: Product[];
-  currentView: 'store' | 'tracking' | 'admin';
-  setCurrentView: (view: 'store' | 'tracking' | 'admin') => void;
+  currentView: 'store' | 'tracking';
+  setCurrentView: (view: 'store' | 'tracking') => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -246,15 +246,10 @@ export const Navbar: React.FC<NavbarProps> = ({
           {/* Admin Switcher */}
           <Link
             to="/admin"
-            onClick={() => setCurrentView('admin')}
-            className={`hidden md:flex items-center gap-1.5 px-3 py-2 rounded-2xl text-xs font-semibold transition-all border ${
-              currentView === 'admin'
-                ? 'bg-[#1F2421] text-white border-[#1F2421] shadow-md'
-                : 'bg-white hover:bg-[#F2ECE1] text-[#1F2421] border-[#E0D8CC]'
-            }`}
+            className="hidden md:flex items-center gap-1.5 px-3 py-2 rounded-2xl text-xs font-semibold transition-all border bg-slate-900 hover:bg-slate-800 text-white border-slate-800 shadow-xs"
           >
-            <Sparkles className="w-3.5 h-3.5 text-amber-500" />
-            <span>{currentView === 'admin' ? 'Storefront' : 'Admin Hub'}</span>
+            <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+            <span>Admin Portal</span>
           </Link>
 
           {/* User Account Dropdown */}
@@ -307,10 +302,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                     {user.role === 'admin' && (
                       <Link
                         to="/admin"
-                        onClick={() => {
-                          setCurrentView('admin');
-                          setIsUserMenuOpen(false);
-                        }}
+                        onClick={() => setIsUserMenuOpen(false)}
                         className="w-full text-left px-4 py-2 text-xs text-slate-700 hover:bg-slate-50 flex items-center gap-2"
                       >
                         <Sparkles className="w-3.5 h-3.5 text-amber-500" />

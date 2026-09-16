@@ -239,4 +239,38 @@ describe('DESI BOLT API Endpoints Test Suite', () => {
       expect(res.body.code).toBe('order_not_found');
     });
   });
+
+  // --- ADMIN OPERATIONS & METRICS ---
+  describe('GET /api/admin/overview', () => {
+    it('should return 200 with aggregated metrics when accessed with valid Admin token', async () => {
+      const res = await request(app)
+        .get('/api/admin/overview')
+        .set('Authorization', `Bearer ${adminToken}`);
+
+      expect(res.status).toBe(200);
+      expect(res.body).toHaveProperty('metrics');
+      expect(res.body.metrics).toHaveProperty('totalRevenue');
+      expect(res.body.metrics).toHaveProperty('totalVat');
+      expect(res.body.metrics).toHaveProperty('totalOrders');
+      expect(res.body.metrics).toHaveProperty('activeDeliveriesCount');
+      expect(res.body.metrics).toHaveProperty('totalCatalogCount');
+      expect(Array.isArray(res.body.recentOrders)).toBe(true);
+    });
+
+    it('should reject non-admin customer access with 403 Forbidden', async () => {
+      const res = await request(app)
+        .get('/api/admin/overview')
+        .set('Authorization', `Bearer ${customerToken}`);
+
+      expect(res.status).toBe(403);
+      expect(res.body.error).toMatch(/Access denied/i);
+    });
+
+    it('should reject unauthenticated request with 401 Unauthorized', async () => {
+      const res = await request(app).get('/api/admin/overview');
+
+      expect(res.status).toBe(401);
+      expect(res.body.error).toMatch(/Authentication required/i);
+    });
+  });
 });

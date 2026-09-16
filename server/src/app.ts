@@ -178,6 +178,40 @@ export const createApp = (socketEmitter?: (event: string, data: any) => void) =>
     });
   });
 
+  // --- ADMIN OPERATIONS & METRICS (Admin Only) ---
+  app.get('/api/admin/overview', authenticateToken, requireRole('admin'), async (req: AuthRequest, res: Response) => {
+    try {
+      const orders = await db.orders.findAll();
+      const { products, total: totalCatalog } = await db.products.findAll({ limit: 1000 });
+      const drivers = await db.drivers.findAll();
+      const health = await db.getHealth();
+
+      const totalRevenue = orders.reduce((sum, o) => sum + (o.total || 0), 0);
+      const totalVat = orders.reduce((sum, o) => sum + (o.vatAmount || 0), 0);
+      const activeDeliveriesCount = orders.filter((o) => o.status !== 'delivered' && o.status !== 'cancelled').length;
+      const lowStockCount = products.filter((p) => (p.stock || 0) <= 10).length;
+      const availableDriversCount = drivers.filter((d) => d.isAvailable && d.status === 'online').length;
+
+      res.json({
+        metrics: {
+          totalRevenue: Number(totalRevenue.toFixed(2)),
+          totalVat: Number(totalVat.toFixed(2)),
+          totalOrders: orders.length,
+          activeDeliveriesCount,
+          totalCatalogCount: totalCatalog,
+          lowStockCount,
+          availableDriversCount,
+          totalDriversCount: drivers.length,
+        },
+        recentOrders: orders.slice(0, 10),
+        databaseHealth: health,
+        serverTime: new Date().toISOString()
+      });
+    } catch (err: any) {
+      res.status(500).json({ error: err.message });
+    }
+  });
+
   // --- CATEGORIES ---
   app.get('/api/categories', (req: Request, res: Response) => {
     const categories = [

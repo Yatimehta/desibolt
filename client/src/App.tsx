@@ -35,13 +35,13 @@ import { ProductFilterSidebar } from './components/product/ProductFilterSidebar'
 import { CartDrawer } from './components/cart/CartDrawer';
 import { CheckoutModal } from './components/checkout/CheckoutModal';
 import { LiveOrderTracking } from './components/tracking/LiveOrderTracking';
-import { AdminDashboard } from './components/admin/AdminDashboard';
+import { AdminPortal } from './pages/AdminPortal';
 
 import { Zap } from 'lucide-react';
 
 export const StorefrontView: React.FC<{
-  currentView: 'store' | 'tracking' | 'admin';
-  setCurrentView: (v: 'store' | 'tracking' | 'admin') => void;
+  currentView: 'store' | 'tracking';
+  setCurrentView: (v: 'store' | 'tracking') => void;
 }> = ({ currentView, setCurrentView }) => {
   const [productsList, setProductsList] = useState<Product[]>(ALL_PRODUCTS);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
@@ -257,14 +257,6 @@ export const StorefrontView: React.FC<{
         {currentView === 'tracking' && (
           <LiveOrderTracking onBackToStore={() => setCurrentView('store')} />
         )}
-
-        {currentView === 'admin' && (
-          <AdminDashboard
-            products={productsList}
-            onUpdateProduct={handleUpdateProduct}
-            onBackToStore={() => setCurrentView('store')}
-          />
-        )}
       </main>
 
       {selectedProduct && (
@@ -305,7 +297,7 @@ export const StorefrontView: React.FC<{
 };
 
 export const MainRoutes: React.FC = () => {
-  const [currentView, setCurrentView] = useState<'store' | 'tracking' | 'admin'>('store');
+  const [currentView, setCurrentView] = useState<'store' | 'tracking'>('store');
 
   return (
     <Routes>
@@ -316,7 +308,8 @@ export const MainRoutes: React.FC = () => {
       <Route path="/account/orders" element={<OrderHistory />} />
       <Route path="/rate/:orderNumber" element={<RateOrder />} />
       <Route path="/tracking" element={<StorefrontView currentView="tracking" setCurrentView={setCurrentView} />} />
-      <Route path="/admin" element={<StorefrontView currentView="admin" setCurrentView={setCurrentView} />} />
+      <Route path="/admin" element={<AdminPortal />} />
+      <Route path="/admin/login" element={<AdminPortal />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
