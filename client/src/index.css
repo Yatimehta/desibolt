@@ -1,0 +1,138 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --primary: #C81D25;
+    --primary-hover: #A81219;
+    --primary-light: #FFF0F2;
+    --primary-dark: #870A10;
+    --accent-gold: #F4B41A;
+    --accent-gold-hover: #D99B08;
+    --bg-organic: #FAF4EC;
+    --bg-card: #FFFFFF;
+    --text-main: #1F2421;
+    --text-muted: #6B705C;
+    --accent-olive: #588157;
+    --success: #2A9D8F;
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: #1F2421;
+    background-color: #FAF4EC;
+    overflow-x: hidden;
+  }
+}
+
+.font-cursive {
+  font-family: 'Caveat', 'Dancing Script', cursive;
+}
+
+.font-serif-display {
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+.font-heading {
+  font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+}
+
+/* Animations */
+@keyframes float-subtle {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(1.5deg); }
+}
+
+@keyframes float-reverse {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(8px) rotate(-1.5deg); }
+}
+
+@keyframes pulse-soft {
+  0%, 100% { opacity: 0.95; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.02); }
+}
+
+.animate-float-subtle {
+  animation: float-subtle 4s infinite ease-in-out;
+}
+
+.animate-float-reverse {
+  animation: float-reverse 4.5s infinite ease-in-out;
+}
+
+.animate-pulse-soft {
+  animation: pulse-soft 3s infinite ease-in-out;
+}
+
+/* Cute Aesthetic Utilities */
+.hero-crimson-bg {
+  background: linear-gradient(135deg, #B80F1D 0%, #C81D25 50%, #990A14 100%);
+}
+
+.cute-gold-btn {
+  background-color: #F4B41A;
+  color: #1F2421;
+  font-weight: 900;
+  box-shadow: 0 8px 24px -2px rgba(244, 180, 26, 0.45);
+}
+
+.cute-gold-btn:hover {
+  background-color: #E09F00;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px -2px rgba(244, 180, 26, 0.6);
+}
+
+.cute-crimson-btn {
+  background-color: #C81D25;
+  color: #FFFFFF;
+  font-weight: 900;
+  box-shadow: 0 8px 24px -2px rgba(200, 29, 37, 0.45);
+}
+
+.cute-crimson-btn:hover {
+  background-color: #A81219;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px -2px rgba(200, 29, 37, 0.6);
+}
+
+.warm-card-shadow {
+  box-shadow: 0 12px 35px -8px rgba(120, 80, 40, 0.07), 0 4px 12px -2px rgba(120, 80, 40, 0.03);
+}
+
+/* Luxury Organic Shadows & Card Styles */
+.organic-card {
+  background: #FFFFFF;
+  border: 1px solid rgba(235, 225, 210, 0.9);
+  box-shadow: 0 8px 25px -4px rgba(140, 90, 50, 0.06);
+}
+
+.organic-card:hover {
+  box-shadow: 0 16px 36px -6px rgba(200, 29, 37, 0.12);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F4F1EA;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #D9D2C5;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #C4BCAC;
+}
+
+/* Leaflet container */
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+  border-radius: 1.5rem;
+  z-index: 10;
+}

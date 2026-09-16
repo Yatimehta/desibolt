@@ -1,0 +1,13 @@
+# DESI BOLT Malta — Robots.txt
+User-agent: *
+Allow: /
+Allow: /login
+Allow: /register
+Allow: /account
+Allow: /account/orders
+Allow: /tracking
+
+Disallow: /api/
+Disallow: /admin
+
+Sitemap: https://desibolt.com.mt/sitemap.xml
