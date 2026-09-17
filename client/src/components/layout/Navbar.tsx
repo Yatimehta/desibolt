@@ -61,22 +61,22 @@ export const Navbar: React.FC<NavbarProps> = ({
   return (
     <header className="sticky top-0 z-40 bg-[#FAF4EC]/95 backdrop-blur-md border-b border-[#F0E6D8] transition-all">
       {/* Top Subtle Announcement & Hotline Bar */}
-      <div className="bg-[#1F2421] text-white text-xs py-1.5 px-4 font-medium">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <span className="bg-[#C81D25] text-white text-[10px] font-black px-2 py-0.5 rounded-full flex items-center gap-1">
+      <div className="bg-[#1F2421] text-white text-xs py-1.5 px-3 sm:px-4 font-medium">
+        <div className="max-w-7xl mx-auto flex items-center justify-between gap-2">
+          <div className="flex items-center gap-2 min-w-0">
+            <span className="bg-[#C81D25] text-white text-[10px] font-black px-2 py-0.5 rounded-full flex items-center gap-1 shrink-0">
               <Zap className="w-2.5 h-2.5 fill-current" /> 15-30 MINS
             </span>
-            <span className="text-[11px] text-[#E0DBCF] hidden sm:inline">
+            <span className="text-[11px] text-[#E0DBCF] hidden sm:inline truncate">
               Farm Fresh Produce & 7,000+ Groceries Delivered Across Malta
             </span>
-            <span className="text-[11px] text-[#E0DBCF] sm:hidden">
-              15-30 Min Grocery Delivery in Malta
+            <span className="text-[11px] text-[#E0DBCF] sm:hidden truncate">
+              15-30m Malta Grocery Delivery
             </span>
           </div>
 
-          <div className="flex items-center gap-4 text-[11px] text-[#E0DBCF]">
-            <a href="tel:+35699123456" className="hover:text-white flex items-center gap-1">
+          <div className="flex items-center gap-3 text-[11px] text-[#E0DBCF] shrink-0">
+            <a href="tel:+35699123456" className="hover:text-white flex items-center gap-1 font-semibold">
               <Phone className="w-3 h-3 text-[#F4B41A]" />
               <span>+356 9912 3456</span>
             </a>
@@ -87,8 +87,8 @@ export const Navbar: React.FC<NavbarProps> = ({
         </div>
       </div>
 
-      {/* Main Navbar */}
-      <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-3 md:gap-6">
+      {/* Main Navbar Top Row */}
+      <div className="max-w-7xl mx-auto px-3.5 sm:px-4 py-2.5 md:py-3 flex items-center justify-between gap-2 md:gap-6">
         
         {/* Brand Logo with Cursive Accent */}
         <Link 
@@ -96,23 +96,23 @@ export const Navbar: React.FC<NavbarProps> = ({
           onClick={() => setCurrentView('store')}
           className="flex items-center gap-2 cursor-pointer group select-none shrink-0"
         >
-          <div className="w-10 h-10 bg-[#C81D25] rounded-2xl flex items-center justify-center shadow-md shadow-red-500/20 group-hover:scale-105 transition-transform">
+          <div className="w-9 h-9 md:w-10 md:h-10 bg-[#C81D25] rounded-2xl flex items-center justify-center shadow-md shadow-red-500/20 group-hover:scale-105 transition-transform">
             <div className="relative">
-              <Truck className="w-5 h-5 text-white" />
-              <Zap className="w-2.5 h-2.5 text-[#F4B41A] fill-[#F4B41A] absolute -top-1 -right-1" />
+              <Truck className="w-4 h-4 md:w-5 md:h-5 text-white" />
+              <Zap className="w-2 md:w-2.5 h-2 md:h-2.5 text-[#F4B41A] fill-[#F4B41A] absolute -top-1 -right-1" />
             </div>
           </div>
           <div>
             <div className="flex items-baseline gap-1">
-              <span className="font-extrabold text-2xl tracking-tight text-[#1F2421] font-heading">
+              <span className="font-extrabold text-xl md:text-2xl tracking-tight text-[#1F2421] font-heading">
                 DESI <span className="text-[#C81D25]">BOLT</span>
               </span>
-              <span className="font-cursive text-lg text-[#C81D25] font-bold">Fresh</span>
+              <span className="font-cursive text-base md:text-lg text-[#C81D25] font-bold">Fresh</span>
             </div>
           </div>
         </Link>
 
-        {/* Malta Locality Selector */}
+        {/* Desktop Malta Locality Selector */}
         <div className="relative hidden lg:block">
           <button
             onClick={() => setIsLocalityOpen(!isLocalityOpen)}
@@ -164,8 +164,8 @@ export const Navbar: React.FC<NavbarProps> = ({
           )}
         </div>
 
-        {/* Search Bar */}
-        <div className="relative flex-1 max-w-xl mx-2">
+        {/* Desktop Search Bar */}
+        <div className="relative hidden md:block flex-1 max-w-xl mx-2">
           <div className="relative flex items-center">
             <Search className="w-4 h-4 text-[#8C8275] absolute left-3.5 pointer-events-none" />
             <input
@@ -223,13 +223,56 @@ export const Navbar: React.FC<NavbarProps> = ({
         </div>
 
         {/* Right Actions */}
-        <div className="flex items-center gap-2 md:gap-3 shrink-0">
-          {/* Live Order Tracker Link */}
+        <div className="flex items-center gap-1.5 sm:gap-2 md:gap-3 shrink-0">
+          
+          {/* Mobile Locality Selector Chip */}
+          <div className="relative block lg:hidden">
+            <button
+              onClick={() => setIsLocalityOpen(!isLocalityOpen)}
+              className="flex items-center gap-1 px-2 py-1.5 rounded-xl bg-white/90 border border-[#E2DAD0] text-xs font-bold text-slate-800 shadow-2xs hover:bg-white"
+            >
+              <MapPin className="w-3.5 h-3.5 text-[#E63946] shrink-0" />
+              <span className="max-w-[72px] sm:max-w-[110px] truncate text-[11px]">{selectedLocality.name}</span>
+              <ChevronDown className="w-3 h-3 text-slate-400 shrink-0" />
+            </button>
+            {isLocalityOpen && (
+              <>
+                <div 
+                  className="fixed inset-0 z-40" 
+                  onClick={() => setIsLocalityOpen(false)} 
+                />
+                <div className="absolute top-full mt-2 right-0 w-64 bg-white rounded-2xl shadow-2xl border border-[#E2DAD0] py-2 z-50 animate-in fade-in">
+                  <div className="px-3 py-1.5 text-xs font-bold text-[#1F2421] border-b border-[#EAE4D9]">
+                    Select Delivery Locality
+                  </div>
+                  <div className="max-h-60 overflow-y-auto py-1">
+                    {MALTA_LOCALITIES.map((loc) => (
+                      <button
+                        key={loc.name}
+                        onClick={() => {
+                          setSelectedLocality(loc);
+                          setIsLocalityOpen(false);
+                        }}
+                        className={`w-full text-left px-3 py-2 text-xs flex items-center justify-between hover:bg-[#FAF8F5] transition-colors ${
+                          selectedLocality.name === loc.name ? 'bg-red-50 text-[#E63946] font-bold' : 'text-slate-700'
+                        }`}
+                      >
+                        <span>{loc.name} <span className="text-[10px] text-slate-400">({loc.region})</span></span>
+                        <span className="text-[11px] text-emerald-700 font-semibold">{loc.deliveryTimeMins}m</span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </>
+            )}
+          </div>
+
+          {/* Desktop Live Order Tracker Link */}
           {activeOrder && (
             <Link
               to="/tracking"
               onClick={() => setCurrentView('tracking')}
-              className={`flex items-center gap-1.5 px-3 py-2 rounded-2xl text-xs font-bold transition-all ${
+              className={`hidden sm:flex items-center gap-1.5 px-3 py-2 rounded-2xl text-xs font-bold transition-all ${
                 currentView === 'tracking'
                   ? 'bg-emerald-700 text-white shadow-md'
                   : 'bg-emerald-50 text-emerald-800 hover:bg-emerald-100 border border-emerald-200'
@@ -243,8 +286,8 @@ export const Navbar: React.FC<NavbarProps> = ({
             </Link>
           )}
 
-          {/* User Account Dropdown */}
-          <div className="relative">
+          {/* User Account Dropdown (Desktop) */}
+          <div className="relative hidden md:block">
             <button
               onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
               className="flex items-center gap-1.5 px-2.5 py-2 rounded-2xl hover:bg-white text-slate-700 text-xs font-semibold transition-colors"
@@ -341,12 +384,12 @@ export const Navbar: React.FC<NavbarProps> = ({
           {/* Cart Button */}
           <button
             onClick={() => setIsCartOpen(true)}
-            className="flex items-center gap-2.5 bg-[#C81D25] hover:bg-[#A81219] text-white px-4 py-2.5 rounded-2xl font-bold text-xs shadow-lg shadow-red-500/20 hover:shadow-xl transition-all"
+            className="flex items-center gap-1.5 sm:gap-2.5 bg-[#C81D25] hover:bg-[#A81219] text-white px-3 sm:px-4 py-2 sm:py-2.5 rounded-2xl font-bold text-xs shadow-lg shadow-red-500/20 hover:shadow-xl transition-all shrink-0"
           >
             <div className="relative">
-              <ShoppingBag className="w-4.5 h-4.5" />
+              <ShoppingBag className="w-4 h-4 sm:w-4.5 sm:h-4.5" />
               {totalItemsCount > 0 && (
-                <span className="absolute -top-2 -right-2 bg-[#F4B41A] text-[#1F2421] font-black text-[10px] w-4.5 h-4.5 rounded-full flex items-center justify-center animate-bounce shadow-xs">
+                <span className="absolute -top-2 -right-2 bg-[#F4B41A] text-[#1F2421] font-black text-[10px] w-4 h-4 sm:w-4.5 sm:h-4.5 rounded-full flex items-center justify-center animate-bounce shadow-xs">
                   {totalItemsCount}
                 </span>
               )}
@@ -357,6 +400,64 @@ export const Navbar: React.FC<NavbarProps> = ({
             </div>
           </button>
         </div>
+      </div>
+
+      {/* Row 2: Full-width Mobile Search Bar (Below Header on Phone) */}
+      <div className="md:hidden px-3.5 pb-2.5 pt-0.5">
+        <div className="relative flex items-center">
+          <Search className="w-4 h-4 text-[#8C8275] absolute left-3.5 pointer-events-none" />
+          <input
+            type="text"
+            placeholder="Search 7,000+ groceries, fruits, paneer..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            onFocus={() => setIsSearchFocused(true)}
+            onBlur={() => setTimeout(() => setIsSearchFocused(false), 250)}
+            className="w-full bg-white hover:bg-[#FAF8F5] focus:bg-white text-xs pl-10 pr-9 py-2.5 rounded-2xl border border-[#E0D8CC] focus:border-[#E63946] focus:ring-2 focus:ring-red-100 outline-hidden transition-all text-[#1F2421] placeholder:text-[#9A9184] shadow-2xs"
+          />
+          {searchQuery && (
+            <button
+              onClick={() => setSearchQuery('')}
+              className="absolute right-3 text-slate-400 hover:text-slate-600"
+            >
+              <X className="w-4 h-4" />
+            </button>
+          )}
+        </div>
+
+        {/* Mobile Autocomplete Dropdown */}
+        {isSearchFocused && searchResults.length > 0 && (
+          <div className="absolute left-3.5 right-3.5 mt-2 bg-white rounded-2xl shadow-2xl border border-[#E0D8CC] overflow-hidden z-50">
+            <div className="px-3 py-2 bg-[#FAF8F5] border-b border-[#EAE4D9] text-[11px] font-semibold text-slate-500 flex justify-between">
+              <span>Matching Products ({searchResults.length})</span>
+              <span className="text-[#E63946] font-bold">15-30 Min Dispatch</span>
+            </div>
+            <div className="divide-y divide-slate-100 max-h-72 overflow-y-auto">
+              {searchResults.map((p) => (
+                <div
+                  key={p.id}
+                  onMouseDown={() => {
+                    onSelectProduct(p);
+                    setSearchQuery('');
+                  }}
+                  className="p-2.5 flex items-center justify-between hover:bg-red-50/60 cursor-pointer transition-colors"
+                >
+                  <div className="flex items-center gap-3">
+                    <img src={p.image} alt={p.name} className="w-10 h-10 object-cover rounded-xl border border-slate-200" />
+                    <div>
+                      <div className="text-xs font-semibold text-slate-800 line-clamp-1">{p.name}</div>
+                      <div className="text-[10px] text-slate-500">{p.brand} • {p.unit}</div>
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <div className="text-xs font-bold text-[#E63946]">€{p.price.toFixed(2)}</div>
+                    <span className="text-[9px] bg-emerald-100 text-emerald-800 px-1.5 py-0.2 rounded-sm font-semibold">In Stock</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </header>
   );
