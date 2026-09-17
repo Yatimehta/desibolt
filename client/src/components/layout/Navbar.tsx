@@ -243,15 +243,6 @@ export const Navbar: React.FC<NavbarProps> = ({
             </Link>
           )}
 
-          {/* Admin Switcher */}
-          <Link
-            to="/admin"
-            className="hidden md:flex items-center gap-1.5 px-3 py-2 rounded-2xl text-xs font-semibold transition-all border bg-slate-900 hover:bg-slate-800 text-white border-slate-800 shadow-xs"
-          >
-            <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-            <span>Admin Portal</span>
-          </Link>
-
           {/* User Account Dropdown */}
           <div className="relative">
             <button

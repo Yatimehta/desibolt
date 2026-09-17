@@ -186,11 +186,11 @@ export const createApp = (socketEmitter?: (event: string, data: any) => void) =>
       const drivers = await db.drivers.findAll();
       const health = await db.getHealth();
 
-      const totalRevenue = orders.reduce((sum, o) => sum + (o.total || 0), 0);
-      const totalVat = orders.reduce((sum, o) => sum + (o.vatAmount || 0), 0);
-      const activeDeliveriesCount = orders.filter((o) => o.status !== 'delivered' && o.status !== 'cancelled').length;
-      const lowStockCount = products.filter((p) => (p.stock || 0) <= 10).length;
-      const availableDriversCount = drivers.filter((d) => d.isAvailable && d.status === 'online').length;
+      const totalRevenue = orders.reduce((sum: number, o: any) => sum + (o.total || 0), 0);
+      const totalVat = orders.reduce((sum: number, o: any) => sum + (o.vatAmount || 0), 0);
+      const activeDeliveriesCount = orders.filter((o: any) => o.status !== 'delivered' && o.status !== 'cancelled').length;
+      const lowStockCount = products.filter((p: any) => (p.stock || 0) <= 10).length;
+      const availableDriversCount = drivers.filter((d: any) => d.isAvailable && d.status === 'online').length;
 
       res.json({
         metrics: {

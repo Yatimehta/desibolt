@@ -24,7 +24,7 @@ export const AdminPortal: React.FC = () => {
   const navigate = useNavigate();
 
   // Login form states
-  const [email, setEmail] = useState('admin@desibolt.com');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(true);
@@ -41,10 +41,14 @@ export const AdminPortal: React.FC = () => {
   const handleAdminLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrorMessage(null);
+    if (!email.trim() || !password.trim()) {
+      setErrorMessage('Please enter both administrative email and password.');
+      return;
+    }
     setIsSubmitting(true);
 
     try {
-      const res = await login(email.trim(), password.trim() || 'DesiBolt@2026');
+      const res = await login(email.trim(), password.trim());
       if (!res.success) {
         setErrorMessage(res.error || 'Invalid administrator email or password.');
       }
@@ -53,12 +57,6 @@ export const AdminPortal: React.FC = () => {
     } finally {
       setIsSubmitting(false);
     }
-  };
-
-  const handleQuickDemoFill = () => {
-    setEmail('admin@desibolt.com');
-    setPassword('DesiBolt@2026');
-    setErrorMessage(null);
   };
 
   // If already logged in but not an admin (e.g. regular customer)
@@ -277,38 +275,12 @@ export const AdminPortal: React.FC = () => {
             </button>
           </form>
 
-          {/* Demo Admin Quick Access Box */}
-          <div className="pt-4 border-t border-slate-800/80 space-y-2.5">
-            <div className="flex items-center justify-between">
-              <span className="text-[11px] font-bold text-slate-400 flex items-center gap-1.5">
-                <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-                Default Administrator Login
-              </span>
-              <span className="text-[10px] text-emerald-400 font-bold bg-emerald-500/10 px-2 py-0.5 rounded-md border border-emerald-500/20">
-                Active
-              </span>
-            </div>
-
-            <div className="bg-slate-950/80 rounded-2xl p-3 border border-slate-800 text-[11px] font-mono space-y-1 text-slate-300">
-              <div className="flex justify-between">
-                <span className="text-slate-500">Email:</span>
-                <span className="text-white font-bold">admin@desibolt.com</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-slate-500">Password:</span>
-                <span className="text-white font-bold">DesiBolt@2026</span>
-              </div>
-            </div>
-
-            <button
-              type="button"
-              onClick={handleQuickDemoFill}
-              className="w-full py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold rounded-xl border border-slate-700 transition-colors flex items-center justify-center gap-1.5"
-            >
-              <span>1-Click Auto-Fill Admin Credentials</span>
-            </button>
+          {/* Security Notice */}
+          <div className="pt-3 border-t border-slate-800/80 text-center">
+            <p className="text-[11px] text-slate-500">
+              Only authorized staff credentials are valid for login.
+            </p>
           </div>
-
         </div>
       </div>
 
