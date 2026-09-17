@@ -16,11 +16,13 @@
     --success: #2A9D8F;
   }
 
-  body {
+  html, body {
     font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
     color: #1F2421;
     background-color: #FAF4EC;
     overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
   }
 }
 
