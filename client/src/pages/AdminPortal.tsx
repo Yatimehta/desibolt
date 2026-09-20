@@ -90,12 +90,6 @@ export const AdminPortal: React.FC = () => {
     }
   };
 
-  const handleQuickFillCredentials = () => {
-    setEmail('admin@desibolt.com');
-    setPassword('DesiBolt@2026');
-    setErrorMessage(null);
-  };
-
   // If already logged in but not an admin (e.g. regular customer)
   const isCustomerLoggedIn = user && user.role !== 'admin';
 
@@ -213,27 +207,6 @@ export const AdminPortal: React.FC = () => {
             <p className="text-xs text-slate-400">
               Operations backend for inventory management, product items, live order dispatch & fleet.
             </p>
-          </div>
-
-          {/* Quick Credentials Info Box */}
-          <div className="p-3.5 rounded-2xl bg-slate-950/80 border border-slate-800 text-xs space-y-2">
-            <div className="flex items-center justify-between">
-              <span className="font-bold text-slate-300 text-[11px] flex items-center gap-1.5">
-                <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-                Admin Credentials
-              </span>
-              <button
-                type="button"
-                onClick={handleQuickFillCredentials}
-                className="text-[11px] font-bold text-red-400 hover:text-red-300 bg-red-500/10 px-2.5 py-1 rounded-lg border border-red-500/20 transition-colors cursor-pointer"
-              >
-                Autofill Credentials
-              </button>
-            </div>
-            <div className="font-mono text-[11px] text-slate-400 space-y-0.5 bg-slate-900/60 p-2 rounded-xl border border-slate-800/80">
-              <div><span className="text-slate-500">ID:</span> admin@desibolt.com</div>
-              <div><span className="text-slate-500">Password:</span> DesiBolt@2026</div>
-            </div>
           </div>
 
           {/* Access Warning / Customer Logged In Notice */}

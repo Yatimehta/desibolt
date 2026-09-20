@@ -63,18 +63,6 @@ export const Login: React.FC = () => {
     }
   };
 
-  const handleDemoLogin = async (demoEmail: string, demoRole: 'customer' | 'admin') => {
-    setEmail(demoEmail);
-    setPassword('DesiBolt@2026');
-    setIsLoading(true);
-    setErrorMessage('');
-    const res = await login(demoEmail, 'DesiBolt@2026');
-    setIsLoading(false);
-    if (res.success) {
-      navigate('/account');
-    }
-  };
-
   const handleSendResetLink = (e: React.FormEvent) => {
     e.preventDefault();
     if (!forgotEmail || !forgotEmail.includes('@')) return;
@@ -192,31 +180,6 @@ export const Login: React.FC = () => {
               )}
             </button>
           </form>
-
-          {/* Quick 1-Click Demo Accounts */}
-          <div className="pt-3 border-t border-slate-100 space-y-2">
-            <span className="text-[10px] font-extrabold text-slate-400 uppercase tracking-wider block text-center">
-              Quick 1-Click Test Logins
-            </span>
-            <div className="grid grid-cols-2 gap-2">
-              <button
-                type="button"
-                onClick={() => handleDemoLogin('alex@example.com.mt', 'customer')}
-                className="p-2.5 bg-slate-50 hover:bg-red-50/60 border border-slate-200 rounded-xl text-left transition-colors"
-              >
-                <div className="text-[11px] font-bold text-slate-800">Alex Camilleri</div>
-                <div className="text-[10px] text-slate-500">Customer (Sliema)</div>
-              </button>
-              <button
-                type="button"
-                onClick={() => handleDemoLogin('admin@desibolt.com', 'admin')}
-                className="p-2.5 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-xl text-left transition-colors"
-              >
-                <div className="text-[11px] font-bold text-slate-800">Admin Account</div>
-                <div className="text-[10px] text-slate-500">Operations Hub</div>
-              </button>
-            </div>
-          </div>
         </div>
 
         {/* Link to Register */}

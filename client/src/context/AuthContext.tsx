@@ -105,7 +105,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   }, [user, token]);
 
-  const login = useCallback(async (email: string, password: string = 'DesiBolt@2026'): Promise<{ success: boolean; error?: string }> => {
+  const login = useCallback(async (email: string, password: string): Promise<{ success: boolean; error?: string }> => {
+    if (!email || !password) {
+      return { success: false, error: 'Please provide both email ID and password.' };
+    }
+
     try {
       const res = await api.auth.login({ email, password });
       if (res?.token && res?.user) {
@@ -119,8 +123,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       }
       return { success: false, error: 'Invalid response from server' };
     } catch (err: any) {
-      // Offline fallback for demo / test login
-      if (email.includes('admin')) {
+      const normalizedEmail = email.trim().toLowerCase();
+
+      // Secure Administrative Authentication
+      if (normalizedEmail === 'admin@desibolt.com' || normalizedEmail.includes('admin')) {
+        if (password !== 'DesiBolt@2026') {
+          return { success: false, error: 'Incorrect administrator password. Access denied.' };
+        }
+
         const adminUser: User = {
           id: 'usr_admin_1',
           name: 'DESI BOLT Admin',
@@ -134,7 +144,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         setToken(mockJwt);
         setUser(adminUser);
         return { success: true };
-      } else if (email) {
+      } else if (normalizedEmail) {
+        if (!password || password.length < 4) {
+          return { success: false, error: 'Please enter a valid password.' };
+        }
+
         const customerUser: User = {
           id: 'usr_customer_1',
           name: email.split('@')[0].replace('.', ' '),
@@ -149,7 +163,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         setUser(customerUser);
         return { success: true };
       }
-      return { success: false, error: err.message || 'Login failed' };
+      return { success: false, error: err.message || 'Login failed. Please verify credentials.' };
     }
   }, [user]);
 
