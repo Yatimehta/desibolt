@@ -5,6 +5,7 @@ import { AuthProvider } from './context/AuthContext';
 import { OrderProvider } from './context/OrderContext';
 import { ALL_PRODUCTS } from './data/products';
 import { Product, CategoryId, Order } from './types';
+import { getStoredProducts } from './data/productStore';
 
 // Error Boundary & 404
 import { ErrorBoundary } from './components/common/ErrorBoundary';
@@ -43,8 +44,16 @@ export const StorefrontView: React.FC<{
   currentView: 'store' | 'tracking';
   setCurrentView: (v: 'store' | 'tracking') => void;
 }> = ({ currentView, setCurrentView }) => {
-  const [productsList, setProductsList] = useState<Product[]>(ALL_PRODUCTS);
+  const [productsList, setProductsList] = useState<Product[]>(getStoredProducts);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+
+  React.useEffect(() => {
+    const handleUpdate = () => {
+      setProductsList(getStoredProducts());
+    };
+    window.addEventListener('desibolt_catalog_updated', handleUpdate);
+    return () => window.removeEventListener('desibolt_catalog_updated', handleUpdate);
+  }, []);
 
   // Search & Filter State
   const [searchQuery, setSearchQuery] = useState('');

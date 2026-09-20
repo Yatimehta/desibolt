@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Truck, Zap, ShieldCheck, Phone, Mail, MapPin, Heart, Clock } from 'lucide-react';
 import { MALTA_LOCALITIES } from '../../data/maltaLocalities';
 
@@ -128,8 +129,17 @@ export const Footer: React.FC = () => {
           <div>
             © {new Date().getFullYear()} DESI BOLT Ltd. All rights reserved. Registered in Malta (C-98214).
           </div>
-          <div className="flex items-center gap-1 text-slate-400">
-            Crafted with <Heart className="w-3.5 h-3.5 text-[#E63946] fill-[#E63946]" /> for Malta's food lovers
+          <div className="flex items-center gap-4">
+            <Link
+              to="/admin"
+              className="flex items-center gap-1.5 text-slate-400 hover:text-white transition-colors bg-slate-800/80 hover:bg-slate-800 px-3 py-1 rounded-lg border border-slate-700/60 text-[11px] font-bold"
+            >
+              <ShieldCheck className="w-3.5 h-3.5 text-[#E63946]" />
+              <span>Admin Operations Portal</span>
+            </Link>
+            <div className="flex items-center gap-1 text-slate-400">
+              Crafted with <Heart className="w-3.5 h-3.5 text-[#E63946] fill-[#E63946]" /> for Malta's food lovers
+            </div>
           </div>
         </div>
       </div>
