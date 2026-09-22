@@ -178,8 +178,8 @@ export const LiveOrderTracking: React.FC<LiveOrderTrackingProps> = ({ onBackToSt
             <Marker position={hubPos} icon={hubIcon}>
               <Popup>
                 <div className="text-xs font-bold">
-                  <div>DESI BOLT Central Hub</div>
-                  <div className="text-[10px] text-slate-500">Msida / Birkirkara Dark Store</div>
+                  <div>DESI BOLT Central Store</div>
+                  <div className="text-[10px] text-slate-500">Triq weid il ghajan haz zabbar</div>
                 </div>
               </Popup>
             </Marker>

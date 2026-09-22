@@ -1,33 +1,32 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import confetti from 'canvas-confetti';
-import { loadStripe } from '@stripe/stripe-js';
-import { Elements } from '@stripe/react-stripe-js';
 import { useCart } from '../../context/CartContext';
 import { useAuth } from '../../context/AuthContext';
 import { useOrders } from '../../context/OrderContext';
 import { MALTA_LOCALITIES } from '../../data/maltaLocalities';
 import { DeliveryAddress, Order } from '../../types';
-import { api } from '../../services/api';
-import { StripePaymentForm } from './StripePaymentForm';
+import { 
+  getWhatsAppOrderUrl, 
+  buildWhatsAppOrderMessage, 
+  STORE_ADDRESS, 
+  STORE_CONTACT_PHONE, 
+  WHATSAPP_BASE_URL 
+} from '../../utils/whatsapp';
 import { 
   X, 
   MapPin, 
   Clock, 
-  CreditCard, 
   CheckCircle2, 
   Zap, 
-  ShieldCheck, 
   ArrowRight, 
   ArrowLeft, 
   Truck, 
   Sparkles,
-  Lock,
-  Smartphone,
-  AlertCircle
+  Phone,
+  MessageCircle,
+  ExternalLink,
+  ShieldCheck
 } from 'lucide-react';
-
-const stripePublishableKey = import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY || 'pk_test_51MockKeyForDesiBoltMalta2026';
-const stripePromise = loadStripe(stripePublishableKey).catch(() => null);
 
 interface CheckoutModalProps {
   isOpen: boolean;
@@ -44,157 +43,147 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
   promoCode,
   onOrderCompleted
 }) => {
-  const { items, subtotal, vatAmount, deliveryFee, clearCart } = useCart();
+  const { items, subtotal, deliveryFee, clearCart } = useCart();
   const { user, defaultAddress, saveAddress } = useAuth();
   const { createOrder } = useOrders();
 
-  const [step, setStep] = useState<1 | 2 | 3 | 4>(1);
-  const [isProcessingPayment, setIsProcessingPayment] = useState(false);
+  const [step, setStep] = useState<1 | 2 | 3>(1); // 1: Delivery Details, 2: Review & Send to WhatsApp, 3: Confirmation
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [confirmedOrder, setConfirmedOrder] = useState<Order | null>(null);
-  const [stripeClientSecret, setStripeClientSecret] = useState<string | null>(null);
-  const [paymentError, setPaymentError] = useState<string | null>(null);
+  const [generatedWhatsAppLink, setGeneratedWhatsAppLink] = useState<string>('');
 
   // Step 1: Address State
-  const [fullName, setFullName] = useState(defaultAddress?.fullName || user?.name || 'Alex Camilleri');
-  const [phone, setPhone] = useState(defaultAddress?.phone || '+356 9912 3456');
-  const [email, setEmail] = useState(defaultAddress?.email || user?.email || 'alex@example.com.mt');
-  const [street, setStreet] = useState(defaultAddress?.street || '42, Tower Road, Apt 4B');
-  const [locality, setLocality] = useState(defaultAddress?.locality || 'Sliema');
-  const [postalCode, setPostalCode] = useState(defaultAddress?.postalCode || 'SLM 1604');
-  const [notes, setNotes] = useState(defaultAddress?.notes || 'Ring buzzer 4B, 3rd floor');
-
-  // Step 2: Slot
+  const [fullName, setFullName] = useState(defaultAddress?.fullName || user?.name || '');
+  const [phone, setPhone] = useState(defaultAddress?.phone || '79791146');
+  const [email, setEmail] = useState(defaultAddress?.email || user?.email || '');
+  const [street, setStreet] = useState(defaultAddress?.street || 'Central store. Triq weid il ghajan  haz zabbar');
+  const [locality, setLocality] = useState(defaultAddress?.locality || 'Haz-Zabbar');
+  const [postalCode, setPostalCode] = useState(defaultAddress?.postalCode || 'ZBR 1000');
+  const [notes, setNotes] = useState(defaultAddress?.notes || '');
   const [deliverySlot, setDeliverySlot] = useState<'instant_bolt' | 'today_evening' | 'tomorrow_morning'>('instant_bolt');
 
-  // Step 3: Payment
-  const [paymentMethod, setPaymentMethod] = useState<'stripe' | 'apple_pay' | 'revolut' | 'cod'>('stripe');
-  const [cardNumber, setCardNumber] = useState('4242 •••• •••• 4242');
-  const [cardExpiry, setCardExpiry] = useState('12/28');
-  const [cardCvc, setCardCvc] = useState('888');
-
-  const currentLocalityObj = MALTA_LOCALITIES.find((l) => l.name === locality) || MALTA_LOCALITIES[0];
+  const currentLocalityObj = MALTA_LOCALITIES.find((l) => l.name.toLowerCase().includes(locality.toLowerCase())) || MALTA_LOCALITIES[0];
   const finalTotal = Math.max(0, subtotal - discountAmount + deliveryFee);
-
-  // Create Stripe PaymentIntent when stepping into payment stage
-  useEffect(() => {
-    if (isOpen && step === 3 && finalTotal > 0) {
-      const initStripeIntent = async () => {
-        try {
-          const res = await api.payments.createIntent(`temp_order_${Date.now()}`, finalTotal, 'eur');
-          if (res?.clientSecret) {
-            setStripeClientSecret(res.clientSecret);
-          }
-        } catch {
-          // Keep null for fallback form
-          setStripeClientSecret(null);
-        }
-      };
-      initStripeIntent();
-    }
-  }, [isOpen, step, finalTotal]);
 
   if (!isOpen) return null;
 
-  const handleNextStep = () => {
-    if (step === 1) {
-      const newAddr: DeliveryAddress = {
-        fullName,
-        phone,
-        email,
-        street,
-        locality,
-        postalCode,
-        notes,
-        coordinates: currentLocalityObj.coordinates
-      };
-      saveAddress(newAddr);
-      setStep(2);
-    } else if (step === 2) {
-      setStep(3);
-    }
+  const handleProceedToReview = (e: React.FormEvent) => {
+    e.preventDefault();
+    const newAddr: DeliveryAddress = {
+      fullName: fullName.trim() || 'Customer',
+      phone: phone.trim() || STORE_CONTACT_PHONE,
+      email: email.trim() || 'orders@desibolt.com.mt',
+      street: street.trim() || 'Malta Delivery',
+      locality,
+      postalCode,
+      notes,
+      coordinates: currentLocalityObj?.coordinates || { lat: 35.8761, lng: 14.5350 }
+    };
+    saveAddress(newAddr);
+    setStep(2);
   };
 
-  const executeOrderCreation = (paymentTransactionId?: string) => {
-    setIsProcessingPayment(true);
-    setPaymentError(null);
+  const handleSendWhatsAppOrder = () => {
+    setIsSubmitting(true);
 
+    const deliveryAddress: DeliveryAddress = {
+      fullName: fullName.trim() || 'Customer',
+      phone: phone.trim() || STORE_CONTACT_PHONE,
+      email: email.trim() || 'orders@desibolt.com.mt',
+      street: street.trim() || 'Malta Delivery',
+      locality,
+      postalCode,
+      notes,
+      coordinates: currentLocalityObj?.coordinates || { lat: 35.8761, lng: 14.5350 }
+    };
+
+    // 1. Create order in context
+    const newOrder = createOrder(
+      items,
+      deliveryAddress,
+      'whatsapp',
+      deliverySlot
+    );
+
+    // 2. Generate WhatsApp URL
+    const waUrl = getWhatsAppOrderUrl({
+      items,
+      address: deliveryAddress,
+      deliverySlot,
+      subtotal,
+      discountAmount,
+      deliveryFee,
+      finalTotal,
+      promoCode,
+      orderNumber: newOrder.orderNumber
+    });
+
+    setGeneratedWhatsAppLink(waUrl);
+    setConfirmedOrder(newOrder);
+
+    // 3. Open WhatsApp directly in new tab/app
+    window.open(waUrl, '_blank', 'noopener,noreferrer');
+
+    // 4. Update UI to Step 3 Confirmation & clear cart
     setTimeout(() => {
-      const deliveryAddress: DeliveryAddress = {
-        fullName,
-        phone,
-        email,
-        street,
-        locality,
-        postalCode,
-        notes,
-        coordinates: currentLocalityObj.coordinates
-      };
-
-      const newOrder = createOrder(
-        items,
-        deliveryAddress,
-        paymentMethod,
-        deliverySlot
-      );
-
-      if (paymentTransactionId) {
-        (newOrder as any).paymentIntentId = paymentTransactionId;
-      }
-
-      setConfirmedOrder(newOrder);
-      setIsProcessingPayment(false);
-      setStep(4);
+      setIsSubmitting(false);
+      setStep(3);
       clearCart();
 
-      // Trigger Confetti
+      // Trigger Celebration Confetti
       try {
         confetti({
-          particleCount: 120,
+          particleCount: 100,
           spread: 70,
           origin: { y: 0.6 }
         });
       } catch (e) {
         console.error('Confetti error', e);
       }
-    }, 1200);
+    }, 600);
   };
 
   return (
     <div 
       onClick={onClose}
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/70 backdrop-blur-xs animate-in fade-in cursor-pointer"
+      className="fixed inset-0 z-50 flex items-center justify-center p-3.5 sm:p-4 bg-slate-900/70 backdrop-blur-xs animate-in fade-in cursor-pointer"
     >
       <div 
         onClick={(e) => e.stopPropagation()}
         className="bg-white rounded-3xl shadow-2xl border border-slate-100 max-w-xl w-full max-h-[92vh] overflow-y-auto flex flex-col relative cursor-default"
       >
         {/* Header */}
-        <div className="p-4 border-b border-slate-100 flex items-center justify-between bg-slate-50/80">
-          <div>
-            <h3 className="font-black text-slate-800 text-base flex items-center gap-2">
-              <span className="text-[#E63946]">DESI BOLT</span> Checkout
-            </h3>
-            <p className="text-[11px] text-slate-500 font-medium">Fast grocery delivery in Malta</p>
+        <div className="p-4 border-b border-slate-100 flex items-center justify-between bg-slate-50/90 sticky top-0 z-20 backdrop-blur-md">
+          <div className="flex items-center gap-2.5">
+            <img src="/logo.png" alt="DESI BOLT" className="w-8 h-8 rounded-xl object-cover shadow-sm border border-red-500/20" />
+            <div>
+              <h3 className="font-black text-slate-800 text-sm sm:text-base flex items-center gap-1.5">
+                <span className="text-[#E63946]">DESI BOLT</span> Direct WhatsApp Order
+              </h3>
+              <p className="text-[11px] text-emerald-700 font-semibold flex items-center gap-1">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 inline-block animate-pulse" />
+                No payment method needed • Direct to WhatsApp (+356 79791146)
+              </p>
+            </div>
           </div>
 
           <button
             onClick={onClose}
-            className="w-8 h-8 rounded-full bg-slate-200/80 hover:bg-slate-300 text-slate-700 flex items-center justify-center transition-colors"
+            className="w-8 h-8 rounded-full bg-slate-200/80 hover:bg-slate-300 text-slate-700 flex items-center justify-center transition-colors shrink-0"
           >
             <X className="w-4 h-4" />
           </button>
         </div>
 
         {/* Step Progress Indicators */}
-        <div className="bg-slate-50 px-6 py-3 border-b border-slate-200/80 flex items-center justify-between">
+        <div className="bg-slate-50 px-5 py-2.5 border-b border-slate-200/80 flex items-center justify-around">
           {[
-            { s: 1, label: 'Address' },
-            { s: 2, label: 'Delivery' },
-            { s: 3, label: 'Payment' },
-            { s: 4, label: 'Receipt' }
+            { s: 1, label: '1. Delivery Details' },
+            { s: 2, label: '2. Review & WhatsApp' },
+            { s: 3, label: '3. Order Placed' }
           ].map(({ s, label }) => (
             <div key={s} className="flex items-center gap-2">
-              <div className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-black transition-all ${
+              <div className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-black transition-all ${
                 step === s 
                   ? 'bg-[#E63946] text-white ring-2 ring-red-200' 
                   : step > s 
@@ -203,7 +192,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
               }`}>
                 {step > s ? '✓' : s}
               </div>
-              <span className={`text-xs font-bold hidden sm:inline ${
+              <span className={`text-[11px] font-bold ${
                 step === s ? 'text-slate-900' : 'text-slate-400'
               }`}>
                 {label}
@@ -212,40 +201,36 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
           ))}
         </div>
 
-        {/* Modal Body per Step */}
-        <div className="p-6 flex-1 space-y-4">
-          {paymentError && (
-            <div className="bg-red-50 text-[#E63946] text-xs font-semibold p-3.5 rounded-2xl border border-red-200 flex items-center gap-2.5">
-              <AlertCircle className="w-4 h-4 shrink-0" />
-              <span>{paymentError}</span>
-            </div>
-          )}
-
-          {/* STEP 1: Address */}
+        {/* Modal Body */}
+        <div className="p-5 sm:p-6 flex-1 space-y-4">
+          
+          {/* STEP 1: Address & Timing */}
           {step === 1 && (
-            <div className="space-y-4 animate-in fade-in">
+            <form onSubmit={handleProceedToReview} className="space-y-4 animate-in fade-in">
               <div className="flex items-center gap-2 text-xs font-extrabold text-slate-700 uppercase tracking-wider">
                 <MapPin className="w-4 h-4 text-[#E63946]" />
-                <span>Malta Delivery Address</span>
+                <span>Where should we deliver your order?</span>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-xs font-semibold text-slate-600 mb-1">Full Name</label>
+                  <label className="block text-xs font-semibold text-slate-600 mb-1">Your Full Name *</label>
                   <input
                     type="text"
                     value={fullName}
                     onChange={(e) => setFullName(e.target.value)}
+                    placeholder="e.g. John Borg"
                     className="w-full text-xs px-3.5 py-2.5 rounded-xl border border-slate-200 focus:border-[#E63946] outline-hidden font-medium"
                     required
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold text-slate-600 mb-1">Phone (+356 Mobile)</label>
+                  <label className="block text-xs font-semibold text-slate-600 mb-1">Contact Phone Number *</label>
                   <input
                     type="text"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
+                    placeholder="e.g. 79791146 or +356 79791146"
                     className="w-full text-xs px-3.5 py-2.5 rounded-xl border border-slate-200 focus:border-[#E63946] outline-hidden font-medium"
                     required
                   />
@@ -254,7 +239,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-xs font-semibold text-slate-600 mb-1">Locality in Malta</label>
+                  <label className="block text-xs font-semibold text-slate-600 mb-1">Locality in Malta *</label>
                   <select
                     value={locality}
                     onChange={(e) => {
@@ -266,7 +251,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
                   >
                     {MALTA_LOCALITIES.map((loc) => (
                       <option key={loc.name} value={loc.name}>
-                        {loc.name} ({loc.region} - ~{loc.deliveryTimeMins}m ETA)
+                        {loc.name} (~{loc.deliveryTimeMins}m ETA)
                       </option>
                     ))}
                   </select>
@@ -277,18 +262,19 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
                     type="text"
                     value={postalCode}
                     onChange={(e) => setPostalCode(e.target.value)}
+                    placeholder="e.g. ZBR 1000"
                     className="w-full text-xs px-3.5 py-2.5 rounded-xl border border-slate-200 focus:border-[#E63946] outline-hidden font-medium uppercase"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-slate-600 mb-1">Street Address, Apt / Door #</label>
+                <label className="block text-xs font-semibold text-slate-600 mb-1">Street Address, House/Flat/Apt No. *</label>
                 <input
                   type="text"
                   value={street}
                   onChange={(e) => setStreet(e.target.value)}
-                  placeholder="e.g. 42, Tower Road, Flat 4B"
+                  placeholder="e.g. 15, Triq San Pawl, Apt 2"
                   className="w-full text-xs px-3.5 py-2.5 rounded-xl border border-slate-200 focus:border-[#E63946] outline-hidden font-medium"
                   required
                 />
@@ -300,200 +286,146 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
                   type="text"
                   value={notes}
                   onChange={(e) => setNotes(e.target.value)}
-                  placeholder="e.g. Leave by door, ring buzzer 4B"
+                  placeholder="e.g. Ring buzzer 2, leave at front door"
                   className="w-full text-xs px-3.5 py-2.5 rounded-xl border border-slate-200 focus:border-[#E63946] outline-hidden font-medium"
                 />
               </div>
 
-              <div className="bg-emerald-50 rounded-2xl p-3 border border-emerald-200/80 text-xs text-emerald-800 flex items-center gap-2.5">
-                <Zap className="w-4 h-4 text-[#E63946] shrink-0" />
-                <span>Our courier in {locality} is standby and ready for ultrafast dispatch.</span>
-              </div>
-            </div>
-          )}
-
-          {/* STEP 2: Delivery Slot */}
-          {step === 2 && (
-            <div className="space-y-4 animate-in fade-in">
-              <div className="flex items-center gap-2 text-xs font-extrabold text-slate-700 uppercase tracking-wider">
-                <Clock className="w-4 h-4 text-[#E63946]" />
-                <span>Choose Delivery Speed</span>
-              </div>
-
-              <div className="space-y-2.5">
-                {/* Instant Bolt */}
-                <label 
-                  onClick={() => setDeliverySlot('instant_bolt')}
-                  className={`flex items-center justify-between p-4 rounded-2xl border cursor-pointer transition-all ${
-                    deliverySlot === 'instant_bolt' 
-                      ? 'border-[#E63946] bg-red-50/50 ring-2 ring-red-100' 
-                      : 'border-slate-200 hover:border-slate-300'
-                  }`}
-                >
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-[#E63946] text-white flex items-center justify-center">
-                      <Zap className="w-5 h-5 fill-current" />
-                    </div>
-                    <div>
-                      <div className="text-xs font-black text-slate-900 flex items-center gap-2">
-                        <span>⚡️ DESI BOLT Instant (15-25 Min)</span>
-                        <span className="bg-[#E63946] text-white text-[9px] px-1.5 py-0.2 rounded-sm font-bold">Fastest</span>
-                      </div>
-                      <p className="text-[11px] text-slate-500">Immediate picking & bike dispatch to {locality}</p>
-                    </div>
-                  </div>
-                  <div className="w-5 h-5 rounded-full border-2 flex items-center justify-center border-[#E63946]">
-                    {deliverySlot === 'instant_bolt' && <div className="w-2.5 h-2.5 rounded-full bg-[#E63946]" />}
-                  </div>
+              {/* Delivery Speed Selector */}
+              <div className="pt-2">
+                <label className="block text-xs font-extrabold text-slate-700 uppercase tracking-wider mb-2">
+                  Select Delivery Speed
                 </label>
-
-                {/* Today Evening */}
-                <label 
-                  onClick={() => setDeliverySlot('today_evening')}
-                  className={`flex items-center justify-between p-4 rounded-2xl border cursor-pointer transition-all ${
-                    deliverySlot === 'today_evening' 
-                      ? 'border-[#E63946] bg-red-50/50 ring-2 ring-red-100' 
-                      : 'border-slate-200 hover:border-slate-300'
-                  }`}
-                >
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-slate-100 text-slate-700 flex items-center justify-center">
-                      <Clock className="w-5 h-5" />
-                    </div>
-                    <div>
-                      <div className="text-xs font-bold text-slate-900">Today Evening (18:00 – 20:00)</div>
-                      <p className="text-[11px] text-slate-500">Scheduled evening batch delivery</p>
-                    </div>
-                  </div>
-                  <div className="w-5 h-5 rounded-full border-2 flex items-center justify-center border-slate-300">
-                    {deliverySlot === 'today_evening' && <div className="w-2.5 h-2.5 rounded-full bg-[#E63946]" />}
-                  </div>
-                </label>
-
-                {/* Tomorrow Morning */}
-                <label 
-                  onClick={() => setDeliverySlot('tomorrow_morning')}
-                  className={`flex items-center justify-between p-4 rounded-2xl border cursor-pointer transition-all ${
-                    deliverySlot === 'tomorrow_morning' 
-                      ? 'border-[#E63946] bg-red-50/50 ring-2 ring-red-100' 
-                      : 'border-slate-200 hover:border-slate-300'
-                  }`}
-                >
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-slate-100 text-slate-700 flex items-center justify-center">
-                      <Truck className="w-5 h-5" />
-                    </div>
-                    <div>
-                      <div className="text-xs font-bold text-slate-900">Tomorrow Morning (08:00 – 10:00)</div>
-                      <p className="text-[11px] text-slate-500">Fresh morning bakery & milk delivery</p>
-                    </div>
-                  </div>
-                  <div className="w-5 h-5 rounded-full border-2 flex items-center justify-center border-slate-300">
-                    {deliverySlot === 'tomorrow_morning' && <div className="w-2.5 h-2.5 rounded-full bg-[#E63946]" />}
-                  </div>
-                </label>
-              </div>
-            </div>
-          )}
-
-          {/* STEP 3: Payment */}
-          {step === 3 && (
-            <div className="space-y-4 animate-in fade-in">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2 text-xs font-extrabold text-slate-700 uppercase tracking-wider">
-                  <CreditCard className="w-4 h-4 text-[#E63946]" />
-                  <span>Select Payment Method</span>
-                </div>
-                <span className="text-[11px] text-emerald-600 font-bold flex items-center gap-1">
-                  <Lock className="w-3 h-3" /> 256-Bit Encrypted
-                </span>
-              </div>
-
-              {/* Payment Methods Grid */}
-              <div className="grid grid-cols-2 gap-2.5">
-                {[
-                  { id: 'stripe', name: 'Credit / Debit Card', desc: 'Stripe Secure', icon: <CreditCard className="w-4 h-4 text-[#E63946]" /> },
-                  { id: 'apple_pay', name: 'Apple / Google Pay', desc: 'Instant 1-Tap', icon: <Smartphone className="w-4 h-4 text-slate-800" /> },
-                  { id: 'revolut', name: 'Revolut Pay', desc: 'Instant EU Transfer', icon: <Sparkles className="w-4 h-4 text-blue-600" /> },
-                  { id: 'cod', name: 'Cash on Delivery', desc: 'Pay at Doorstep', icon: <Truck className="w-4 h-4 text-amber-600" /> }
-                ].map((pm) => (
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
                   <button
-                    key={pm.id}
                     type="button"
-                    onClick={() => setPaymentMethod(pm.id as any)}
-                    className={`p-3 rounded-2xl border text-left transition-all ${
-                      paymentMethod === pm.id 
-                        ? 'border-[#E63946] bg-red-50/50 ring-2 ring-red-100 shadow-xs' 
-                        : 'border-slate-200 hover:border-slate-300 bg-white'
+                    onClick={() => setDeliverySlot('instant_bolt')}
+                    className={`p-3 rounded-xl border text-left transition-all ${
+                      deliverySlot === 'instant_bolt'
+                        ? 'border-[#E63946] bg-red-50/60 ring-2 ring-red-200'
+                        : 'border-slate-200 bg-white hover:border-slate-300'
                     }`}
                   >
-                    <div className="flex items-center justify-between mb-1">
-                      {pm.icon}
-                      {paymentMethod === pm.id && <CheckCircle2 className="w-4 h-4 text-[#E63946]" />}
+                    <div className="flex items-center gap-1 text-xs font-black text-slate-900">
+                      <Zap className="w-3.5 h-3.5 text-[#E63946] fill-[#E63946]" />
+                      <span>Instant Bolt</span>
                     </div>
-                    <div className="text-xs font-bold text-slate-900">{pm.name}</div>
-                    <div className="text-[10px] text-slate-400">{pm.desc}</div>
+                    <p className="text-[10px] text-slate-500 mt-0.5">15-25 Mins (~Courier)</p>
                   </button>
-                ))}
+
+                  <button
+                    type="button"
+                    onClick={() => setDeliverySlot('today_evening')}
+                    className={`p-3 rounded-xl border text-left transition-all ${
+                      deliverySlot === 'today_evening'
+                        ? 'border-[#E63946] bg-red-50/60 ring-2 ring-red-200'
+                        : 'border-slate-200 bg-white hover:border-slate-300'
+                    }`}
+                  >
+                    <div className="flex items-center gap-1 text-xs font-black text-slate-900">
+                      <Clock className="w-3.5 h-3.5 text-slate-700" />
+                      <span>Today Evening</span>
+                    </div>
+                    <p className="text-[10px] text-slate-500 mt-0.5">18:00 – 20:00</p>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => setDeliverySlot('tomorrow_morning')}
+                    className={`p-3 rounded-xl border text-left transition-all ${
+                      deliverySlot === 'tomorrow_morning'
+                        ? 'border-[#E63946] bg-red-50/60 ring-2 ring-red-200'
+                        : 'border-slate-200 bg-white hover:border-slate-300'
+                    }`}
+                  >
+                    <div className="flex items-center gap-1 text-xs font-black text-slate-900">
+                      <Truck className="w-3.5 h-3.5 text-slate-700" />
+                      <span>Tomorrow AM</span>
+                    </div>
+                    <p className="text-[10px] text-slate-500 mt-0.5">08:00 – 10:00</p>
+                  </button>
+                </div>
               </div>
 
-              {/* Real Stripe Payment Form or Fallback */}
-              {paymentMethod === 'stripe' && stripeClientSecret && stripePromise ? (
-                <Elements stripe={stripePromise} options={{ clientSecret: stripeClientSecret }}>
-                  <StripePaymentForm
-                    amount={finalTotal}
-                    orderNumber={`DB-MLT-${Math.floor(10000 + Math.random() * 90000)}`}
-                    onPaymentSuccess={(piId) => executeOrderCreation(piId)}
-                    isProcessing={isProcessingPayment}
-                    setIsProcessing={setIsProcessingPayment}
-                  />
-                </Elements>
-              ) : paymentMethod === 'stripe' ? (
-                <div className="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-3">
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs font-bold text-slate-700">Card Details (Stripe Test / Offline Mode)</span>
-                    <span className="text-[10px] bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-md font-bold">
-                      Verified Card
-                    </span>
-                  </div>
+              {/* Continue to Review Button */}
+              <div className="pt-3">
+                <button
+                  type="submit"
+                  className="w-full bg-[#E63946] hover:bg-[#D62839] text-white font-extrabold text-sm py-3.5 rounded-2xl shadow-lg shadow-red-500/25 flex items-center justify-center gap-2 transition-all hover:scale-101"
+                >
+                  <span>Review Order & Go to WhatsApp</span>
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+              </div>
+            </form>
+          )}
 
-                  <div>
-                    <label className="block text-[11px] font-semibold text-slate-500 mb-1">Card Number</label>
-                    <input
-                      type="text"
-                      value={cardNumber}
-                      onChange={(e) => setCardNumber(e.target.value)}
-                      className="w-full text-xs font-mono px-3 py-2 rounded-xl bg-white border border-slate-200 focus:border-[#E63946] outline-hidden font-bold"
-                    />
-                  </div>
-
-                  <div className="grid grid-cols-2 gap-3">
-                    <div>
-                      <label className="block text-[11px] font-semibold text-slate-500 mb-1">Expiry</label>
-                      <input
-                        type="text"
-                        value={cardExpiry}
-                        onChange={(e) => setCardExpiry(e.target.value)}
-                        className="w-full text-xs font-mono px-3 py-2 rounded-xl bg-white border border-slate-200 focus:border-[#E63946] outline-hidden font-bold"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-[11px] font-semibold text-slate-500 mb-1">CVC</label>
-                      <input
-                        type="text"
-                        value={cardCvc}
-                        onChange={(e) => setCardCvc(e.target.value)}
-                        className="w-full text-xs font-mono px-3 py-2 rounded-xl bg-white border border-slate-200 focus:border-[#E63946] outline-hidden font-bold"
-                      />
-                    </div>
-                  </div>
+          {/* STEP 2: Review Order & WhatsApp Send */}
+          {step === 2 && (
+            <div className="space-y-4 animate-in fade-in">
+              {/* WhatsApp Notice Banner */}
+              <div className="bg-emerald-50 border border-emerald-200 rounded-2xl p-3.5 flex items-start gap-3">
+                <div className="w-9 h-9 rounded-xl bg-emerald-500 text-white flex items-center justify-center shrink-0 shadow-sm">
+                  <MessageCircle className="w-5 h-5 fill-current" />
                 </div>
-              ) : null}
+                <div className="text-xs">
+                  <h4 className="font-extrabold text-emerald-950">Direct WhatsApp Ordering</h4>
+                  <p className="text-emerald-800 text-[11px] leading-relaxed mt-0.5">
+                    No card or online payment required. Clicking below will open WhatsApp with your item list and address pre-filled to <strong className="underline">+356 79791146</strong>.
+                  </p>
+                </div>
+              </div>
 
-              {/* Order Summary breakdown */}
-              <div className="bg-slate-50 p-3.5 rounded-2xl border border-slate-200/80 space-y-1.5 text-xs text-slate-600">
+              {/* Delivery Summary Pill */}
+              <div className="bg-slate-50 rounded-2xl p-3.5 border border-slate-200 text-xs space-y-1.5">
+                <div className="flex justify-between items-center text-slate-500 font-semibold text-[11px]">
+                  <span>DELIVERING TO:</span>
+                  <button 
+                    onClick={() => setStep(1)} 
+                    className="text-[#E63946] hover:underline font-bold"
+                  >
+                    Edit
+                  </button>
+                </div>
+                <div className="font-bold text-slate-900">
+                  {fullName} ({phone})
+                </div>
+                <div className="text-slate-600 text-[11px]">
+                  {street}, {locality} {postalCode && `(${postalCode})`}
+                </div>
+                {notes && (
+                  <div className="text-[11px] text-amber-800 bg-amber-50 px-2 py-1 rounded-lg border border-amber-200">
+                    Note: {notes}
+                  </div>
+                )}
+              </div>
+
+              {/* Items List Preview */}
+              <div className="space-y-2">
+                <div className="text-xs font-extrabold text-slate-700 uppercase tracking-wider flex justify-between">
+                  <span>Basket Items ({items.length})</span>
+                  <span>Total</span>
+                </div>
+                <div className="max-h-44 overflow-y-auto space-y-2 pr-1">
+                  {items.map(({ product, quantity }) => (
+                    <div key={product.id} className="flex items-center justify-between gap-3 text-xs bg-white p-2 rounded-xl border border-slate-100">
+                      <div className="flex items-center gap-2 min-w-0">
+                        <img src={product.image} alt={product.name} className="w-8 h-8 rounded-lg object-cover border border-slate-100 shrink-0" />
+                        <div className="truncate">
+                          <span className="font-bold text-slate-800">{product.name}</span>
+                          <span className="text-[10px] text-slate-400 block">{product.unit} × {quantity}</span>
+                        </div>
+                      </div>
+                      <span className="font-black text-slate-900 shrink-0">€{(product.price * quantity).toFixed(2)}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Bill Details */}
+              <div className="bg-slate-50 p-3.5 rounded-2xl border border-slate-200 space-y-1.5 text-xs text-slate-600">
                 <div className="flex justify-between">
-                  <span>Subtotal ({items.length} items)</span>
+                  <span>Item Subtotal</span>
                   <span className="font-semibold text-slate-800">€{subtotal.toFixed(2)}</span>
                 </div>
                 {discountAmount > 0 && (
@@ -503,120 +435,128 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
                   </div>
                 )}
                 <div className="flex justify-between">
-                  <span>Delivery ({locality})</span>
+                  <span>Delivery Fee ({locality})</span>
                   <span className="font-semibold text-slate-800">{deliveryFee === 0 ? 'FREE' : `€${deliveryFee.toFixed(2)}`}</span>
                 </div>
-                <div className="flex justify-between font-black text-sm text-slate-900 pt-1.5 border-t border-slate-200">
-                  <span>Total Amount Due</span>
+                <div className="flex justify-between font-black text-sm text-slate-900 pt-2 border-t border-slate-200">
+                  <span>Total to Pay</span>
                   <span className="text-[#E63946] text-base">€{finalTotal.toFixed(2)}</span>
                 </div>
+              </div>
+
+              {/* Store VAT & Address Info */}
+              <div className="text-[11px] text-slate-400 text-center space-y-0.5">
+                <div>Store: {STORE_ADDRESS}</div>
+                <div>Helpdesk: +356 {STORE_CONTACT_PHONE}</div>
+              </div>
+
+              {/* Buttons */}
+              <div className="pt-2 flex items-center gap-3">
+                <button
+                  type="button"
+                  onClick={() => setStep(1)}
+                  className="px-4 py-3.5 rounded-2xl border border-slate-200 text-xs font-bold text-slate-700 hover:bg-slate-100 flex items-center gap-1.5"
+                >
+                  <ArrowLeft className="w-4 h-4" /> Back
+                </button>
+
+                <button
+                  type="button"
+                  onClick={handleSendWhatsAppOrder}
+                  disabled={isSubmitting}
+                  className="flex-1 bg-emerald-600 hover:bg-emerald-500 active:scale-98 text-white font-black text-xs sm:text-sm py-3.5 px-4 rounded-2xl shadow-lg shadow-emerald-600/30 flex items-center justify-center gap-2 transition-all hover:scale-101"
+                >
+                  {isSubmitting ? (
+                    <div className="flex items-center gap-2">
+                      <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                      <span>Opening WhatsApp...</span>
+                    </div>
+                  ) : (
+                    <>
+                      <MessageCircle className="w-4 h-4 fill-current" />
+                      <span>Send Order on WhatsApp (+356 79791146)</span>
+                    </>
+                  )}
+                </button>
               </div>
             </div>
           )}
 
-          {/* STEP 4: Order Confirmation & Receipt */}
-          {step === 4 && confirmedOrder && (
+          {/* STEP 3: Order Placed Confirmation */}
+          {step === 3 && confirmedOrder && (
             <div className="space-y-4 text-center py-4 animate-in zoom-in-95">
-              <div className="w-16 h-16 rounded-3xl bg-emerald-50 text-emerald-600 flex items-center justify-center mx-auto shadow-md shadow-emerald-500/10">
+              <div className="w-16 h-16 rounded-3xl bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto shadow-md shadow-emerald-500/10">
                 <CheckCircle2 className="w-10 h-10" />
               </div>
 
               <div>
-                <span className="inline-block bg-[#E63946] text-white text-[10px] font-black px-2.5 py-0.5 rounded-full mb-1">
-                  15-30 MIN DELIVERY INITIATED
+                <span className="inline-block bg-emerald-600 text-white text-[10px] font-black px-3 py-1 rounded-full mb-2">
+                  ✓ ORDER SENT TO WHATSAPP (+356 79791146)
                 </span>
                 <h3 className="text-xl font-black text-slate-900">
                   Order Successfully Placed!
                 </h3>
-                <p className="text-xs text-slate-500 font-medium">
-                  Order #{confirmedOrder.orderNumber} • Paid with {confirmedOrder.paymentMethod.toUpperCase()}
+                <p className="text-xs text-slate-500 font-medium mt-1">
+                  Order Ref: <strong className="text-slate-800">#{confirmedOrder.orderNumber}</strong> • Total: <strong className="text-emerald-700">€{confirmedOrder.total.toFixed(2)}</strong>
                 </p>
               </div>
 
-              {/* Courier Card Preview */}
+              {/* Delivery Details Card */}
               <div className="bg-slate-50 rounded-2xl p-4 border border-slate-200 text-left space-y-2">
                 <div className="flex items-center justify-between text-xs font-bold text-slate-700">
-                  <span>Delivery to {confirmedOrder.address.locality}</span>
+                  <span>Destination: {confirmedOrder.address.locality}</span>
                   <span className="text-[#E63946]">ETA: 15-25 Mins</span>
                 </div>
                 <p className="text-xs text-slate-600">
-                  {confirmedOrder.address.street}, {confirmedOrder.address.locality} ({confirmedOrder.address.postalCode})
+                  {confirmedOrder.address.street}, {confirmedOrder.address.locality}
                 </p>
-                <div className="pt-2 border-t border-slate-200/80 flex items-center justify-between text-xs">
+                <div className="pt-2 border-t border-slate-200 flex items-center justify-between text-xs">
                   <div className="flex items-center gap-2">
                     <div className="w-7 h-7 rounded-full bg-red-100 text-[#E63946] flex items-center justify-center font-bold text-xs">
-                      JV
+                      DB
                     </div>
                     <div>
                       <div className="font-bold text-slate-800">{confirmedOrder.driver?.name}</div>
                       <div className="text-[10px] text-slate-400">{confirmedOrder.driver?.vehicle}</div>
                     </div>
                   </div>
-                  <span className="text-emerald-700 font-bold text-[11px] bg-emerald-50 px-2 py-0.5 rounded-md">
-                    Assigned & Packing
+                  <span className="text-emerald-700 font-bold text-[11px] bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-200">
+                    Dispatching from Central Store
                   </span>
                 </div>
               </div>
 
-              {/* Action: Track Live Delivery */}
-              <button
-                onClick={() => {
-                  onOrderCompleted(confirmedOrder);
-                  onClose();
-                }}
-                className="w-full bg-[#E63946] hover:bg-[#D62839] text-white font-black text-sm py-4 rounded-2xl shadow-xl shadow-red-500/30 flex items-center justify-center gap-2 transition-all hover:scale-101"
-              >
-                <Truck className="w-5 h-5" />
-                <span>Track Live Delivery on Malta Map</span>
-                <ArrowRight className="w-4 h-4" />
-              </button>
+              {/* Actions */}
+              <div className="space-y-2 pt-2">
+                {generatedWhatsAppLink && (
+                  <a
+                    href={generatedWhatsAppLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs py-3 rounded-2xl flex items-center justify-center gap-2 shadow-md shadow-emerald-600/25 transition-all"
+                  >
+                    <MessageCircle className="w-4 h-4 fill-current" />
+                    <span>Re-open WhatsApp Chat (+356 79791146)</span>
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
+                )}
+
+                <button
+                  onClick={() => {
+                    onOrderCompleted(confirmedOrder);
+                    onClose();
+                  }}
+                  className="w-full bg-[#E63946] hover:bg-[#D62839] text-white font-black text-xs sm:text-sm py-3.5 rounded-2xl shadow-lg shadow-red-500/25 flex items-center justify-center gap-2 transition-all hover:scale-101"
+                >
+                  <Truck className="w-4 h-4" />
+                  <span>Track Live Delivery on Map</span>
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+              </div>
             </div>
           )}
+
         </div>
-
-        {/* Modal Footer Navigation */}
-        {step < 4 && (
-          <div className="p-4 bg-slate-50 border-t border-slate-200 flex items-center justify-between">
-            {step > 1 ? (
-              <button
-                onClick={() => setStep((s) => (s - 1) as any)}
-                className="px-4 py-2.5 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 hover:bg-slate-100 flex items-center gap-1.5"
-              >
-                <ArrowLeft className="w-3.5 h-3.5" /> Back
-              </button>
-            ) : (
-              <div />
-            )}
-
-            {step < 3 ? (
-              <button
-                onClick={handleNextStep}
-                className="px-6 py-2.5 bg-[#E63946] hover:bg-[#D62839] text-white text-xs font-black rounded-xl flex items-center gap-2 shadow-md shadow-red-500/20"
-              >
-                <span>Continue to {step === 1 ? 'Delivery Slot' : 'Payment'}</span>
-                <ArrowRight className="w-4 h-4" />
-              </button>
-            ) : paymentMethod !== 'stripe' || !stripeClientSecret ? (
-              <button
-                onClick={() => executeOrderCreation()}
-                disabled={isProcessingPayment}
-                className="px-7 py-3 bg-[#E63946] hover:bg-[#D62839] disabled:opacity-60 text-white text-xs font-black rounded-xl flex items-center gap-2 shadow-lg shadow-red-500/25 transition-all"
-              >
-                {isProcessingPayment ? (
-                  <div className="flex items-center gap-2">
-                    <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                    <span>Processing Payment (€{finalTotal.toFixed(2)})...</span>
-                  </div>
-                ) : (
-                  <>
-                    <Zap className="w-4 h-4 fill-white" />
-                    <span>Confirm & Pay €{finalTotal.toFixed(2)}</span>
-                  </>
-                )}
-              </button>
-            ) : null}
-          </div>
-        )}
       </div>
     </div>
   );

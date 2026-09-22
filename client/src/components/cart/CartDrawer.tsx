@@ -12,7 +12,8 @@ import {
   Tag, 
   Check, 
   ShieldCheck,
-  Zap
+  Zap,
+  MessageCircle
 } from 'lucide-react';
 
 interface CartDrawerProps {
@@ -250,19 +251,25 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({ onProceedToCheckout }) =
                 </div>
               </div>
 
+              {/* Direct WhatsApp Ordering Info */}
+              <div className="bg-emerald-50 rounded-xl p-2.5 border border-emerald-200 text-[11px] text-emerald-800 flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 shrink-0" />
+                <span>Zero payment hassle! Directly send your basket to WhatsApp (<strong>+356 79791146</strong>).</span>
+              </div>
+
               {/* Checkout CTA */}
               <button
                 onClick={() => {
                   setIsCartOpen(false);
                   onProceedToCheckout(discountAmount, appliedPromo || '');
                 }}
-                className="w-full bg-[#E63946] hover:bg-[#D62839] text-white font-extrabold text-sm py-3.5 rounded-2xl shadow-lg shadow-red-500/25 flex items-center justify-between px-5 transition-all hover:scale-101 active:scale-98"
+                className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-sm py-3.5 rounded-2xl shadow-lg shadow-emerald-600/30 flex items-center justify-between px-5 transition-all hover:scale-101 active:scale-98"
               >
                 <div className="flex items-center gap-2">
-                  <Zap className="w-4 h-4 fill-white" />
-                  <span>Proceed to Checkout</span>
+                  <MessageCircle className="w-4 h-4 fill-current" />
+                  <span>Order via WhatsApp</span>
                 </div>
-                <div className="flex items-center gap-1">
+                <div className="flex items-center gap-1.5 font-black">
                   <span>€{finalTotal.toFixed(2)}</span>
                   <ArrowRight className="w-4 h-4" />
                 </div>

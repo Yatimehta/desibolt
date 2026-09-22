@@ -54,29 +54,38 @@ export const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-5 gap-8 py-10">
           {/* Company & Brand */}
           <div className="md:col-span-2 space-y-4">
-            <div className="flex items-center gap-2">
-              <div className="w-9 h-9 bg-[#E63946] rounded-xl flex items-center justify-center shadow-md">
-                <Truck className="w-5 h-5 text-white" />
-              </div>
+            <div className="flex items-center gap-3">
+              <img 
+                src="/logo.png" 
+                alt="DESI BOLT" 
+                className="w-12 h-12 rounded-2xl object-cover shadow-lg border border-red-500/30" 
+              />
               <span className="font-black text-2xl tracking-tight text-white">
                 DESI <span className="text-[#E63946]">BOLT</span>
               </span>
             </div>
             <p className="text-xs text-slate-300 leading-relaxed max-w-sm">
-              Malta’s premier ultrafast grocery delivery app. Bringing the freshest local produce, authentic Indian spices, basmati rice, lentils, dairy, and 7,000+ daily essentials directly to your doorstep in minutes.
+              Malta’s premier ultrafast grocery delivery service. Fresh local produce, authentic Indian spices, basmati rice, lentils, dairy, and 7,000+ daily essentials ordered directly via WhatsApp and delivered to your doorstep in minutes.
             </p>
-            <div className="space-y-2 text-xs text-slate-400">
-              <div className="flex items-center gap-2">
-                <MapPin className="w-4 h-4 text-[#E63946]" />
-                <span>Central Dark Store: Triq Il-Wied, Msida / Birkirkara, Malta</span>
+            <div className="space-y-2.5 text-xs text-slate-300">
+              <div className="flex items-start gap-2">
+                <MapPin className="w-4 h-4 text-[#E63946] shrink-0 mt-0.5" />
+                <span>Central Store: Triq weid il ghajan  haz zabbar</span>
               </div>
               <div className="flex items-center gap-2">
-                <Phone className="w-4 h-4 text-emerald-400" />
-                <span>Customer Care & WhatsApp: +356 9912 3456 / +356 2133 8899</span>
+                <Phone className="w-4 h-4 text-emerald-400 shrink-0" />
+                <a 
+                  href="https://wa.me/35679791146" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="hover:text-emerald-400 font-semibold transition-colors flex items-center gap-1.5"
+                >
+                  <span>WhatsApp & Direct Orders: +356 79791146 (79791146)</span>
+                </a>
               </div>
               <div className="flex items-center gap-2">
-                <Mail className="w-4 h-4 text-amber-400" />
-                <span>orders@desibolt.com.mt • VAT: MT-28938210</span>
+                <Mail className="w-4 h-4 text-amber-400 shrink-0" />
+                <span>orders@desibolt.com.mt • VAT: 30384926</span>
               </div>
             </div>
           </div>
@@ -108,14 +117,23 @@ export const Footer: React.FC = () => {
             </ul>
           </div>
 
-          {/* Payment & Security */}
+          {/* Direct WhatsApp Ordering */}
           <div>
-            <h5 className="font-bold text-sm text-white mb-3">Secure Payments</h5>
+            <h5 className="font-bold text-sm text-white mb-3">WhatsApp Fast Ordering</h5>
             <p className="text-xs text-slate-400 mb-3">
-              PCI-DSS 256-bit encrypted checkout with instant Stripe, Apple Pay, Revolut & Cash on Delivery.
+              No online card payment required! Directly send your grocery order to our team on WhatsApp for instant confirmation and dispatch.
             </p>
-            <div className="flex flex-wrap gap-1.5">
-              {['Stripe', 'Visa', 'Mastercard', 'Apple Pay', 'Google Pay', 'Revolut', 'Cash on Delivery'].map((pay) => (
+            <a
+              href="https://wa.me/35679791146"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition-all shadow-md shadow-emerald-600/30"
+            >
+              <Phone className="w-3.5 h-3.5 fill-white" />
+              <span>Order via WhatsApp (+356 79791146)</span>
+            </a>
+            <div className="mt-3 flex flex-wrap gap-1.5">
+              {['WhatsApp Direct', 'Cash on Delivery', 'Revolut / Bank Transfer'].map((pay) => (
                 <span key={pay} className="px-2 py-1 bg-slate-800 text-[10px] font-semibold rounded-md border border-slate-700 text-slate-300">
                   {pay}
                 </span>

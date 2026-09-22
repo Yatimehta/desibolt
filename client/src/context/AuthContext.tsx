@@ -29,14 +29,14 @@ interface AuthContextType {
 const DEFAULT_DEMO_ADDRESSES: DeliveryAddress[] = [
   {
     fullName: 'Alex Camilleri',
-    phone: '+356 9912 3456',
+    phone: '+356 79791146',
     email: 'alex@example.com.mt',
-    street: '42, Tower Road, Apt 4B',
-    buildingName: 'Tower View Residences',
-    locality: 'Sliema',
-    postalCode: 'SLM 1604',
-    notes: 'Ring buzzer 4B, 3rd floor',
-    coordinates: { lat: 35.9122, lng: 14.5042 },
+    street: 'Central store. Triq weid il ghajan  haz zabbar',
+    buildingName: 'Central store',
+    locality: 'Haz-Zabbar',
+    postalCode: 'ZBR 1000',
+    notes: 'Ring buzzer, delivery ready',
+    coordinates: { lat: 35.8761, lng: 14.5350 },
   },
 ];
 
@@ -44,7 +44,7 @@ const DEFAULT_MOCK_USER: User = {
   id: 'usr_customer_1',
   name: 'Alex Camilleri',
   email: 'alex@example.com.mt',
-  phone: '+356 9912 3456',
+  phone: '+356 79791146',
   role: 'customer',
   createdAt: '2026-01-15T10:00:00.000Z',
   savedAddresses: DEFAULT_DEMO_ADDRESSES,

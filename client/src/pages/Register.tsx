@@ -170,7 +170,7 @@ export const Register: React.FC = () => {
                     type="text"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
-                    placeholder="+356 9912 3456"
+                    placeholder="+356 79791146"
                     className="w-full text-xs pl-9 pr-2 py-2.5 rounded-2xl border border-slate-200 focus:border-[#E63946] focus:ring-2 focus:ring-red-100 outline-hidden font-medium"
                   />
                 </div>

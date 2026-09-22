@@ -76,9 +76,14 @@ export const Navbar: React.FC<NavbarProps> = ({
           </div>
 
           <div className="flex items-center gap-3 text-[11px] text-[#E0DBCF] shrink-0">
-            <a href="tel:+35699123456" className="hover:text-white flex items-center gap-1 font-semibold">
+            <a 
+              href="https://wa.me/35679791146" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="hover:text-white flex items-center gap-1.5 font-bold bg-white/10 hover:bg-emerald-600/30 px-2.5 py-1 rounded-full border border-white/10 transition-colors"
+            >
               <Phone className="w-3 h-3 text-[#F4B41A]" />
-              <span>+356 9912 3456</span>
+              <span>WhatsApp: +356 79791146</span>
             </a>
             <span className="hidden md:inline bg-white/10 px-2 py-0.5 rounded-sm text-[#FFE8EC] font-semibold">
               USE CODE: DESIBOLT10 (€10 OFF)
@@ -94,14 +99,13 @@ export const Navbar: React.FC<NavbarProps> = ({
         <Link 
           to="/"
           onClick={() => setCurrentView('store')}
-          className="flex items-center gap-2 cursor-pointer group select-none shrink-0"
+          className="flex items-center gap-2.5 cursor-pointer group select-none shrink-0"
         >
-          <div className="w-9 h-9 md:w-10 md:h-10 bg-[#C81D25] rounded-2xl flex items-center justify-center shadow-md shadow-red-500/20 group-hover:scale-105 transition-transform">
-            <div className="relative">
-              <Truck className="w-4 h-4 md:w-5 md:h-5 text-white" />
-              <Zap className="w-2 md:w-2.5 h-2 md:h-2.5 text-[#F4B41A] fill-[#F4B41A] absolute -top-1 -right-1" />
-            </div>
-          </div>
+          <img 
+            src="/logo.png" 
+            alt="DESI BOLT" 
+            className="w-10 h-10 md:w-11 md:h-11 rounded-2xl object-cover shadow-md shadow-red-500/20 group-hover:scale-105 transition-transform border border-red-500/30" 
+          />
           <div>
             <div className="flex items-baseline gap-1">
               <span className="font-extrabold text-xl md:text-2xl tracking-tight text-[#1F2421] font-heading">

@@ -286,8 +286,8 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({ onCategorySelect, onExpl
                 <div className="bg-emerald-50 text-emerald-800 p-1.5 rounded-lg text-[9px] font-bold border border-emerald-200">
                   ✓ Free Delivery Unlocked!
                 </div>
-                <div className="cute-gold-btn text-[#1F2421] rounded-xl p-2 text-center font-black text-[9px]">
-                  Pay with Stripe / Revolut
+                <div className="bg-emerald-600 text-white rounded-xl p-2 text-center font-black text-[9px] shadow-xs">
+                  💬 Order on WhatsApp
                 </div>
               </div>
             </div>

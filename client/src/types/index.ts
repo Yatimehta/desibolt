@@ -103,7 +103,7 @@ export interface Order {
   discount: number;
   total: number;
   address: DeliveryAddress;
-  paymentMethod: 'stripe' | 'cod' | 'revolut' | 'apple_pay';
+  paymentMethod: 'whatsapp' | 'stripe' | 'cod' | 'revolut' | 'apple_pay';
   paymentStatus: 'paid' | 'pending' | 'failed';
   deliverySlot: 'instant_bolt' | 'today_evening' | 'tomorrow_morning';
   estimatedDeliveryTime: string;

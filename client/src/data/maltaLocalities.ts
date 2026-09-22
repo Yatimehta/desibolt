@@ -117,7 +117,11 @@ export const MALTA_LOCALITIES: MaltaLocality[] = [
 
 // DESI BOLT Central Malta Fulfillment Warehouse & Store
 export const DESI_BOLT_HUB = {
-  name: 'DESI BOLT Central Hub & Dark Store',
-  address: 'Triq Il-Wied, Msida / Birkirkara Bypass, Malta',
-  coordinates: { lat: 35.8978, lng: 14.4795 }
+  name: 'DESI BOLT Central Store',
+  address: 'Central store. Triq weid il ghajan  haz zabbar',
+  vat: '30384926',
+  phone: '79791146',
+  whatsappUrl: 'https://wa.me/35679791146',
+  coordinates: { lat: 35.8761, lng: 14.5350 }
 };
+

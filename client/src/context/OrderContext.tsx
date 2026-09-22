@@ -8,7 +8,7 @@ interface OrderContextType {
   createOrder: (
     items: CartItem[],
     address: DeliveryAddress,
-    paymentMethod: 'stripe' | 'cod' | 'revolut' | 'apple_pay',
+    paymentMethod: Order['paymentMethod'],
     deliverySlot: 'instant_bolt' | 'today_evening' | 'tomorrow_morning'
   ) => Order;
   updateOrderStatus: (orderId: string, status: OrderStatus) => void;
@@ -53,16 +53,16 @@ const INITIAL_DEMO_ORDER: Order = {
   total: 24.19,
   address: {
     fullName: 'Alex Camilleri',
-    phone: '+356 9912 3456',
+    phone: '+356 79791146',
     email: 'alex@example.com.mt',
-    street: '42, Tower Road, Apt 4B',
-    buildingName: 'Tower View Residences',
-    locality: 'Sliema',
-    postalCode: 'SLM 1604',
-    notes: 'Ring buzzer 4B, 3rd floor',
-    coordinates: { lat: 35.9122, lng: 14.5042 }
+    street: 'Central store. Triq weid il ghajan  haz zabbar',
+    buildingName: 'Central Store',
+    locality: 'Haz-Zabbar',
+    postalCode: 'ZBR 1000',
+    notes: 'Ring buzzer, delivery ready',
+    coordinates: { lat: 35.8761, lng: 14.5350 }
   },
-  paymentMethod: 'stripe',
+  paymentMethod: 'whatsapp',
   paymentStatus: 'paid',
   deliverySlot: 'instant_bolt',
   estimatedDeliveryTime: '12 mins',
@@ -149,8 +149,8 @@ export const OrderProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   const createOrder = (
     cartItems: CartItem[],
     address: DeliveryAddress,
-    paymentMethod: 'stripe' | 'cod' | 'revolut' | 'apple_pay',
-    deliverySlot: 'instant_bolt' | 'today_evening' | 'tomorrow_morning'
+    paymentMethod: Order['paymentMethod'] = 'whatsapp',
+    deliverySlot: 'instant_bolt' | 'today_evening' | 'tomorrow_morning' = 'instant_bolt'
   ): Order => {
     const subtotal = cartItems.reduce(
       (sum, item) => sum + item.product.price * item.quantity,
