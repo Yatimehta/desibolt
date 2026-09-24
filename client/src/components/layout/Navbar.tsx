@@ -271,24 +271,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             )}
           </div>
 
-          {/* Desktop Live Order Tracker Link */}
-          {activeOrder && (
-            <Link
-              to="/tracking"
-              onClick={() => setCurrentView('tracking')}
-              className={`hidden sm:flex items-center gap-1.5 px-3 py-2 rounded-2xl text-xs font-bold transition-all ${
-                currentView === 'tracking'
-                  ? 'bg-emerald-700 text-white shadow-md'
-                  : 'bg-emerald-50 text-emerald-800 hover:bg-emerald-100 border border-emerald-200'
-              }`}
-            >
-              <Truck className="w-4 h-4 text-[#E63946]" />
-              <span className="hidden sm:inline">Track Order</span>
-              <span className="text-[10px] font-black bg-white/20 px-1.5 py-0.5 rounded-md">
-                {activeOrder.estimatedDeliveryTime}
-              </span>
-            </Link>
-          )}
+
 
           {/* User Account Dropdown (Desktop) */}
           <div className="relative hidden md:block">

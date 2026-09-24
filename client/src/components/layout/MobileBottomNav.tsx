@@ -51,18 +51,7 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
           )}
         </button>
 
-        <button
-          onClick={() => setCurrentView('tracking')}
-          className={`flex flex-col items-center gap-1 relative ${
-            currentView === 'tracking' ? 'text-[#E63946] font-bold' : 'text-slate-400'
-          }`}
-        >
-          <Truck className="w-5 h-5" />
-          {activeOrder && (
-            <span className="absolute top-0 right-3 w-2 h-2 bg-emerald-500 rounded-full animate-ping" />
-          )}
-          <span className="text-[10px]">Track</span>
-        </button>
+
 
         <a
           href="/account"
