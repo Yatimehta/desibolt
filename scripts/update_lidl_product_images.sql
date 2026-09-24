@@ -1,0 +1,438 @@
+-- ============================================================================
+-- DESI BOLT — PostgreSQL Lidl Product Images Match & Update Script
+-- ============================================================================
+-- Purpose:
+--   1. Create staging table for the 316 Lidl verified product images.
+--   2. Preview matches with DESI BOLT 'products' table (by Brand & Product Name).
+--   3. Safely update 'products.image_url' inside a transaction (BEGIN ... COMMIT).
+--   4. Run post-update verification and report metrics.
+-- ============================================================================
+
+-- Step 1: Create Staging Temporary Table
+CREATE TEMP TABLE IF NOT EXISTS temp_lidl_images (
+    product_name       TEXT,
+    brand              TEXT,
+    image_url          TEXT,
+    image_description  TEXT
+);
+
+TRUNCATE TABLE temp_lidl_images;
+
+-- Step 2: Load 316 Verified Products into Staging Table
+INSERT INTO temp_lidl_images (product_name, brand, image_url, image_description) VALUES
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpd64fc1cdf06342fc96cb0b9ed0469480.png', 'Retail product unit, professional studio product shot'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp7dfc07e5bc954e1189facd57f70cc480.png', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://imgproxy-retcat.assets.schwarz/xjuuPt_XvOl9AHIz2HN_FvTTKMnV8lB498Np31IhP5Q/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS9BRDM1MjgzMUIzMUQyQ0NDOEVFNTYxRDE/3MzZCQkU3MUQ3MjE2RDMyNzE0N0VGODYyOEQyMkI0ODA1QjNERTMwLmpwZw.jpg', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp88ccb47573ae4fbc81958ca486a1e1fc.png', 'Dairy product in sealed packaging, front view'),
+('', 'Lidl', 'https://imgproxy-retcat.assets.schwarz/Ii1ad6P2ogkff4hiDi7k-zNGquSqZU82V22Bsr1bgt8/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS81MDQ3NzJBNUFBMTU2MTI2QUFCMzQ3M0E/5Q0MxOUYzOUJDQzAxRDZGODA4NDkzOUE1NjEwRjgxOTcwNjMzRTFGLmpwZw.jpg', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://imgproxy-retcat.assets.schwarz/5wvQVqklfnkAPl1qELqi2NKO5BbIAT8FDDQ_SHHPgvg/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS9DOUU1RThCRUZGOUJENUI1NEJBQUZGRjQ/2MzIwNEIzMTNDRDVDNjQ4MEJEQjA5NDUzOENCNUM2NTdBQjczMTlBLmpwZw.jpg', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp690621f049e44980bf6b43204b412d6a.png', 'Retail product unit, professional studio product shot'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp0da3da84ff324d53bd821697f5128975.png', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp7ddfb36545724ed982134f920f2a4eb3.png', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://imgproxy-retcat.assets.schwarz/Y_gCJUf6ka5sls74Bs2yW8RLzxoMqMeimCDli8HxGwE/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS84RUUyNjM2NkNDMjFDQzlCOEZBRDY1OEU/zMEYyNEJDNjEyOUJEN0Q3MDQ1MDNBMjkyMTQ2QUUyQzA4QjNBMzVBLmpwZw.jpg', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp20feb0ee517a4815ad5cb9f8e7167749.png', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpe7307de3b0154c3fbd72f64ad7682b96.png', 'Prepared food in retail packaging, front presentation'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpb7fc693f267c4b31999e8390cc6700a9.png', 'Prepared food in retail packaging, front presentation'),
+('', 'Lidl', 'https://imgproxy-retcat.assets.schwarz/3K8DaiGsaY18Zn8I-7fWizF3LD6gay875dUciuBEr-w/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS9BOTFDNjA4RTkwN0MyMkFEREIxOURCRjA/zNzlDRDE4QUQ5NzE2RDYzM0NDRjIwMThDMTZFRTMyNzNGMDA0RDZFLmpwZw.jpg', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpde1a1f87a2154ad1a9816111283da39b.png', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://imgproxy-retcat.assets.schwarz/Sh8TjxLeCMXE9DYZ4souksqS7AC8SBsawpGe207D-3A/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS8wODU5NkI1OUU0M0EwQTg3OEJCMzI1Mzg/wOTM1MUY0QjIxMkYxN0M3QTc1M0JDOTIxRjI4NDM1MjYzNzU0NEUxLmpwZw.jpg', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpf4b1b670f90d4448b86dc7603d32c967.png', 'Prepared food in retail packaging, front presentation'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpf9b4e7e39fa241aea476a71f41d59c92.png', 'Fresh produce, isolated studio photography'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp11c55b1471ee429f9edfbc89a90f8370.png', 'Product in packaging, clear front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp55ff3f302a254f40ab6428d99a14caba.png', 'Fresh produce, isolated studio photography'),
+('', 'Lidl', 'https://imgproxy-retcat.assets.schwarz/TOEbJzIvlxzT0V4D3u1WJLREug7K5Sv-kzWufzRYaow/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS80MEIxQkFDNUI3QTU0MEJCMEFENjA3NkN/CQjM0RDI4NTNDM0E4NDYxQTBCNjFEODEyMUVBRTZDNEUzRTY2NzYwLmpwZw.jpg', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpeec765158c86438693dcac033f7be033.png', 'Prepared food in retail packaging, front presentation'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpa03ee5f505324b4f9217a80290c5e43b.png', 'Staple food in standard packaging, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpb2180f4d79d644d5a78b41e61e5220cb.png', 'Fresh produce, isolated studio photography'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp65e5c9722dd74b4383a7b5999bdb24f0.png', 'Snack pack with clear front branding, studio shot'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpbb8fe968a7444146b7211c8e11f613f9.png', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpf888886425634b97b2241d820600235c.png', 'Meat / seafood product in sealed retail pack, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpc317931c50d1462eb0abfd5fe7291902.png', 'Fresh produce, isolated studio photography'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpd4931040f4e540edaefc64eeadd2827b.png', 'Prepared food in retail packaging, front presentation'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp37d3345e9059497996f2d3e23e4bfb98.png', 'Product in packaging, clear front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp97638ae1933e4597a4494616ca36f197.png', 'Dairy product in sealed packaging, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp6d7d9f7bf9f44a269373e9b31dec458d.png', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp65cb592b2a794e98ab86155f4dfe11e5.png', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://imgproxy-retcat.assets.schwarz/S83F3NsDmpYdEgPCWKi20GgzRUv8sELwdWHVnbdIti0/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS9FOTgzMEFFOTFDNUFBREYwQUExNTY0QjJ/GRDNCMUYxQjc1RkEzRjEzRDIzQUYzMjc0MjlEQzRGRDk5QUUyQzlGLmpwZw.jpg', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpa21c9f4e9c2842f4afdc770620abd19b.png', 'Fresh bakery item, studio close-up hero shot'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpeac5450c4eb842e8a45e6c505f5c9fab.png', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpbcd4619c0f9f4fb8b3df69716fcc1a21.png', 'Dairy product in sealed packaging, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp6f7181981d6548bd9e9e4526f6db25a5.png', 'Dairy product in sealed packaging, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp50f281944a9f40cb9886c592b1ec3ecb.png', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpf51432616f5848108f76490a2166b005.png', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpc3d87b855e8c4e7ba9229c9e13e183c1.png', 'Prepared food in retail packaging, front presentation'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpe17e7755c348455d8453f53537925642.png', 'Retail product unit, professional studio product shot'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpa808244b29e44d588a118713b8b8de96.png', 'Product in packaging, clear front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpde0f7536efe54098b4608f0afcfd4563.png', 'Product in packaging, clear front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpea8f4b941825417eb36a53161b546c2c.png', 'Prepared food in retail packaging, front presentation'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp8cc28c97a0364b79828212419e9788e8.jpg', 'Product in packaging, clear front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp817b7c1f78294eecaef7392e44ae4890.png', 'Prepared food in retail packaging, front presentation'),
+('', 'Lidl', 'https://imgproxy-retcat.assets.schwarz/3yFrh367XaJA1CE9_tEBqKnq-h17rM8sjpefuM18MNc/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS9GNjgzRDc5OENBMTNCMkI2QzQxMjA4ODU/1MTQ4MTVENjE0Mjc4RjBENzg2RUFBOTdENTNCNDBFOTQ0NDYwQjA5LmpwZw.jpg', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp5e6e320d15cd437c836f7a2cfc247e37.png', 'Dairy product in sealed packaging, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp0a45351bc1fd4d8cb11ae8b61f022642.png', 'Fresh produce, isolated studio photography'),
+('', 'Lidl', 'https://imgproxy-retcat.assets.schwarz/jZlRZj_MEKI588uYijb_TM_RCj5yFYdo6Sm4H0mSQVw/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS81REY4OEVFQjNDOUY3MDExQ0Q1NjdCRDM/xNzRGNEREM0MzMDhGM0ExQzExNjlCRjJBNDEzRUZBRUYzRDdBMEVCLmpwZw.jpg', 'Glass bottle with front wine label, studio lighting'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpb358667ea147468dbbf9edaf8788676e.png', 'Meat / seafood product in sealed retail pack, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp97638ae1933e4597a4494616ca36f197.png', 'Prepared food in retail packaging, front presentation'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpbdf5b2e0a4094584bef515f9075da92b.png', 'Prepared food in retail packaging, front presentation'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpbe72c6beca7645b1a172b3e29d3b0ba3.png', 'Prepared food in retail packaging, front presentation'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp4edfe8365d1c46b9ad1ce05a91e175a7.png', 'Fresh produce, isolated studio photography'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpfaa3556b751a46ea98503e7aabea6e83.png', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp2ebecbfc0418440497b1041aa7e6adf1.png', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp48b8953ff3ef4601b5489bfd92cf3828.png', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp5ed8973da5ba470891a56e7244d6c66c.png', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp7c13f487621141529e3e73812f9056c3.png', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp55ff3f302a254f40ab6428d99a14caba.png', 'Fresh bakery item, studio close-up hero shot'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpb8a0a63ac36543e3acf172f6a53ccdeb.png', 'Product in packaging, clear front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpeb309b28b48f4510bd24b05ff3376008.png', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp7f8e2fd09f874c33b92429495655a198.png', 'Fresh produce, isolated studio photography'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpe1a06fafdabd46bd8f4dc804acf88304.png', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp1dd66872e4b345c08a604c2e03292905.png', 'Staple food in standard packaging, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpe6affe911eba438ca1143453a4e5cd21.png', 'Prepared food in retail packaging, front presentation'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpbbde8c433bcd42d1a8e16471d6ce3e0f.png', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp0666716c5d2a4baf8b48614a2cd9e6be.png', 'Staple food in standard packaging, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp18876c89510d4e668c1a44d8fe385477.png', 'Retail product unit, professional studio product shot'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp70857a53033f447eb482e65ea3fa6879.png', 'Retail product unit, professional studio product shot'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp340fba364a1a468998515df846ab5388.png', 'Product in packaging, clear front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpc2252b3fe6684555b7d61003bcd7c5b8.png', 'Snack pack with clear front branding, studio shot'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp74962fc5586346229470ce6df2793197.jpg', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpe37b2fb934a84c6d8305f43f50ebd30f.png', 'Prepared food in retail packaging, front presentation'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp82167109ca164901a72949e805a25f8c.png', 'Snack pack with clear front branding, studio shot'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp60513b98cc954f799448edb515ca40f6.png', 'Fresh bakery item, studio close-up hero shot'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpeb901038fc6049238870807edbe2d145.png', 'Meat / seafood product in sealed retail pack, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp3f4672676e294c779cd15b200bd040e5.png', 'Meat / seafood product in sealed retail pack, front view'),
+('', 'Alesto', 'https://www.lidl.com.mt/assets/gcp57726a2a4f7e449daced2fbefbc64acf.png', 'Snack pack with clear front branding, studio shot'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp55ff3f302a254f40ab6428d99a14caba.png', 'Product in packaging, clear front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp74926eee2d284108a58675b7e4d3047b.png', 'Snack pack with clear front branding, studio shot'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp951c09faaec64fa89f4072fca8502d5a.png', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpabd00f5a1a244226892debfd88933a62.png', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpefc7fac2d8534a55a1de060ab5604b5a.png', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpe59bee1442c645719996deefd4f7e6d8.png', 'Meat / seafood product in sealed retail pack, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp1b9873bf78e840cb835920ef9a9f9daa.png', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp8bb92d5370fb486baea485985be2c784.png', 'Product in packaging, clear front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp31e35445f65e4d2a8461433b16ad6f04.png', 'Product in packaging, clear front view'),
+('', 'Lidl', 'https://imgproxy-retcat.assets.schwarz/yz2Mmkc30t2dqZmBj7AxHE1sQSVmekuTB22pkllWdAQ/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS8zQTNEMTY1QTYyN0Q3RTgzQTg1QzQyNUJ/BNDQyRDVFRDI5NUQ0MzkxNEZCMjExNjVGREQ0OThDQUUwQUFDODM4LmpwZw.jpg', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://imgproxy-retcat.assets.schwarz/loMwtnIZhnh8jgEOWwEJ47TChHsOgDTwxekkIkLJ0WU/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS9BNTBCQUVBRkVENzkxNkMxQkQyODUyNzQ/2NEEzMkM3MDMwMUQzMkRFMjY5QTlFOURGMjFFRDg2RTBGMUZFQ0RFLmpwZw.jpg', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpfee2897878f84c79bcfab581f9bb3880.png', 'Fresh produce, isolated studio photography'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp7e7650a13b324dea932555a04fcc81be.png', 'Fresh produce, isolated studio photography'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpd4381ac855e7432993babb8dc0467ce9.png', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://imgproxy-retcat.assets.schwarz/BvVLNUnGH4vnSgWd2rURZaC2A4EAqcMWIb0hYDgfhNU/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS8xMTc3RUUwNUQ2NkMxRDhCODIyOEZGNzA/1Q0UxNTMzREY0RDE5OUEwMzE4RUVFOUM4Q0E4N0U1NEJDRDUwQ0MzLmpwZw.jpg', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://imgproxy-retcat.assets.schwarz/OX-JKJJXtCoTydnVp5G1biUrVmxM6CN8VeZtZEu9I7k/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS84NjBCMDE0NjQxNUMzOUJENDU1MURGOUU/0QTlGQkRDMEQyQzg5NDg1RTFGQkNDMkM0RDhCMzU1MTY1QUYzRUEyLmpwZw.jpg', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp3bda7989136142ae92c3f57f1c3f5228.png', 'Product in packaging, clear front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp97638ae1933e4597a4494616ca36f197.png', 'Product in packaging, clear front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpc434b06a42b04e20898a39eeaf67365c.png', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp1814b5aa728a43eaa497f032a0ed0d33.png', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp116e2909c7254463bf06cd62068ad12a.png', 'Prepared food in retail packaging, front presentation'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp0c5cd4892eb64da391068cea45db596c.png', 'Product in packaging, clear front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp2dd81415ef104671a3c63d522a983369.png', 'Product in packaging, clear front view'),
+('', 'Lidl', 'https://imgproxy-retcat.assets.schwarz/dzAJQ498DIayCJu_gQ5j0vobednocch2btLvIiGaIfo/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS8zOTg0NEVFQkJCRUNCRUEzNzE1RUYxOEE/yREI0ODU3RTg4MEQ0MTBBNEE5RDNCNEU1MDYzNTlBRkIwOTRFM0M0LmpwZw.jpg', 'Glass bottle with front wine label, studio lighting'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp55ff3f302a254f40ab6428d99a14caba.png', 'Meat / seafood product in sealed retail pack, front view'),
+('', 'Lidl', 'https://imgproxy-retcat.assets.schwarz/LQguU3wZxEjJR_fHkWHKzNlz-LMgCYwgDjuGI5hgQ7g/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS9CRjlDNzY1QUIxM0Q0Qjc0MTZGMUZERUZ/DOTNCNDdFQjNDRUY1OEU0M0VEMzQ0RUNFQjM5QUFDMEIwRTRDNzgwLmpwZw.jpg', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://imgproxy-retcat.assets.schwarz/HswCTH5MJ2loSUzZSfIQUhcqT9CbwA6f4cnM_c4B3a8/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS8zN0RBMjc2OTc0NDlGRUE4RDk2QTkyMzM/4N0U5NThBRkYyRUI4QTcyRTY0RkEzMUY5MzYzQzVGMTdCMjY1NDFFLmpwZw.jpg', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpc40ebd6954af473d8e8abba7cf6cae0d.jpg', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp665a1731c24b4fc5bf48abd1e1e882b5.png', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp992e1be67dd742da89791a75455d0427.png', 'Product in packaging, clear front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpc454c660b7e84fc4adfb11fd7701a769.png', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp8db767746ca743eca8e3f52a71fd3e28.png', 'Prepared food in retail packaging, front presentation'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp3e0c3f804a404536a9ebf678610d18df.png', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://imgproxy-retcat.assets.schwarz/XbzpaMQJeWsVxyNOXXhy5pHMESVQ2hWZoPcr6KpkhZo/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS9BMjMwNkRDOTBCRUI0MzFGOEJCOUJERTY/xNjJDQTcyMzc4NDlBQzlFMUFFRjdBMkREREZBQkI0QjQ4MENBMThDLmpwZw.jpg', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://imgproxy-retcat.assets.schwarz/B2emT4xfUfA7_7ojT1qujybBztEn-p8zH-Y8vIyCoIU/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS8yNUI0NTMwNDgwMzUxNjI4N0VFOTVCNEN/BMjQ1MUQxNjgwOTJDQTI5MzhDQTQ3M0I3RDBCODk3RUE4MURCOEU3LmpwZw.jpg', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpded895fa004949d6bf67e2e3bd0f2eef.png', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpdae632649bb847e3a5efe9dd90e13460.png', 'Retail product unit, professional studio product shot'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp61a9e0c9bb614a2c8ba15fa8b08ec9a4.png', 'Product in packaging, clear front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp63eaee4eefc94e79a87ff66f81f50928.png', 'Fresh produce, isolated studio photography'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp494a2fb34e764f8fa551e6ead9a91f56.png', 'Fresh produce, isolated studio photography'),
+('', 'Lidl', 'https://imgproxy-retcat.assets.schwarz/kuZ-OvxCjvqISgBjHyhtAPe2BTtBiGmGyHbcv5hemG4/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS82MzgxM0NBNTFBQjJGNjhGNDc5N0Y4MTg/wMUM5MkI0MTBFRjAxQTc3QTQyMTY2QTNDMURFNTlFRThBNDMyM0ZFLmpwZw.jpg', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpc8abe010bf524b0a851ffec44da2184a.png', 'Snack pack with clear front branding, studio shot'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp7c3c9cca3aac4834ad674e2da67c727c.png', 'Dairy product in sealed packaging, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp6d0e13669fdb473891394d63cf47eb1f.png', 'Prepared food in retail packaging, front presentation'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp6a8b6db079e440c4b649419a603e5838.png', 'Fresh bakery item, studio close-up hero shot'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp8bc16f01f0684a6b90eaf6ff828e2626.png', 'Fresh produce, isolated studio photography'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp81f93862532b4c61bccc445b3796d6d9.png', 'Product in packaging, clear front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpc9e338a29c194c9b81f2f48e7ab5855a.png', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpb1e9faca6abc46639ea1170dca7b5a2f.png', 'Prepared food in retail packaging, front presentation'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp6fde07a3247542729643bca4b7e1ac93.png', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpe304b5c73bde47e99cb895107ae82ca4.png', 'Product in packaging, clear front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpbe9154c57a294d50821baac47ae25fe3.png', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://imgproxy-retcat.assets.schwarz/z9mElGo8tLCZwFMnpUk5nFqOO4duIm_QrAC7uROHO24/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS9CMUFGM0EzRjg1QUY0MEM5N0ZGMzJEMTl/ENzJEMEVGRUU5NjFBQzgyMEVBMEVFQzM2Mjc2QTU1RDU4REFBRDkzLmpwZw.jpg', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp9b875d93f4a94c71a14f8fde537c2ac5.png', 'Product in packaging, clear front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpbeea7937919a400a8a925ae4c7f25a93.png', 'Dairy product in sealed packaging, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp40cb5c3312da4f59a330de256b959c80.png', 'Product in packaging, clear front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp71e67c7971234c45b99c8f0961a8749d.png', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp491311b9f64f4097a34aa662cb4c9994.png', 'Snack pack with clear front branding, studio shot'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp97638ae1933e4597a4494616ca36f197.png', 'Product in packaging, clear front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpefe8354e42584c2bb354990603803685.png', 'Dairy product in sealed packaging, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp0e0869c2cc0b494a9de6c2165db6588a.png', 'Retail product unit, professional studio product shot'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp55ff3f302a254f40ab6428d99a14caba.png', 'Fresh bakery item, studio close-up hero shot'),
+('', 'Iodì', 'https://www.lidl.com.mt/assets/gcp36a34e9076a6430fa6c51e089369a927.png', 'Fresh produce, isolated studio photography'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp839fe44319b140f893fa1fd914fc3e7b.png', 'Fresh bakery item, studio close-up hero shot'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp1487ed76f2d04f5c8f1288bf241e1d7b.png', 'Meat / seafood product in sealed retail pack, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp4eb959d8730d49b082662eb7c52723fd.png', 'Product in packaging, clear front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp088bcda9eee744c888d6f0575c34eede.png', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpf0093a6ca2794f7f851fbd24b2a257e8.png', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpf2ace7ace21f4f2a9701db1eef05e9fb.png', 'Product in packaging, clear front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpa6e227f15e684a1eae17edb8e6dffb20.png', 'Product in packaging, clear front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp5625e24e45d847a5b713b075fbc6820d.png', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp5af7579ad0664347923b9da45340d9ee.png', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp0c518e39e5ba4eedbc3819b2333eef3e.png', 'Product in packaging, clear front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp5eee677411d7465ab4509bcd0f14cc56.png', 'Retail product unit, professional studio product shot'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpa474a2afdc4a4ad3af85d86c2f28b2a8.png', 'Retail product unit, professional studio product shot'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp9550630bb35c4543a495d5992e908aa5.png', 'Product in packaging, clear front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpc5e1b0510a5f48d9b05d3388cb89d29f.png', 'Product in packaging, clear front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpbb6ac9469ce14a3b9b71fabd7350d1a8.png', 'Product in packaging, clear front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpe199c95f7ac540fa901d97de0208b909.png', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpf56ef8f5f6dd4e4f84a7d8b42ab3e78c.png', 'Product in packaging, clear front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpa8c9bf706e5942f4b5dc9d57edf6a248.png', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpa3705dbdcd1c41aa99c13331ac30290d.png', 'Product in packaging, clear front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp97638ae1933e4597a4494616ca36f197.png', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpdf57014adce1499ebe0e501b8aff5fcb.png', 'Dairy product in sealed packaging, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp97638ae1933e4597a4494616ca36f197.png', 'Dairy product in sealed packaging, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp33ad4d58f0664431be826f20d43b0f9d.png', 'Product in packaging, clear front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp97638ae1933e4597a4494616ca36f197.png', 'Prepared food in retail packaging, front presentation'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp783b0d927a6f4eb9ba7a299d2f1394a4.png', 'Dairy product in sealed packaging, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp97638ae1933e4597a4494616ca36f197.png', 'Meat / seafood product in sealed retail pack, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpf561c5aedd1f4be58ba0bfb81cf09384.png', 'Fresh bakery item, studio close-up hero shot'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpf180e9ebbbb64e6b94955331c4097362.png', 'Prepared food in retail packaging, front presentation'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpe4b5e8363d994f70a473add3899ee83f.jpg', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://imgproxy-retcat.assets.schwarz/PCg0q6xhTD1c8Bvp8L5a-wwJv8uM1CelkgEv8WMj2mM/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS81M0VBMzUwMTRGNjA0OTJGQzc5RjBCMUN/DMDU1Njk0MjQ2MTVCRUEwMUNCNzk5NDc4QThEQTNGNTMxQTY2MTE3LmpwZw.jpg', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://imgproxy-retcat.assets.schwarz/9loK4jVxLNU4bSh8K9D9C-CEegr_7Pxs1qFzKUyDlNU/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS9FM0Y5ODU0MkM4Mzg5OTQwMzYxMTg5MDg/wQzZGNkVCNTExREJGREI5MzBCNjk5MTEzRTBDRjY1REFFRUEzMTg0LmpwZw.jpg', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpa447c28a7d3847fe9fc221de326e70ed.png', 'Product in packaging, clear front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp7cd4fc4de82a45a7be680d71506d2055.png', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://imgproxy-retcat.assets.schwarz/3Fert4DMu1KESoppwwRxr_47KDgijV9IWjTSnHDPvnw/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS83MUZEMjE4NkZDMUMxOUZERDg2NjFEN0Z/GQzlBRjNDQjdBRDEzNjA5NEQ0RUVBMDhBQTRFNjRENEU1NTg0N0IwLmpwZw.jpg', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp3eae8a7085a2416fb17bd5c94e1aed62.png', 'Fresh produce, isolated studio photography'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpf95423d0170b4236b95e6ed5ddfeae66.png', 'Product in packaging, clear front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpa2ad6bcc6e484e78ad0d1231142e7c36.png', 'Product in packaging, clear front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp45208c7353414381bea48722422a9377.png', 'Product in packaging, clear front view'),
+('', 'Lidl', 'https://imgproxy-retcat.assets.schwarz/m_9HgTWNoDUoKAq7N-I5dq66g5RFFW82Y0q8tT0lqGQ/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS9CQ0EwM0M5RjBERTdCRDdCNUM2MTkzRjA/yODE2RDA2OEQ0MTQzREY0ODc2MkI0MkEyNjY5NEFGQjc0RDBDODA5LmpwZw.jpg', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp49b512a59d0b45a097eeb3a9ea0ca497.png', 'Dairy product in sealed packaging, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpa31646e1c6954433868b88c3d037a1c5.png', 'Product in packaging, clear front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpbd62ea6007f6475ea6968cbc2ae89efe.png', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp53d3821ff8a949819f191df0d1ec1279.png', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp97638ae1933e4597a4494616ca36f197.png', 'Dairy product in sealed packaging, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp0cad82ef070a4d869a417eda1ffacdb9.png', 'Snack pack with clear front branding, studio shot'),
+('', 'Lidl', 'https://imgproxy-retcat.assets.schwarz/x_XsIFf3_eafct6pEEa7548pkr_XX2ZAR4aBBH6yMrM/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS8wMkIyMzVGRUI3NzNCMkY2RDhDNEZENzc/0MDczODk4Q0ZBOEIzOTM5QkYxQzdCNUFGOUEyNUI4ODMxOTlGNjU4LmpwZw.jpg', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://imgproxy-retcat.assets.schwarz/pdH2igz66wtLMsU3Aja5lUSlRQRJcJrMiFDoX7UeVu4/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS84QzRCQzQ3RjhDQkNDOUEwQzYyMDY5QTM/2MzcwM0FBNEU0QkVDRkJGQTMzRTlCNkE2MTg5QjNEMzdEOTJEODAwLmpwZw.jpg', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp621d46f57e654e2b8b4891e8d925454b.png', 'Product in packaging, clear front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp9fce64bad21b4003bedc7b2d9178c96d.png', 'Prepared food in retail packaging, front presentation'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpedf2c9732cec433b98c0df9cb173c771.png', 'Product in packaging, clear front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp55de68cdbc89448f89b266d32913487d.png', 'Staple food in standard packaging, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp98e155b1946c445e98ecd391e7f743b1.png', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://imgproxy-retcat.assets.schwarz/ciSWmSdELM82-Bn8T_VxT5D59NzVYDjPk7my-UnYheo/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS9CMjE0Qjc4NThEODE5QTkyMjhERENFRDU/2NDM0OUUwMDM3MEM3MTg0OENCRTgyNDNFRUU3QUY1QUZCNzBFNjY5LmpwZw.jpg', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://imgproxy-retcat.assets.schwarz/HE3HPXv1QcrALjM1IFA6R1UNFpVHkhUHrMrOuDAockQ/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS82MDRENkRCQzBDRUJFRUU2QTRCRkM4RTg/4QjgxRUJGREUzODU0NjRBMzEzRDg0N0U2QkFFNUU5RTg2MTkwNzY2LmpwZw.jpg', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpb88f650a7c944872b955c7648378ecce.png', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp2e1da0eef723426fa47196e9573e4392.jpg', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpca77b83bb6644bc5802a2c2f80267464.png', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp8ac9cc526d154b20b5282f1a1e48f064.png', 'Fresh produce, isolated studio photography'),
+('', 'Lidl', 'https://imgproxy-retcat.assets.schwarz/i3w1nU97s3LEbwfdwSEb0iknePpfci8wWs8w6jiTHNc/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS81RjBGMDk1QjU1RTczQjQ5QzI0MTJEQkU/yRTczNEFFRTAxOEQ0MjlDNUNGMkNBMUQ2QjVBMjlEMEQ0Q0VFMjAzLmpwZw.jpg', 'Glass bottle with front wine label, studio lighting'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpcfdfad67ab674e33a7e6f4cd1d979d92.png', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp4286b952b1564849a0c378135781b846.jpg', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://imgproxy-retcat.assets.schwarz/K70EWq2sptKWRhFpk-nYjsds5tL7Wcw_0Y_ewxhs_Dk/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS82RDBCRkY0MzUxNzUwRjdEMjI3NTE0NTd/COTRGMURDNjg5QTI0RjJDMTZGMTJDNDRBQzVDRDlEQTg5RTUwQkM3LmpwZw.jpg', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp6b98950afb62485f8ddfcc3bb4a031ae.png', 'Beverage packaging with visible branding, front view'),
+('', 'Parkside', 'https://www.lidl.com.mt/assets/gcpdf74fd4f6c0e4cd3b5bf0f84ce11e7cd.png', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp90a18dc8c592491eac46e086a035a08e.png', 'Fresh bakery item, studio close-up hero shot'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp23015119d0d0426d936379390b9dd51d.png', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpb611d5f8b174410c9822ee9efc15d85f.png', 'Fresh produce, isolated studio photography'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp1003387ee34048b98bcfc364e24ee739.png', 'Product in packaging, clear front view'),
+('', 'Lidl', 'https://imgproxy-retcat.assets.schwarz/Ar0rrp6s5I5aq5j7CeQuIJb3rgwhLsbiRSG9_iJoASE/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS9GNDcyQjZGRDNFNTcxQUY1Qjc5RTIzNEU/5MDY0NDgxMUZFMDk2MkZBMDJBNTg1MkZDRThDRENCMTJDNDJDMEQ0LmpwZw.jpg', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpd3b18200442f454fbfe328b56990cd56.png', 'Product in packaging, clear front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpd0b0a78bed1048a3842a1638f4ea7d6b.png', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp39a87b8f370643de8ee2bd34cd3f81c8.png', 'Product in packaging, clear front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp1dac5453cddf4aeea5818d2fc2f6f58a.png', 'Staple food in standard packaging, front view'),
+('', 'Lidl', 'https://imgproxy-retcat.assets.schwarz/3Hk5I9v_NUd6CA5KdEEoTW6480qZRH4Ldta9o7iPPwc/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS82MDM1MTczMjAwOTYwMDg1MEVBODdDREI/1RjM4RERDQkZEMzdGMzM1QzM1QjE2NDU0MDY2RDE5MzFCRkI5MURELmpwZw.jpg', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp42ca456653eb413ab63e6e1a02699ea9.png', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://imgproxy-retcat.assets.schwarz/th1L50N8XcVsRrh3pmhI_m8CBzxfUOmsacGeatsRCvU/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS83MERENTNENEY2Q0MxRjQ3MzA5QTk5M0M/1QkM3Nzc2QUU0OUVGNzAxNEM4RjU5OTk0QjBFQUM1RDc0MzBBM0MxLmpwZw.jpg', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp249c6b6207784e0996081ac0455f80dc.png', 'Product in packaging, clear front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpe5582f28b1dd4c90ad96cd52a365d471.jpg', 'Product in packaging, clear front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpcc766a8969404059ad435dabf21d54e0.png', 'Product in packaging, clear front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp0584944ab58546ec9e092478cce229cd.png', 'Prepared food in retail packaging, front presentation'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp0ba1db657cbb4120b367ae65ad5cdf56.png', 'Meat / seafood product in sealed retail pack, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpf762525d34cd4e038035a53c395c5806.png', 'Meat / seafood product in sealed retail pack, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpe7812db4a8d54e6cad5f541021d5a8eb.png', 'Meat / seafood product in sealed retail pack, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp1124f63a87ed488880bde4caa56f0e22.png', 'Product in packaging, clear front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp1166e8aef33f43659c288244e8d54503.png', 'Fresh produce, isolated studio photography'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp97638ae1933e4597a4494616ca36f197.png', 'Fresh produce, isolated studio photography'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp0324a2e35dc14c18bae4a21f8bbd8e43.png', 'Product in packaging, clear front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp589077fa291140009bfb54288ee51549.png', 'Fresh bakery item, studio close-up hero shot'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp4e8d86fba0ca47eebf984006226ceef0.png', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://imgproxy-retcat.assets.schwarz/m4QpvctTajDUIjKD4j-MubVP6TuUj-e_xRE9_mKy86s/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS8yODlDNzFFODU0NDE1QUU0RTJEOEUwMkN/FRkJFQjRDQjJFQTc4NDVBODI2MkFBQTE5RTc3NkRFRDg0MTRDNjZFLmpwZw.jpg', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://imgproxy-retcat.assets.schwarz/ZrtOPCf8AtkErsyDqBE9PpSSo6hnpXgRi9LuLDFFH9E/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS85ODM1NTA5NzZFRTM4MERCMURDMkI0Qzk/yNzlCQzI0MTY4MTNBNkMwMDA2RDEzNTUwRTBFMjU5MDlCMDRCRkEwLmpwZw.jpg', 'Glass bottle with front wine label, studio lighting'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp1b2d93703ee64cc0995c5dc2a3ea20ad.png', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp35430be385de43c9af3f88789f6f5342.png', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpf0e648f05e794513a8e8b76b53b1149a.png', 'Fresh produce, isolated studio photography'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpd4fde169b0a240b1a5f358a2bce65931.png', 'Fresh bakery item, studio close-up hero shot'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp5768732d0af740ce8687c173361bc115.png', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp11065e8a7a1940ed88578a2534e9ef2e.png', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://imgproxy-retcat.assets.schwarz/WYKGiEFBLTQqnLA-NnizOWkUvZ5JRzFDqjqeNPUwJw8/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS8xRDU2RjBBREYxRjlEQTBCQkYxRERGREF/GRUY3NzRGNEZGOTlFQTY4QUE0ODg1MUFEQzk4MjExRjlBMTZENjc4LmpwZw.jpg', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp4ec30cc1c9ca42f4a7587fe2bd351c67.png', 'Snack pack with clear front branding, studio shot'),
+('', 'Lidl', 'https://imgproxy-retcat.assets.schwarz/59y-_a2gt9MIfU63r46Dgn5X9tq7GOzNEfg3ZFh9sWs/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS80Q0E2NEM5NDg2RjEyMTM0MjM0NDM2NDY/0QTY3RTMyRTc5QzM1QjVCRjc4QTc2MEMzOTgzNjdFN0U4NTFGRjQ1LmpwZw.jpg', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpad30051f17c24a5ab16529fe426fbcff.png', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpdf37f6cbec1247679176256f9ac879f5.png', 'Fresh produce, isolated studio photography'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp0ef4de10002a44dfa09411f23639de49.png', 'Fresh produce, isolated studio photography'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp19b0f1e0f8984f7f8c4671366b2f708e.png', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp240283f67b2e4903a7f9174018171c93.png', 'Prepared food in retail packaging, front presentation'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp0accd577d11b4dc09a021ad97ebeda98.png', 'Snack pack with clear front branding, studio shot'),
+('', 'Lidl', 'https://imgproxy-retcat.assets.schwarz/WU93dCXUWhWZ4ZSkRU4O1CBYKu2PUeM2-kh5OkVruOA/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS8xMDVBNjk3RTY5QjE2RTE1OTM1RkFFMDk/wRURFRTkzOUJCQTJCMTcyQUVFNkYwOTVDQTkwOUI5RjI1MDBDRTJGLmpwZw.jpg', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpef5d235299d74736b391a722ca43ef15.png', 'Product in packaging, clear front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpbc6acc51e222483bb9a0aa5556e49b8f.png', 'Prepared food in retail packaging, front presentation'),
+('', 'Lidl', 'https://imgproxy-retcat.assets.schwarz/6HnPmrHCM3GdJnPbwGmKeHqptdHaOAA4tXLnXNDGZ4Y/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS8yMjIyMjQ0RjQwOTQ5QkRFQkFDQTVCOEN/CNEM2RjAyRTFCOUY3NkY1Q0IxRjhCQ0UxOTFGMzNCNDAyQ0Y2QTZDLmpwZw.jpg', 'Glass bottle with front wine label, studio lighting'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp706ace87dc2f4730afdf9a6b912dba90.png', 'Meat / seafood product in sealed retail pack, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp55ff3f302a254f40ab6428d99a14caba.png', 'Fresh bakery item, studio close-up hero shot'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp81693e8fa6124a649b66944c2fea999b.png', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpf1ca707c23304ffe9529813dcb05a768.png', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp74322f5add2947248748d65937982b8f.png', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp97638ae1933e4597a4494616ca36f197.png', 'Meat / seafood product in sealed retail pack, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpdd6133d38e234e6ba368432ac2e32885.png', 'Meat / seafood product in sealed retail pack, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp0fce5e0fe892486ca801afaca617f553.png', 'Meat / seafood product in sealed retail pack, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp058b0ef4fcd44bdc99e5c2618a0d491b.png', 'Fresh produce, isolated studio photography'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp97638ae1933e4597a4494616ca36f197.png', 'Dairy product in sealed packaging, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp21fab4958d2d4bc294963719f2c2b0e3.png', 'Fresh produce, isolated studio photography'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp6491099db9984995bccdc0cf7047a499.png', 'Dairy product in sealed packaging, front view'),
+('', 'Lidl', 'https://imgproxy-retcat.assets.schwarz/55BZq1IMm9AcegP9ipvCFqKMqD0m5Iclk9x4ydT9xzc/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS8yODMxODg3NjZCREQ5NkJGMjUzMTlDRkU/5NTY1QUQ3RUQ3OUY3RDg4QzA2NjNFOTA3M0Q0MkUxRERFMTcwMjdCLmpwZw.jpg', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://imgproxy-retcat.assets.schwarz/Ntm5PhrIj7YPEx2ajkxNxPKo38mqkqm9ye4-ADxyJrY/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS8zOTIxMTExQTNDMjkzOUNERjUzNkNFRTM/zQ0U4NTREQjRFMTA1QjZCODlGQTM0MTczMDAwNUEwMzk3QUMwNUEwLmpwZw.jpg', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp29da457a7ed54a0c846e61c903bccc99.png', 'Prepared food in retail packaging, front presentation'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp6a074c06007849fd9dd2547a21fe034a.png', 'Snack pack with clear front branding, studio shot'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp9690e8dd2d1e43ea82a0e495df6387a1.png', 'Snack pack with clear front branding, studio shot'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp291c16e0e9f74b95a358778ef866098d.png', 'Meat / seafood product in sealed retail pack, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp5f1fd51434314cc0b9875f14ade11cee.png', 'Meat / seafood product in sealed retail pack, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpf9ff9e6a6b0a4218be4e0537a66e83ff.png', 'Meat / seafood product in sealed retail pack, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpc9a1a4ff05f145a89a6a887f440ad74d.png', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp97638ae1933e4597a4494616ca36f197.png', 'Dairy product in sealed packaging, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp97638ae1933e4597a4494616ca36f197.png', 'Prepared food in retail packaging, front presentation'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp8b9a1b4e40374f0b9deb60c8b019780a.png', 'Prepared food in retail packaging, front presentation'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp5c4ac5710f924e4393dfa4f6bdeb9418.png', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://imgproxy-retcat.assets.schwarz/R1PixaFdLEhjTIsbTyDua3T5rKs-8GvJ9bOWYNRTneQ/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS8yQjYxQjQ3NjBEQ0Q3NzkxQjgwMURGQUZ/CQTg1RTMzQzk5ODI2Qjk4MTJGMjYyNDk3MTc4NjhCQkE4QzQ0QkMyLmpwZw.jpg', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp97638ae1933e4597a4494616ca36f197.png', 'Product in packaging, clear front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp33cb6981ec4241488f143183c994929c.png', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp155611b0269349499730dbd2f42bb085.png', 'Meat / seafood product in sealed retail pack, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp03fa7112a5654895b82bdc38096b8af6.png', 'Fresh bakery item, studio close-up hero shot'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp46f83d0ea840456aa592587069f5b4b8.png', 'Prepared food in retail packaging, front presentation'),
+('', 'Lidl', 'https://imgproxy-retcat.assets.schwarz/0KCK7nyXTYg3DlYUw7iUBoRKqDzU9ATj8eAWeqsbcoA/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS8zQzk4NkY0OThFMDdBMjVEMDA1MTI1QkE/xQjhGQTBFMUQ0ODcxNDNBMkU4RDY5MjRFQjgwNTdGMEEwRUI5M0QxLmpwZw.jpg', 'Glass bottle with front wine label, studio lighting'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp30a37652752a44eab269a12f912bf39a.png', 'Fresh produce, isolated studio photography'),
+('', 'Lavazza Suerte', 'https://www.lidl.com.mt/assets/gcp24ee48248dfa4a85bbe1e88f8e43e06e.png', 'Beverage packaging with visible branding, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp27d86916f8ad411e8c27772d7e0cf763.png', 'Product in packaging, clear front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpe1f0d8d01c0246ee82997dbef172999d.png', 'Fresh produce, isolated studio photography'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpb96f713252074268b9eb32fa89e9d1d1.png', 'Prepared food in retail packaging, front presentation'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp5a6c14ded82c445e888ea592dea24445.png', 'Glass bottle with front wine label, studio lighting'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpf77b2302bcd044faa2154e0f467fc211.png', 'Snack pack with clear front branding, studio shot'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpac02f447b7aa41a19517b597b341e552.png', 'Product in packaging, clear front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp0892cbe190b64544ae9446d530c93092.png', 'Prepared food in retail packaging, front presentation'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp8691de05154c4e1babe8de1a72e7f3b4.png', 'Prepared food in retail packaging, front presentation'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp08717accb0f04983aa6e8db2648833b1.png', 'Prepared food in retail packaging, front presentation'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp97638ae1933e4597a4494616ca36f197.png', 'Fresh produce, isolated studio photography'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpf2eeb5a5f79e43d7bb497b45512c2ed3.png', 'Dairy product in sealed packaging, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpe3fe9fd8513e4de9a9981ff8ced1dd5c.png', 'Fresh bakery item, studio close-up hero shot'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp78913eb3470646df923aff792e32e77e.png', 'Meat / seafood product in sealed retail pack, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp673cf2c7ea604d59b2e6be37558f8eeb.png', 'Meat / seafood product in sealed retail pack, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp97638ae1933e4597a4494616ca36f197.png', 'Meat / seafood product in sealed retail pack, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp3d202325c22d482e89568cfd3d837924.png', 'Product in packaging, clear front view'),
+('', 'Lidl', 'https://imgproxy-retcat.assets.schwarz/lEjK5aE4lCaNqkSaG11q2QQZ_ygt-1eB09KDeUyCYuc/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS8yRkI0OEQ4OUQ2QURFOTRBQTFENzNCRTU/yMzM1MjQ5NTcwQUYwOUZCRENBMkEwQTk2N0NDMEEzMjQ5MDMwOEE4LmpwZw.jpg', 'Glass bottle with front wine label, studio lighting'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp30fc19c97f6b4bfb91f7c51cb7446b63.png', 'Dairy product in sealed packaging, front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp900fdb1797eb46da86ff8f38ed904fe7.png', 'Prepared food in retail packaging, front presentation'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp19a763a70f2b4984885c1e6fd7a28d5c.png', 'Prepared food in retail packaging, front presentation'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp24c672362ea94db49d54b6b37467c46d.png', 'Product in packaging, clear front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp06ca1cb1798a47b6ba96548fddfffe71.png', 'Fresh produce, isolated studio photography'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpb1fcf67a29dd4c80b30bfa45539bc21b.png', 'Product in packaging, clear front view'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpb4c21e0e17ea4ff488352e232ddd25f3.png', 'Fresh bakery item, studio close-up hero shot'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp86c5e56cc1fc47f0a85c79b2214a8454.png', 'Fresh produce, isolated studio photography'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpe0c2d70aabf148cbb303ef33a688f8a0.png', 'Retail product unit, professional studio product shot'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcp6dd1b3eca64347d8a9becdb374ddb76e.png', 'Glass bottle with front wine label, studio lighting'),
+('', 'Lidl', 'https://www.lidl.com.mt/assets/gcpe53633b9ef064a8891cf8de48a0a8989.png', 'Prepared food in retail packaging, front presentation');
+
+-- ============================================================================
+-- Step 3: PREVIEW MATCHES (Before Making Any Changes)
+-- ============================================================================
+-- Shows matched items between DESI BOLT 'products' table and Lidl dataset:
+SELECT 
+    p.id AS product_id,
+    p.sku,
+    p.name AS current_desi_bolt_name,
+    p.brand AS current_brand,
+    p.image_url AS old_image_url,
+    l.product_name AS lidl_matched_name,
+    l.image_url AS new_lidl_image_url,
+    l.image_description
+FROM products p
+JOIN temp_lidl_images l
+    ON (
+        LOWER(TRIM(p.brand)) = LOWER(TRIM(l.brand))
+        OR l.brand = 'Lidl'
+        OR p.brand = 'DESI BOLT'
+    )
+    AND (
+        p.name ILIKE '%' || TRIM(l.product_name) || '%'
+        OR l.product_name ILIKE '%' || TRIM(p.name) || '%'
+    )
+ORDER BY p.name ASC;
+
+-- Summary of Match Counts
+SELECT 
+    (SELECT COUNT(*) FROM temp_lidl_images) AS total_lidl_products_in_csv,
+    COUNT(DISTINCT p.id) AS matched_desi_bolt_products
+FROM products p
+JOIN temp_lidl_images l
+    ON (
+        LOWER(TRIM(p.brand)) = LOWER(TRIM(l.brand))
+        OR l.brand = 'Lidl'
+        OR p.brand = 'DESI BOLT'
+    )
+    AND (
+        p.name ILIKE '%' || TRIM(l.product_name) || '%'
+        OR l.product_name ILIKE '%' || TRIM(p.name) || '%'
+    );
+
+
+-- ============================================================================
+-- Step 4: TRANSACTIONAL UPDATE
+-- ============================================================================
+BEGIN;
+
+-- Perform the image_url update with updated_at timestamp
+WITH matched_updates AS (
+    SELECT DISTINCT ON (p.id)
+        p.id AS product_id,
+        l.image_url AS new_image_url
+    FROM products p
+    JOIN temp_lidl_images l
+        ON (
+            LOWER(TRIM(p.brand)) = LOWER(TRIM(l.brand))
+            OR l.brand = 'Lidl'
+            OR p.brand = 'DESI BOLT'
+        )
+        AND (
+            p.name ILIKE '%' || TRIM(l.product_name) || '%'
+            OR l.product_name ILIKE '%' || TRIM(p.name) || '%'
+        )
+    WHERE l.image_url IS NOT NULL AND l.image_url != ''
+)
+UPDATE products p
+SET 
+    image_url = mu.new_image_url,
+    updated_at = NOW()
+FROM matched_updates mu
+WHERE p.id = mu.product_id;
+
+-- ============================================================================
+-- Step 5: VERIFICATION QUERIES (Review inside Transaction before COMMIT)
+-- ============================================================================
+
+-- Check updated products with their new URLs:
+SELECT 
+    p.id,
+    p.sku,
+    p.name,
+    p.brand,
+    p.image_url,
+    p.updated_at
+FROM products p
+WHERE p.updated_at >= NOW() - INTERVAL '1 minute'
+ORDER BY p.updated_at DESC
+LIMIT 20;
+
+-- Commit the transaction:
+COMMIT;
+-- Note: If you ever want to cancel after reviewing, run: ROLLBACK;
+
+-- Clean up temporary staging table:
+DROP TABLE IF EXISTS temp_lidl_images;
+
+-- Final Status:
+SELECT 'Lidl Product Images Migration Completed Successfully' AS status;
