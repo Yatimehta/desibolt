@@ -1,0 +1,2568 @@
+{
+  "timestamp": "2026-09-24T19:05:37.828Z",
+  "totalCsvRecords": 316,
+  "updatedCount": 114,
+  "insertedCount": 202,
+  "skippedCount": 0,
+  "errorCount": 0,
+  "updatedProducts": [
+    {
+      "productId": "7a8f624d-85f2-46d3-a8c1-b5e505f60265",
+      "sku": "DB-LDL-10-PANZERO-002",
+      "databaseName": "10 Panzerottini mozzarella cheese and ham",
+      "lidlName": "10 panzerottini mozzarella cheese and tomato",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "71%",
+      "oldImageUrl": "https://www.lidl.com.mt/assets/gcp7dfc07e5bc954e1189facd57f70cc480.png",
+      "newImageUrl": "https://imgproxy-retcat.assets.schwarz/xjuuPt_XvOl9AHIz2HN_FvTTKMnV8lB498Np31IhP5Q/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS9BRDM1MjgzMUIzMUQyQ0NDOEVFNTYxRDE/3MzZCQkU3MUQ3MjE2RDMyNzE0N0VGODYyOEQyMkI0ODA1QjNERTMwLmpwZw.jpg"
+    },
+    {
+      "productId": "b1f57509-029d-4e60-9366-262eb31cee05",
+      "sku": "DB-LDL-12-PUFF-PA-005",
+      "databaseName": "12 puff pastry with sausage",
+      "lidlName": "12 puff pastry with spinach",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "68%",
+      "oldImageUrl": "https://imgproxy-retcat.assets.schwarz/Ii1ad6P2ogkff4hiDi7k-zNGquSqZU82V22Bsr1bgt8/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS81MDQ3NzJBNUFBMTU2MTI2QUFCMzQ3M0E/5Q0MxOUYzOUJDQzAxRDZGODA4NDkzOUE1NjEwRjgxOTcwNjMzRTFGLmpwZw.jpg",
+      "newImageUrl": "https://imgproxy-retcat.assets.schwarz/5wvQVqklfnkAPl1qELqi2NKO5BbIAT8FDDQ_SHHPgvg/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS9DOUU1RThCRUZGOUJENUI1NEJBQUZGRjQ/2MzIwNEIzMTNDRDVDNjQ4MEJEQjA5NDUzOENCNUM2NTdBQjczMTlBLmpwZw.jpg"
+    },
+    {
+      "productId": "274d9782-cca7-46f4-8a6f-5caddb055ba3",
+      "sku": "DB-LDL-4-RAINBOW--009",
+      "databaseName": "4 Rainbow Donuts",
+      "lidlName": "4 Sugar donuts",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "50%",
+      "oldImageUrl": "https://www.lidl.com.mt/assets/gcp7ddfb36545724ed982134f920f2a4eb3.png",
+      "newImageUrl": "https://imgproxy-retcat.assets.schwarz/Y_gCJUf6ka5sls74Bs2yW8RLzxoMqMeimCDli8HxGwE/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS84RUUyNjM2NkNDMjFDQzlCOEZBRDY1OEU/zMEYyNEJDNjEyOUJEN0Q3MDQ1MDNBMjkyMTQ2QUUyQzA4QjNBMzVBLmpwZw.jpg"
+    },
+    {
+      "productId": "274d9782-cca7-46f4-8a6f-5caddb055ba3",
+      "sku": "DB-LDL-4-RAINBOW--009",
+      "databaseName": "4 Rainbow Donuts",
+      "lidlName": "4 Sugared Donuts",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "50%",
+      "oldImageUrl": "https://www.lidl.com.mt/assets/gcp7ddfb36545724ed982134f920f2a4eb3.png",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcp20feb0ee517a4815ad5cb9f8e7167749.png"
+    },
+    {
+      "productId": "2c9148ea-ae43-464e-a6b1-228f51234494",
+      "sku": "DB-LDL-4-WAY-WHEE-012",
+      "databaseName": "4-Way Wheel Wrench Set, 6 pieces",
+      "lidlName": "5-in-1 Screwdriver & Bit Set, 43 pieces",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "50%",
+      "oldImageUrl": "https://www.lidl.com.mt/assets/gcpe7307de3b0154c3fbd72f64ad7682b96.png",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcpb7fc693f267c4b31999e8390cc6700a9.png"
+    },
+    {
+      "productId": "b1f57509-029d-4e60-9366-262eb31cee05",
+      "sku": "DB-LDL-12-PUFF-PA-005",
+      "databaseName": "12 puff pastry with sausage",
+      "lidlName": "Apple puff pastry",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "62%",
+      "oldImageUrl": "https://imgproxy-retcat.assets.schwarz/Ii1ad6P2ogkff4hiDi7k-zNGquSqZU82V22Bsr1bgt8/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS81MDQ3NzJBNUFBMTU2MTI2QUFCMzQ3M0E/5Q0MxOUYzOUJDQzAxRDZGODA4NDkzOUE1NjEwRjgxOTcwNjMzRTFGLmpwZw.jpg",
+      "newImageUrl": "https://imgproxy-retcat.assets.schwarz/TOEbJzIvlxzT0V4D3u1WJLREug7K5Sv-kzWufzRYaow/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS80MEIxQkFDNUI3QTU0MEJCMEFENjA3NkN/CQjM0RDI4NTNDM0E4NDYxQTBCNjFEODEyMUVBRTZDNEUzRTY2NzYwLmpwZw.jpg"
+    },
+    {
+      "productId": "56bd51a5-20ad-485f-937b-482eae68f49b",
+      "sku": "DB-LDL-ADULT-CAT--018",
+      "databaseName": "Adult Cat Pate",
+      "lidlName": "Artichoke Paté",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "50%",
+      "oldImageUrl": "https://www.lidl.com.mt/assets/gcpf9b4e7e39fa241aea476a71f41d59c92.png",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcpeec765158c86438693dcac033f7be033.png"
+    },
+    {
+      "productId": "2c9148ea-ae43-464e-a6b1-228f51234494",
+      "sku": "DB-LDL-4-WAY-WHEE-012",
+      "databaseName": "4-Way Wheel Wrench Set, 6 pieces",
+      "lidlName": "Bit Set or Socket Set",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "50%",
+      "oldImageUrl": "https://www.lidl.com.mt/assets/gcpe7307de3b0154c3fbd72f64ad7682b96.png",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcpd4931040f4e540edaefc64eeadd2827b.png"
+    },
+    {
+      "productId": "1b67604a-d73f-4d15-b0af-2facef928282",
+      "sku": "DB-LDL-BUCKWHEAT--033",
+      "databaseName": "Buckwheat Bread with Walnuts",
+      "lidlName": "Buckwheat and walnut bread",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "68%",
+      "oldImageUrl": "https://www.lidl.com.mt/assets/gcp65cb592b2a794e98ab86155f4dfe11e5.png",
+      "newImageUrl": "https://imgproxy-retcat.assets.schwarz/S83F3NsDmpYdEgPCWKi20GgzRUv8sELwdWHVnbdIti0/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS9FOTgzMEFFOTFDNUFBREYwQUExNTY0QjJ/GRDNCMUYxQjc1RkEzRjEzRDIzQUYzMjc0MjlEQzRGRDk5QUUyQzlGLmpwZw.jpg"
+    },
+    {
+      "productId": "637cd6ae-4ce3-4479-8550-89c98e149834",
+      "sku": "DB-LDL-100-PEANUT-004",
+      "databaseName": "100% Peanut Butter",
+      "lidlName": "Butter Croissant",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "50%",
+      "oldImageUrl": "https://www.lidl.com.mt/assets/gcp88ccb47573ae4fbc81958ca486a1e1fc.png",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcpeac5450c4eb842e8a45e6c505f5c9fab.png"
+    },
+    {
+      "productId": "637cd6ae-4ce3-4479-8550-89c98e149834",
+      "sku": "DB-LDL-100-PEANUT-004",
+      "databaseName": "100% Peanut Butter",
+      "lidlName": "Butter XXL",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "50%",
+      "oldImageUrl": "https://www.lidl.com.mt/assets/gcp88ccb47573ae4fbc81958ca486a1e1fc.png",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcpbcd4619c0f9f4fb8b3df69716fcc1a21.png"
+    },
+    {
+      "productId": "2c9148ea-ae43-464e-a6b1-228f51234494",
+      "sku": "DB-LDL-4-WAY-WHEE-012",
+      "databaseName": "4-Way Wheel Wrench Set, 6 pieces",
+      "lidlName": "Canvas, 1, 2 or 3 pieces",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "50%",
+      "oldImageUrl": "https://www.lidl.com.mt/assets/gcpe7307de3b0154c3fbd72f64ad7682b96.png",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcpc3d87b855e8c4e7ba9229c9e13e183c1.png"
+    },
+    {
+      "productId": "d0d5de41-1472-4c69-a7ab-bc5827e13f6e",
+      "sku": "DB-LDL-CAR-BOOT-B-043",
+      "databaseName": "Car Boot Bag or Non-Slip Mat",
+      "lidlName": "Car Boot Mat",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "85%",
+      "oldImageUrl": "https://www.lidl.com.mt/assets/gcpa808244b29e44d588a118713b8b8de96.png",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcpde0f7536efe54098b4608f0afcfd4563.png"
+    },
+    {
+      "productId": "56bd51a5-20ad-485f-937b-482eae68f49b",
+      "sku": "DB-LDL-ADULT-CAT--018",
+      "databaseName": "Adult Cat Pate",
+      "lidlName": "Cat Paté",
+      "matchType": "substring_match",
+      "confidenceScore": "85%",
+      "oldImageUrl": "https://www.lidl.com.mt/assets/gcpf9b4e7e39fa241aea476a71f41d59c92.png",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcp817b7c1f78294eecaef7392e44ae4890.png"
+    },
+    {
+      "productId": "7a8f624d-85f2-46d3-a8c1-b5e505f60265",
+      "sku": "DB-LDL-10-PANZERO-002",
+      "databaseName": "10 Panzerottini mozzarella cheese and ham",
+      "lidlName": "Cheese bread",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "50%",
+      "oldImageUrl": "https://www.lidl.com.mt/assets/gcp7dfc07e5bc954e1189facd57f70cc480.png",
+      "newImageUrl": "https://imgproxy-retcat.assets.schwarz/3yFrh367XaJA1CE9_tEBqKnq-h17rM8sjpefuM18MNc/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS9GNjgzRDc5OENBMTNCMkI2QzQxMjA4ODU/1MTQ4MTVENjE0Mjc4RjBENzg2RUFBOTdENTNCNDBFOTQ0NDYwQjA5LmpwZw.jpg"
+    },
+    {
+      "productId": "ab94f691-da83-4d2f-be09-4584aa380cfb",
+      "sku": "DB-LDL-4-PARTY-DO-008",
+      "databaseName": "4 Party Donut",
+      "lidlName": "Chocolate Donut",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "50%",
+      "oldImageUrl": "https://www.lidl.com.mt/assets/gcp0da3da84ff324d53bd821697f5128975.png",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcp2ebecbfc0418440497b1041aa7e6adf1.png"
+    },
+    {
+      "productId": "6d327467-864c-4748-a811-e06eb44f3196",
+      "sku": "DB-LDL-BROWN-RICE-032",
+      "databaseName": "Brown Rice Bar with Chocolate",
+      "lidlName": "Chocolate Roll",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "50%",
+      "oldImageUrl": "https://www.lidl.com.mt/assets/gcp6d7d9f7bf9f44a269373e9b31dec458d.png",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcp48b8953ff3ef4601b5489bfd92cf3828.png"
+    },
+    {
+      "productId": "6468765d-b8af-4564-bfdc-8768f87db3ea",
+      "sku": "DB-LDL-CHRYSANTHE-060",
+      "databaseName": "Chrysanthemums",
+      "lidlName": "Chrysanthemums Multiflora",
+      "matchType": "substring_match",
+      "confidenceScore": "85%",
+      "oldImageUrl": "https://www.lidl.com.mt/assets/gcp5ed8973da5ba470891a56e7244d6c66c.png",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcp7c13f487621141529e3e73812f9056c3.png"
+    },
+    {
+      "productId": "f6444e54-ad49-4fa3-948f-00067332fd15",
+      "sku": "DB-LDL-CHICKPEAS-054",
+      "databaseName": "Chickpeas",
+      "lidlName": "Cooked Chickpeas",
+      "matchType": "substring_match",
+      "confidenceScore": "85%",
+      "oldImageUrl": "https://www.lidl.com.mt/assets/gcpbdf5b2e0a4094584bef515f9075da92b.png",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcp0666716c5d2a4baf8b48614a2cd9e6be.png"
+    },
+    {
+      "productId": "68d17a84-2ef8-4137-96c1-f7f2690c823b",
+      "sku": "DB-LDL-CORDLESS-I-071",
+      "databaseName": "Cordless Impact Wrench",
+      "lidlName": "Cordless Ratchet",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "50%",
+      "oldImageUrl": "https://www.lidl.com.mt/assets/gcp18876c89510d4e668c1a44d8fe385477.png",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcp70857a53033f447eb482e65ea3fa6879.png"
+    },
+    {
+      "productId": "6db5c5e3-7631-4a9a-bc54-da700c2dfea2",
+      "sku": "DB-LDL-BBQ-FLAVOU-025",
+      "databaseName": "BBQ Flavour Corn Snack",
+      "lidlName": "Corn Snack",
+      "matchType": "substring_match",
+      "confidenceScore": "85%",
+      "oldImageUrl": "https://www.lidl.com.mt/assets/gcp65e5c9722dd74b4383a7b5999bdb24f0.png",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcpc2252b3fe6684555b7d61003bcd7c5b8.png"
+    },
+    {
+      "productId": "862ec7fc-c5b5-411e-896a-a3f8a871392f",
+      "sku": "DB-LDL-CRISPY-CHI-079",
+      "databaseName": "Crispy Chicken Burger XXL",
+      "lidlName": "Crispy Chicken Cutlet",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "62%",
+      "oldImageUrl": "https://www.lidl.com.mt/assets/gcpeb901038fc6049238870807edbe2d145.png",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcp3f4672676e294c779cd15b200bd040e5.png"
+    },
+    {
+      "productId": "8a956e9d-ff65-459c-bc5d-0baf143e598f",
+      "sku": "DB-LDL-DRIED-FRUI-093",
+      "databaseName": "Dried Fruit",
+      "lidlName": "Dried Fruits and Nuts Mix",
+      "matchType": "substring_match",
+      "confidenceScore": "85%",
+      "oldImageUrl": "https://www.lidl.com.mt/assets/gcpfee2897878f84c79bcfab581f9bb3880.png",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcp7e7650a13b324dea932555a04fcc81be.png"
+    },
+    {
+      "productId": "3d9b8a5f-2bdf-4880-b5bd-571470999530",
+      "sku": "DB-LDL-BAGUETTE-026",
+      "databaseName": "Baguette",
+      "lidlName": "Durum Wheat Baguette",
+      "matchType": "substring_match",
+      "confidenceScore": "85%",
+      "oldImageUrl": "https://www.lidl.com.mt/assets/gcpbb8fe968a7444146b7211c8e11f613f9.png",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcpd4381ac855e7432993babb8dc0467ce9.png"
+    },
+    {
+      "productId": "1b67604a-d73f-4d15-b0af-2facef928282",
+      "sku": "DB-LDL-BUCKWHEAT--033",
+      "databaseName": "Buckwheat Bread with Walnuts",
+      "lidlName": "Durum wheat bread",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "62%",
+      "oldImageUrl": "https://www.lidl.com.mt/assets/gcp65cb592b2a794e98ab86155f4dfe11e5.png",
+      "newImageUrl": "https://imgproxy-retcat.assets.schwarz/BvVLNUnGH4vnSgWd2rURZaC2A4EAqcMWIb0hYDgfhNU/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS8xMTc3RUUwNUQ2NkMxRDhCODIyOEZGNzA/1Q0UxNTMzREY0RDE5OUEwMzE4RUVFOUM4Q0E4N0U1NEJDRDUwQ0MzLmpwZw.jpg"
+    },
+    {
+      "productId": "c4f7826f-7761-4bc6-a971-7342697ad30a",
+      "sku": "DB-LDL-CHIP-DUST--055",
+      "databaseName": "Chip & Dust Extractor",
+      "lidlName": "Extra Jam",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "50%",
+      "oldImageUrl": "https://www.lidl.com.mt/assets/gcpbe72c6beca7645b1a172b3e29d3b0ba3.png",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcp2dd81415ef104671a3c63d522a983369.png"
+    },
+    {
+      "productId": "3d9b8a5f-2bdf-4880-b5bd-571470999530",
+      "sku": "DB-LDL-BAGUETTE-026",
+      "databaseName": "Baguette",
+      "lidlName": "French Baguette",
+      "matchType": "substring_match",
+      "confidenceScore": "85%",
+      "oldImageUrl": "https://www.lidl.com.mt/assets/gcpbb8fe968a7444146b7211c8e11f613f9.png",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcp665a1731c24b4fc5bf48abd1e1e882b5.png"
+    },
+    {
+      "productId": "9a615d21-b3a4-42be-b931-acf8357f5ea8",
+      "sku": "DB-LDL-CHOCO-DUO--056",
+      "databaseName": "Choco Duo Spread",
+      "lidlName": "Fruit Spread",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "50%",
+      "oldImageUrl": "https://www.lidl.com.mt/assets/gcp4edfe8365d1c46b9ad1ce05a91e175a7.png",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcp8db767746ca743eca8e3f52a71fd3e28.png"
+    },
+    {
+      "productId": "8a956e9d-ff65-459c-bc5d-0baf143e598f",
+      "sku": "DB-LDL-DRIED-FRUI-093",
+      "databaseName": "Dried Fruit",
+      "lidlName": "Fruit Trees",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "50%",
+      "oldImageUrl": "https://www.lidl.com.mt/assets/gcpfee2897878f84c79bcfab581f9bb3880.png",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcp3e0c3f804a404536a9ebf678610d18df.png"
+    },
+    {
+      "productId": "bb67c8f6-1f98-43f6-9832-5956f9c6463c",
+      "sku": "DB-LDL-FTIRA-BIG-115",
+      "databaseName": "Ftira big",
+      "lidlName": "Ftira small",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "50%",
+      "oldImageUrl": "https://imgproxy-retcat.assets.schwarz/XbzpaMQJeWsVxyNOXXhy5pHMESVQ2hWZoPcr6KpkhZo/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS9BMjMwNkRDOTBCRUI0MzFGOEJCOUJERTY/xNjJDQTcyMzc4NDlBQzlFMUFFRjdBMkREREZBQkI0QjQ4MENBMThDLmpwZw.jpg",
+      "newImageUrl": "https://imgproxy-retcat.assets.schwarz/B2emT4xfUfA7_7ojT1qujybBztEn-p8zH-Y8vIyCoIU/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS8yNUI0NTMwNDgwMzUxNjI4N0VFOTVCNEN/BMjQ1MUQxNjgwOTJDQTI5MzhDQTQ3M0I3RDBCODk3RUE4MURCOEU3LmpwZw.jpg"
+    },
+    {
+      "productId": "239a5f82-5e11-482c-9f4d-570114a922ee",
+      "sku": "DB-LDL-GARLIC-CLO-120",
+      "databaseName": "Garlic Cloves",
+      "lidlName": "Garlic Sauces",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "50%",
+      "oldImageUrl": "https://www.lidl.com.mt/assets/gcp63eaee4eefc94e79a87ff66f81f50928.png",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcp494a2fb34e764f8fa551e6ead9a91f56.png"
+    },
+    {
+      "productId": "b1f57509-029d-4e60-9366-262eb31cee05",
+      "sku": "DB-LDL-12-PUFF-PA-005",
+      "databaseName": "12 puff pastry with sausage",
+      "lidlName": "Gianduja chocolate puff pastry",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "50%",
+      "oldImageUrl": "https://imgproxy-retcat.assets.schwarz/Ii1ad6P2ogkff4hiDi7k-zNGquSqZU82V22Bsr1bgt8/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS81MDQ3NzJBNUFBMTU2MTI2QUFCMzQ3M0E/5Q0MxOUYzOUJDQzAxRDZGODA4NDkzOUE1NjEwRjgxOTcwNjMzRTFGLmpwZw.jpg",
+      "newImageUrl": "https://imgproxy-retcat.assets.schwarz/kuZ-OvxCjvqISgBjHyhtAPe2BTtBiGmGyHbcv5hemG4/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS82MzgxM0NBNTFBQjJGNjhGNDc5N0Y4MTg/wMUM5MkI0MTBFRjAxQTc3QTQyMTY2QTNDMURFNTlFRThBNDMyM0ZFLmpwZw.jpg"
+    },
+    {
+      "productId": "43d32499-f774-48c4-b3b0-558ef92d6bcf",
+      "sku": "DB-LDL-EXOTIC-PLA-101",
+      "databaseName": "Exotic Plants Mix",
+      "lidlName": "Green Plants",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "50%",
+      "oldImageUrl": "https://www.lidl.com.mt/assets/gcp1814b5aa728a43eaa497f032a0ed0d33.png",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcpc9e338a29c194c9b81f2f48e7ab5855a.png"
+    },
+    {
+      "productId": "7a8f624d-85f2-46d3-a8c1-b5e505f60265",
+      "sku": "DB-LDL-10-PANZERO-002",
+      "databaseName": "10 Panzerottini mozzarella cheese and ham",
+      "lidlName": "Ham and Cheese Dumpling",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "68%",
+      "oldImageUrl": "https://www.lidl.com.mt/assets/gcp7dfc07e5bc954e1189facd57f70cc480.png",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcp6fde07a3247542729643bca4b7e1ac93.png"
+    },
+    {
+      "productId": "b5bf55d4-3c62-4b9c-b6cc-7bbf08073f71",
+      "sku": "DB-LDL-9-MINI-HAZ-016",
+      "databaseName": "9 mini hazelnut croissants",
+      "lidlName": "Hazelnut Croissant",
+      "matchType": "substring_match",
+      "confidenceScore": "85%",
+      "oldImageUrl": "https://imgproxy-retcat.assets.schwarz/Sh8TjxLeCMXE9DYZ4souksqS7AC8SBsawpGe207D-3A/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS8wODU5NkI1OUU0M0EwQTg3OEJCMzI1Mzg/wOTM1MUY0QjIxMkYxN0M3QTc1M0JDOTIxRjI4NDM1MjYzNzU0NEUxLmpwZw.jpg",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcpbe9154c57a294d50821baac47ae25fe3.png"
+    },
+    {
+      "productId": "b5bf55d4-3c62-4b9c-b6cc-7bbf08073f71",
+      "sku": "DB-LDL-9-MINI-HAZ-016",
+      "databaseName": "9 mini hazelnut croissants",
+      "lidlName": "Hazelnut croissant with Sourdough",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "50%",
+      "oldImageUrl": "https://imgproxy-retcat.assets.schwarz/Sh8TjxLeCMXE9DYZ4souksqS7AC8SBsawpGe207D-3A/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS8wODU5NkI1OUU0M0EwQTg3OEJCMzI1Mzg/wOTM1MUY0QjIxMkYxN0M3QTc1M0JDOTIxRjI4NDM1MjYzNzU0NEUxLmpwZw.jpg",
+      "newImageUrl": "https://imgproxy-retcat.assets.schwarz/z9mElGo8tLCZwFMnpUk5nFqOO4duIm_QrAC7uROHO24/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS9CMUFGM0EzRjg1QUY0MEM5N0ZGMzJEMTl/ENzJEMEVGRUU5NjFBQzgyMEVBMEVFQzM2Mjc2QTU1RDU4REFBRDkzLmpwZw.jpg"
+    },
+    {
+      "productId": "eaab25d0-254b-42c9-8405-a17dae3c8f8f",
+      "sku": "DB-LDL-BUTTERNUT--038",
+      "databaseName": "Butternut Pumpkin",
+      "lidlName": "Hokkaido pumpkin",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "50%",
+      "oldImageUrl": "https://www.lidl.com.mt/assets/gcp6f7181981d6548bd9e9e4526f6db25a5.png",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcp40cb5c3312da4f59a330de256b959c80.png"
+    },
+    {
+      "productId": "5cf4dd75-30f3-4b35-80ab-ea661ad93a5d",
+      "sku": "DB-LDL-CROQUETTES-082",
+      "databaseName": "Croquettes with Jamón Serrano and Queso Manchego",
+      "lidlName": "Jamón Serrano TSG",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "62%",
+      "oldImageUrl": "https://www.lidl.com.mt/assets/gcp55ff3f302a254f40ab6428d99a14caba.png",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcp1487ed76f2d04f5c8f1288bf241e1d7b.png"
+    },
+    {
+      "productId": "30fd260a-1898-4f8c-999c-89dbce20a7b4",
+      "sku": "DB-LDL-HAND-BLEND-132",
+      "databaseName": "Hand Blender Set",
+      "lidlName": "Jug Blender",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "50%",
+      "oldImageUrl": "https://www.lidl.com.mt/assets/gcpe304b5c73bde47e99cb895107ae82ca4.png",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcp4eb959d8730d49b082662eb7c52723fd.png"
+    },
+    {
+      "productId": "0353a35b-07a0-4174-b162-ae7c0bbbbe76",
+      "sku": "DB-LDL-BOYS-DENIM-030",
+      "databaseName": "Boys' Denim Joggers",
+      "lidlName": "Kids' Joggers",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "50%",
+      "oldImageUrl": "https://www.lidl.com.mt/assets/gcp37d3345e9059497996f2d3e23e4bfb98.png",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcpa6e227f15e684a1eae17edb8e6dffb20.png"
+    },
+    {
+      "productId": "92f4dfcb-2ee9-4441-b247-3f132c807329",
+      "sku": "DB-LDL-KIDS-LIGHT-152",
+      "databaseName": "Kids' Lightweight Jacket",
+      "lidlName": "Kids' Lightweight Padded Jacket",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "68%",
+      "oldImageUrl": "https://www.lidl.com.mt/assets/gcp5625e24e45d847a5b713b075fbc6820d.png",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcp5af7579ad0664347923b9da45340d9ee.png"
+    },
+    {
+      "productId": "32f83c6d-99e7-4375-9e92-756d7ff94c7a",
+      "sku": "DB-LDL-KIDS-FINE--150",
+      "databaseName": "Kids' Fine Knit Jumper",
+      "lidlName": "Kids' Pyjamas",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "50%",
+      "oldImageUrl": "https://www.lidl.com.mt/assets/gcpf2ace7ace21f4f2a9701db1eef05e9fb.png",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcp5eee677411d7465ab4509bcd0f14cc56.png"
+    },
+    {
+      "productId": "32f83c6d-99e7-4375-9e92-756d7ff94c7a",
+      "sku": "DB-LDL-KIDS-FINE--150",
+      "databaseName": "Kids' Fine Knit Jumper",
+      "lidlName": "Kids' Sweatshirt",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "50%",
+      "oldImageUrl": "https://www.lidl.com.mt/assets/gcpf2ace7ace21f4f2a9701db1eef05e9fb.png",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcpc5e1b0510a5f48d9b05d3388cb89d29f.png"
+    },
+    {
+      "productId": "92f4dfcb-2ee9-4441-b247-3f132c807329",
+      "sku": "DB-LDL-KIDS-LIGHT-152",
+      "databaseName": "Kids' Lightweight Jacket",
+      "lidlName": "Kids' Teddy Fleece Jacket",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "50%",
+      "oldImageUrl": "https://www.lidl.com.mt/assets/gcp5625e24e45d847a5b713b075fbc6820d.png",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcpbb6ac9469ce14a3b9b71fabd7350d1a8.png"
+    },
+    {
+      "productId": "92f4dfcb-2ee9-4441-b247-3f132c807329",
+      "sku": "DB-LDL-KIDS-LIGHT-152",
+      "databaseName": "Kids' Lightweight Jacket",
+      "lidlName": "Kids' Waterproof Jacket",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "62%",
+      "oldImageUrl": "https://www.lidl.com.mt/assets/gcp5625e24e45d847a5b713b075fbc6820d.png",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcpe199c95f7ac540fa901d97de0208b909.png"
+    },
+    {
+      "productId": "b911b26d-12dd-456f-9d8d-efef4b0924a5",
+      "sku": "DB-LDL-LACTOSE-FR-164",
+      "databaseName": "Lactose-free Fior di Latte Yogurt with Cereals and Chocolate Biscuits",
+      "lidlName": "Lactose-free Vanilla Yogurt with Raspberry Preparation",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "55%",
+      "oldImageUrl": "https://www.lidl.com.mt/assets/gcp97638ae1933e4597a4494616ca36f197.png",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcp97638ae1933e4597a4494616ca36f197.png"
+    },
+    {
+      "productId": "30c5b8bd-2faa-4671-b548-1591a8d09155",
+      "sku": "DB-LDL-FOCACCIA-W-109",
+      "databaseName": "Focaccia with Tomatoes and Olives",
+      "lidlName": "Large Olives with Stones",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "50%",
+      "oldImageUrl": "https://www.lidl.com.mt/assets/gcpc40ebd6954af473d8e8abba7cf6cae0d.jpg",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcp33ad4d58f0664431be826f20d43b0f9d.png"
+    },
+    {
+      "productId": "3d9b8a5f-2bdf-4880-b5bd-571470999530",
+      "sku": "DB-LDL-BAGUETTE-026",
+      "databaseName": "Baguette",
+      "lidlName": "Maltese Baguette",
+      "matchType": "substring_match",
+      "confidenceScore": "85%",
+      "oldImageUrl": "https://www.lidl.com.mt/assets/gcpbb8fe968a7444146b7211c8e11f613f9.png",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcpe4b5e8363d994f70a473add3899ee83f.jpg"
+    },
+    {
+      "productId": "5f5965a0-2f17-4dbd-b594-4d4c3969f44f",
+      "sku": "DB-LDL-6-MINI-PIZ-014",
+      "databaseName": "6 mini pizzas",
+      "lidlName": "Margherita Mini Pizza",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "62%",
+      "oldImageUrl": "https://imgproxy-retcat.assets.schwarz/3K8DaiGsaY18Zn8I-7fWizF3LD6gay875dUciuBEr-w/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS9BOTFDNjA4RTkwN0MyMkFEREIxOURCRjA/zNzlDRDE4QUQ5NzE2RDYzM0NDRjIwMThDMTZFRTMyNzNGMDA0RDZFLmpwZw.jpg",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcp7cd4fc4de82a45a7be680d71506d2055.png"
+    },
+    {
+      "productId": "5f5965a0-2f17-4dbd-b594-4d4c3969f44f",
+      "sku": "DB-LDL-6-MINI-PIZ-014",
+      "databaseName": "6 mini pizzas",
+      "lidlName": "Margherita Pizza",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "50%",
+      "oldImageUrl": "https://imgproxy-retcat.assets.schwarz/3K8DaiGsaY18Zn8I-7fWizF3LD6gay875dUciuBEr-w/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS9BOTFDNjA4RTkwN0MyMkFEREIxOURCRjA/zNzlDRDE4QUQ5NzE2RDYzM0NDRjIwMThDMTZFRTMyNzNGMDA0RDZFLmpwZw.jpg",
+      "newImageUrl": "https://imgproxy-retcat.assets.schwarz/3Fert4DMu1KESoppwwRxr_47KDgijV9IWjTSnHDPvnw/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS83MUZEMjE4NkZDMUMxOUZERDg2NjFEN0Z/GQzlBRjNDQjdBRDEzNjA5NEQ0RUVBMDhBQTRFNjRENEU1NTg0N0IwLmpwZw.jpg"
+    },
+    {
+      "productId": "4369955b-d019-4ee7-a132-2afa9750ac7e",
+      "sku": "DB-LDL-KIDS-SOCKS-157",
+      "databaseName": "Kids' Socks, 7 pairs",
+      "lidlName": "Men's Work Socks, 2 pairs",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "50%",
+      "oldImageUrl": "https://www.lidl.com.mt/assets/gcp9550630bb35c4543a495d5992e908aa5.png",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcpa2ad6bcc6e484e78ad0d1231142e7c36.png"
+    },
+    {
+      "productId": "3d9b8a5f-2bdf-4880-b5bd-571470999530",
+      "sku": "DB-LDL-BAGUETTE-026",
+      "databaseName": "Baguette",
+      "lidlName": "Mini Baguette",
+      "matchType": "substring_match",
+      "confidenceScore": "85%",
+      "oldImageUrl": "https://www.lidl.com.mt/assets/gcpbb8fe968a7444146b7211c8e11f613f9.png",
+      "newImageUrl": "https://imgproxy-retcat.assets.schwarz/m_9HgTWNoDUoKAq7N-I5dq66g5RFFW82Y0q8tT0lqGQ/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS9CQ0EwM0M5RjBERTdCRDdCNUM2MTkzRjA/yODE2RDA2OEQ0MTQzREY0ODc2MkI0MkEyNjY5NEFGQjc0RDBDODA5LmpwZw.jpg"
+    },
+    {
+      "productId": "5f5965a0-2f17-4dbd-b594-4d4c3969f44f",
+      "sku": "DB-LDL-6-MINI-PIZ-014",
+      "databaseName": "6 mini pizzas",
+      "lidlName": "Mini Chopper",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "50%",
+      "oldImageUrl": "https://imgproxy-retcat.assets.schwarz/3K8DaiGsaY18Zn8I-7fWizF3LD6gay875dUciuBEr-w/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS9BOTFDNjA4RTkwN0MyMkFEREIxOURCRjA/zNzlDRDE4QUQ5NzE2RDYzM0NDRjIwMThDMTZFRTMyNzNGMDA0RDZFLmpwZw.jpg",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcp49b512a59d0b45a097eeb3a9ea0ca497.png"
+    },
+    {
+      "productId": "5f5965a0-2f17-4dbd-b594-4d4c3969f44f",
+      "sku": "DB-LDL-6-MINI-PIZ-014",
+      "databaseName": "6 mini pizzas",
+      "lidlName": "Mini Compressor",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "50%",
+      "oldImageUrl": "https://imgproxy-retcat.assets.schwarz/3K8DaiGsaY18Zn8I-7fWizF3LD6gay875dUciuBEr-w/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS9BOTFDNjA4RTkwN0MyMkFEREIxOURCRjA/zNzlDRDE4QUQ5NzE2RDYzM0NDRjIwMThDMTZFRTMyNzNGMDA0RDZFLmpwZw.jpg",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcpa31646e1c6954433868b88c3d037a1c5.png"
+    },
+    {
+      "productId": "b5bf55d4-3c62-4b9c-b6cc-7bbf08073f71",
+      "sku": "DB-LDL-9-MINI-HAZ-016",
+      "databaseName": "9 mini hazelnut croissants",
+      "lidlName": "Mini Hazelnut Croissants",
+      "matchType": "substring_match",
+      "confidenceScore": "85%",
+      "oldImageUrl": "https://imgproxy-retcat.assets.schwarz/Sh8TjxLeCMXE9DYZ4souksqS7AC8SBsawpGe207D-3A/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS8wODU5NkI1OUU0M0EwQTg3OEJCMzI1Mzg/wOTM1MUY0QjIxMkYxN0M3QTc1M0JDOTIxRjI4NDM1MjYzNzU0NEUxLmpwZw.jpg",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcpbd62ea6007f6475ea6968cbc2ae89efe.png"
+    },
+    {
+      "productId": "3d9b8a5f-2bdf-4880-b5bd-571470999530",
+      "sku": "DB-LDL-BAGUETTE-026",
+      "databaseName": "Baguette",
+      "lidlName": "Mini-Baguette",
+      "matchType": "substring_match",
+      "confidenceScore": "85%",
+      "oldImageUrl": "https://www.lidl.com.mt/assets/gcpbb8fe968a7444146b7211c8e11f613f9.png",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcp53d3821ff8a949819f191df0d1ec1279.png"
+    },
+    {
+      "productId": "7a8f624d-85f2-46d3-a8c1-b5e505f60265",
+      "sku": "DB-LDL-10-PANZERO-002",
+      "databaseName": "10 Panzerottini mozzarella cheese and ham",
+      "lidlName": "Mozzarella",
+      "matchType": "substring_match",
+      "confidenceScore": "85%",
+      "oldImageUrl": "https://www.lidl.com.mt/assets/gcp7dfc07e5bc954e1189facd57f70cc480.png",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcp97638ae1933e4597a4494616ca36f197.png"
+    },
+    {
+      "productId": "e5a10bad-e297-4239-8a01-19f8d58813f4",
+      "sku": "DB-LDL-DURUM-WHEA-097",
+      "databaseName": "Durum wheat roll",
+      "lidlName": "Multiseed roll",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "50%",
+      "oldImageUrl": "https://imgproxy-retcat.assets.schwarz/OX-JKJJXtCoTydnVp5G1biUrVmxM6CN8VeZtZEu9I7k/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS84NjBCMDE0NjQxNUMzOUJENDU1MURGOUU/0QTlGQkRDMEQyQzg5NDg1RTFGQkNDMkM0RDhCMzU1MTY1QUYzRUEyLmpwZw.jpg",
+      "newImageUrl": "https://imgproxy-retcat.assets.schwarz/pdH2igz66wtLMsU3Aja5lUSlRQRJcJrMiFDoX7UeVu4/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS84QzRCQzQ3RjhDQkNDOUEwQzYyMDY5QTM/2MzcwM0FBNEU0QkVDRkJGQTMzRTlCNkE2MTg5QjNEMzdEOTJEODAwLmpwZw.jpg"
+    },
+    {
+      "productId": "453b878d-2271-4be6-a6c7-b46fbf1b810f",
+      "sku": "DB-LDL-FOCACCIA-T-108",
+      "databaseName": "Focaccia twist with goat cheese",
+      "lidlName": "Oat Flakes",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "50%",
+      "oldImageUrl": "https://imgproxy-retcat.assets.schwarz/HswCTH5MJ2loSUzZSfIQUhcqT9CbwA6f4cnM_c4B3a8/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS8zN0RBMjc2OTc0NDlGRUE4RDk2QTkyMzM/4N0U5NThBRkYyRUI4QTcyRTY0RkEzMUY5MzYzQzVGMTdCMjY1NDFFLmpwZw.jpg",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcp9fce64bad21b4003bedc7b2d9178c96d.png"
+    },
+    {
+      "productId": "3ab9aae6-de6f-44e5-b9a4-bc50b0f2c3b7",
+      "sku": "DB-LDL-ASIAN-STYL-023",
+      "databaseName": "Asian Style Oils",
+      "lidlName": "Oil Pump",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "50%",
+      "oldImageUrl": "https://www.lidl.com.mt/assets/gcpa03ee5f505324b4f9217a80290c5e43b.png",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcp55de68cdbc89448f89b266d32913487d.png"
+    },
+    {
+      "productId": "f0386db9-9016-4dff-b725-7284f260d065",
+      "sku": "DB-LDL-FLATBREAD--107",
+      "databaseName": "Flatbread with extra v. olive oil",
+      "lidlName": "Olive Stick Bread",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "62%",
+      "oldImageUrl": "https://imgproxy-retcat.assets.schwarz/LQguU3wZxEjJR_fHkWHKzNlz-LMgCYwgDjuGI5hgQ7g/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS9CRjlDNzY1QUIxM0Q0Qjc0MTZGMUZERUZ/DOTNCNDdFQjNDRUY1OEU0M0VEMzQ0RUNFQjM5QUFDMEIwRTRDNzgwLmpwZw.jpg",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcp98e155b1946c445e98ecd391e7f743b1.png"
+    },
+    {
+      "productId": "f0386db9-9016-4dff-b725-7284f260d065",
+      "sku": "DB-LDL-FLATBREAD--107",
+      "databaseName": "Flatbread with extra v. olive oil",
+      "lidlName": "Olive ciabatta",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "50%",
+      "oldImageUrl": "https://imgproxy-retcat.assets.schwarz/LQguU3wZxEjJR_fHkWHKzNlz-LMgCYwgDjuGI5hgQ7g/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS9CRjlDNzY1QUIxM0Q0Qjc0MTZGMUZERUZ/DOTNCNDdFQjNDRUY1OEU0M0VEMzQ0RUNFQjM5QUFDMEIwRTRDNzgwLmpwZw.jpg",
+      "newImageUrl": "https://imgproxy-retcat.assets.schwarz/ciSWmSdELM82-Bn8T_VxT5D59NzVYDjPk7my-UnYheo/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS9CMjE0Qjc4NThEODE5QTkyMjhERENFRDU/2NDM0OUUwMDM3MEM3MTg0OENCRTgyNDNFRUU3QUY1QUZCNzBFNjY5LmpwZw.jpg"
+    },
+    {
+      "productId": "f0386db9-9016-4dff-b725-7284f260d065",
+      "sku": "DB-LDL-FLATBREAD--107",
+      "databaseName": "Flatbread with extra v. olive oil",
+      "lidlName": "Olive stick-bread",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "62%",
+      "oldImageUrl": "https://imgproxy-retcat.assets.schwarz/LQguU3wZxEjJR_fHkWHKzNlz-LMgCYwgDjuGI5hgQ7g/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS9CRjlDNzY1QUIxM0Q0Qjc0MTZGMUZERUZ/DOTNCNDdFQjNDRUY1OEU0M0VEMzQ0RUNFQjM5QUFDMEIwRTRDNzgwLmpwZw.jpg",
+      "newImageUrl": "https://imgproxy-retcat.assets.schwarz/HE3HPXv1QcrALjM1IFA6R1UNFpVHkhUHrMrOuDAockQ/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS82MDRENkRCQzBDRUJFRUU2QTRCRkM4RTg/4QjgxRUJGREUzODU0NjRBMzEzRDg0N0U2QkFFNUU5RTg2MTkwNzY2LmpwZw.jpg"
+    },
+    {
+      "productId": "30c5b8bd-2faa-4671-b548-1591a8d09155",
+      "sku": "DB-LDL-FOCACCIA-W-109",
+      "databaseName": "Focaccia with Tomatoes and Olives",
+      "lidlName": "Olives Ciabatta",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "50%",
+      "oldImageUrl": "https://www.lidl.com.mt/assets/gcpc40ebd6954af473d8e8abba7cf6cae0d.jpg",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcpb88f650a7c944872b955c7648378ecce.png"
+    },
+    {
+      "productId": "3d9b8a5f-2bdf-4880-b5bd-571470999530",
+      "sku": "DB-LDL-BAGUETTE-026",
+      "databaseName": "Baguette",
+      "lidlName": "Onion Baguette",
+      "matchType": "substring_match",
+      "confidenceScore": "85%",
+      "oldImageUrl": "https://www.lidl.com.mt/assets/gcpbb8fe968a7444146b7211c8e11f613f9.png",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcp2e1da0eef723426fa47196e9573e4392.jpg"
+    },
+    {
+      "productId": "ab94f691-da83-4d2f-be09-4584aa380cfb",
+      "sku": "DB-LDL-4-PARTY-DO-008",
+      "databaseName": "4 Party Donut",
+      "lidlName": "Oreo Donut",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "50%",
+      "oldImageUrl": "https://www.lidl.com.mt/assets/gcp0da3da84ff324d53bd821697f5128975.png",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcpca77b83bb6644bc5802a2c2f80267464.png"
+    },
+    {
+      "productId": "7a8f624d-85f2-46d3-a8c1-b5e505f60265",
+      "sku": "DB-LDL-10-PANZERO-002",
+      "databaseName": "10 Panzerottini mozzarella cheese and ham",
+      "lidlName": "Panzerottini with Tomato and Mozzarella",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "57%",
+      "oldImageUrl": "https://www.lidl.com.mt/assets/gcp7dfc07e5bc954e1189facd57f70cc480.png",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcp4286b952b1564849a0c378135781b846.jpg"
+    },
+    {
+      "productId": "efbfe820-4c25-441e-9001-006e971857dc",
+      "sku": "DB-LDL-PARISIAN-S-206",
+      "databaseName": "Parisian softbread",
+      "lidlName": "Parisien Softbread",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "50%",
+      "oldImageUrl": "https://imgproxy-retcat.assets.schwarz/K70EWq2sptKWRhFpk-nYjsds5tL7Wcw_0Y_ewxhs_Dk/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS82RDBCRkY0MzUxNzUwRjdEMjI3NTE0NTd/COTRGMURDNjg5QTI0RjJDMTZGMTJDNDRBQzVDRDlEQTg5RTUwQkM3LmpwZw.jpg",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcp6b98950afb62485f8ddfcc3bb4a031ae.png"
+    },
+    {
+      "productId": "b1f57509-029d-4e60-9366-262eb31cee05",
+      "sku": "DB-LDL-12-PUFF-PA-005",
+      "databaseName": "12 puff pastry with sausage",
+      "lidlName": "Pastéis de Nata",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "50%",
+      "oldImageUrl": "https://imgproxy-retcat.assets.schwarz/Ii1ad6P2ogkff4hiDi7k-zNGquSqZU82V22Bsr1bgt8/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS81MDQ3NzJBNUFBMTU2MTI2QUFCMzQ3M0E/5Q0MxOUYzOUJDQzAxRDZGODA4NDkzOUE1NjEwRjgxOTcwNjMzRTFGLmpwZw.jpg",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcp90a18dc8c592491eac46e086a035a08e.png"
+    },
+    {
+      "productId": "ab94f691-da83-4d2f-be09-4584aa380cfb",
+      "sku": "DB-LDL-4-PARTY-DO-008",
+      "databaseName": "4 Party Donut",
+      "lidlName": "Pinky Donut",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "50%",
+      "oldImageUrl": "https://www.lidl.com.mt/assets/gcp0da3da84ff324d53bd821697f5128975.png",
+      "newImageUrl": "https://imgproxy-retcat.assets.schwarz/Ar0rrp6s5I5aq5j7CeQuIJb3rgwhLsbiRSG9_iJoASE/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS9GNDcyQjZGRDNFNTcxQUY1Qjc5RTIzNEU/5MDY0NDgxMUZFMDk2MkZBMDJBNTg1MkZDRThDRENCMTJDNDJDMEQ0LmpwZw.jpg"
+    },
+    {
+      "productId": "1b67604a-d73f-4d15-b0af-2facef928282",
+      "sku": "DB-LDL-BUCKWHEAT--033",
+      "databaseName": "Buckwheat Bread with Walnuts",
+      "lidlName": "Pita Bread",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "50%",
+      "oldImageUrl": "https://www.lidl.com.mt/assets/gcp65cb592b2a794e98ab86155f4dfe11e5.png",
+      "newImageUrl": "https://imgproxy-retcat.assets.schwarz/3Hk5I9v_NUd6CA5KdEEoTW6480qZRH4Ldta9o7iPPwc/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS82MDM1MTczMjAwOTYwMDg1MEVBODdDREI/1RjM4RERDQkZEMzdGMzM1QzM1QjE2NDU0MDY2RDE5MzFCRkI5MURELmpwZw.jpg"
+    },
+    {
+      "productId": "cd2ec61c-b9a7-49d9-b534-d65eafb481eb",
+      "sku": "DB-LDL-PIZZA-WITH-219",
+      "databaseName": "Pizza with Spicy Salami",
+      "lidlName": "Pizzetta with spicy salami",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "68%",
+      "oldImageUrl": "https://www.lidl.com.mt/assets/gcp42ca456653eb413ab63e6e1a02699ea9.png",
+      "newImageUrl": "https://imgproxy-retcat.assets.schwarz/th1L50N8XcVsRrh3pmhI_m8CBzxfUOmsacGeatsRCvU/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS83MERENTNENEY2Q0MxRjQ3MzA5QTk5M0M/1QkM3Nzc2QUU0OUVGNzAxNEM4RjU5OTk0QjBFQUM1RDc0MzBBM0MxLmpwZw.jpg"
+    },
+    {
+      "productId": "0201a8ae-5979-43e0-a524-c16944a3b7c0",
+      "sku": "DB-LDL-PLUMS-222",
+      "databaseName": "Plums",
+      "lidlName": "Plums XXL",
+      "matchType": "substring_match",
+      "confidenceScore": "85%",
+      "oldImageUrl": "https://www.lidl.com.mt/assets/gcpe5582f28b1dd4c90ad96cd52a365d471.jpg",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcpcc766a8969404059ad435dabf21d54e0.png"
+    },
+    {
+      "productId": "e2025734-c6dc-4013-af2a-472025b7990a",
+      "sku": "DB-LDL-BEEF-AND-P-027",
+      "databaseName": "Beef and Pork Minced Meat",
+      "lidlName": "Pork Meatballs",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "50%",
+      "oldImageUrl": "https://www.lidl.com.mt/assets/gcpf888886425634b97b2241d820600235c.png",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcpf762525d34cd4e038035a53c395c5806.png"
+    },
+    {
+      "productId": "36fff675-7e62-4867-92f7-49fc007893f1",
+      "sku": "DB-LDL-ITALIAN-RO-145",
+      "databaseName": "Italian Rolled Pork Sausage",
+      "lidlName": "Pork Sausage Trio",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "62%",
+      "oldImageUrl": "https://www.lidl.com.mt/assets/gcp839fe44319b140f893fa1fd914fc3e7b.png",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcpe7812db4a8d54e6cad5f541021d5a8eb.png"
+    },
+    {
+      "productId": "49c0f67e-4def-41ff-a488-098425d76105",
+      "sku": "DB-LDL-DONUT-WITH-091",
+      "databaseName": "Donut with sugar",
+      "lidlName": "Porridge with No Added Sugar",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "50%",
+      "oldImageUrl": "https://imgproxy-retcat.assets.schwarz/yz2Mmkc30t2dqZmBj7AxHE1sQSVmekuTB22pkllWdAQ/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS8zQTNEMTY1QTYyN0Q3RTgzQTg1QzQyNUJ/BNDQyRDVFRDI5NUQ0MzkxNEZCMjExNjVGREQ0OThDQUUwQUFDODM4LmpwZw.jpg",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcp1124f63a87ed488880bde4caa56f0e22.png"
+    },
+    {
+      "productId": "7d1abb89-00d1-4703-a24a-8f10090cae10",
+      "sku": "DB-LDL-CLASSIC-PO-065",
+      "databaseName": "Classic Potato Crisps",
+      "lidlName": "Potato Crisps",
+      "matchType": "substring_match",
+      "confidenceScore": "85%",
+      "oldImageUrl": "https://www.lidl.com.mt/assets/gcp7f8e2fd09f874c33b92429495655a198.png",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcp1166e8aef33f43659c288244e8d54503.png"
+    },
+    {
+      "productId": "7d1abb89-00d1-4703-a24a-8f10090cae10",
+      "sku": "DB-LDL-CLASSIC-PO-065",
+      "databaseName": "Classic Potato Crisps",
+      "lidlName": "Potato Tortillas",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "50%",
+      "oldImageUrl": "https://www.lidl.com.mt/assets/gcp7f8e2fd09f874c33b92429495655a198.png",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcp97638ae1933e4597a4494616ca36f197.png"
+    },
+    {
+      "productId": "1b67604a-d73f-4d15-b0af-2facef928282",
+      "sku": "DB-LDL-BUCKWHEAT--033",
+      "databaseName": "Buckwheat Bread with Walnuts",
+      "lidlName": "Protein Bread",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "50%",
+      "oldImageUrl": "https://www.lidl.com.mt/assets/gcp65cb592b2a794e98ab86155f4dfe11e5.png",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcp35430be385de43c9af3f88789f6f5342.png"
+    },
+    {
+      "productId": "8a956e9d-ff65-459c-bc5d-0baf143e598f",
+      "sku": "DB-LDL-DRIED-FRUI-093",
+      "databaseName": "Dried Fruit",
+      "lidlName": "Protein Mix with Dried Fruit and Seeds",
+      "matchType": "substring_match",
+      "confidenceScore": "85%",
+      "oldImageUrl": "https://www.lidl.com.mt/assets/gcpfee2897878f84c79bcfab581f9bb3880.png",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcpf0e648f05e794513a8e8b76b53b1149a.png"
+    },
+    {
+      "productId": "b1f57509-029d-4e60-9366-262eb31cee05",
+      "sku": "DB-LDL-12-PUFF-PA-005",
+      "databaseName": "12 puff pastry with sausage",
+      "lidlName": "Puff Pastry",
+      "matchType": "substring_match",
+      "confidenceScore": "85%",
+      "oldImageUrl": "https://imgproxy-retcat.assets.schwarz/Ii1ad6P2ogkff4hiDi7k-zNGquSqZU82V22Bsr1bgt8/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS81MDQ3NzJBNUFBMTU2MTI2QUFCMzQ3M0E/5Q0MxOUYzOUJDQzAxRDZGODA4NDkzOUE1NjEwRjgxOTcwNjMzRTFGLmpwZw.jpg",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcpd4fde169b0a240b1a5f358a2bce65931.png"
+    },
+    {
+      "productId": "b1f57509-029d-4e60-9366-262eb31cee05",
+      "sku": "DB-LDL-12-PUFF-PA-005",
+      "databaseName": "12 puff pastry with sausage",
+      "lidlName": "Puff Pastry with Sausage",
+      "matchType": "substring_match",
+      "confidenceScore": "85%",
+      "oldImageUrl": "https://imgproxy-retcat.assets.schwarz/Ii1ad6P2ogkff4hiDi7k-zNGquSqZU82V22Bsr1bgt8/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS81MDQ3NzJBNUFBMTU2MTI2QUFCMzQ3M0E/5Q0MxOUYzOUJDQzAxRDZGODA4NDkzOUE1NjEwRjgxOTcwNjMzRTFGLmpwZw.jpg",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcp5768732d0af740ce8687c173361bc115.png"
+    },
+    {
+      "productId": "b1f57509-029d-4e60-9366-262eb31cee05",
+      "sku": "DB-LDL-12-PUFF-PA-005",
+      "databaseName": "12 puff pastry with sausage",
+      "lidlName": "Puff Pastry with Spinach",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "68%",
+      "oldImageUrl": "https://imgproxy-retcat.assets.schwarz/Ii1ad6P2ogkff4hiDi7k-zNGquSqZU82V22Bsr1bgt8/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS81MDQ3NzJBNUFBMTU2MTI2QUFCMzQ3M0E/5Q0MxOUYzOUJDQzAxRDZGODA4NDkzOUE1NjEwRjgxOTcwNjMzRTFGLmpwZw.jpg",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcp11065e8a7a1940ed88578a2534e9ef2e.png"
+    },
+    {
+      "productId": "eaab25d0-254b-42c9-8405-a17dae3c8f8f",
+      "sku": "DB-LDL-BUTTERNUT--038",
+      "databaseName": "Butternut Pumpkin",
+      "lidlName": "Pumpkin Seeds",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "50%",
+      "oldImageUrl": "https://www.lidl.com.mt/assets/gcp6f7181981d6548bd9e9e4526f6db25a5.png",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcp4ec30cc1c9ca42f4a7587fe2bd351c67.png"
+    },
+    {
+      "productId": "3f747114-820d-44bc-81c6-d7c6473a8921",
+      "sku": "DB-LDL-GREEN-APPL-127",
+      "databaseName": "Green Apples XXL Alto Adige PGI",
+      "lidlName": "Red Apples Alto Adige PGI",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "71%",
+      "oldImageUrl": "https://www.lidl.com.mt/assets/gcp8bc16f01f0684a6b90eaf6ff828e2626.png",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcpdf37f6cbec1247679176256f9ac879f5.png"
+    },
+    {
+      "productId": "c429334c-84a0-4361-b76b-a83bd449bdf8",
+      "sku": "DB-LDL-BUNCH-TOMA-035",
+      "databaseName": "Bunch Tomatoes",
+      "lidlName": "Rosetta bun",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "50%",
+      "oldImageUrl": "https://www.lidl.com.mt/assets/gcpa21c9f4e9c2842f4afdc770620abd19b.png",
+      "newImageUrl": "https://imgproxy-retcat.assets.schwarz/WU93dCXUWhWZ4ZSkRU4O1CBYKu2PUeM2-kh5OkVruOA/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS8xMDVBNjk3RTY5QjE2RTE1OTM1RkFFMDk/wRURFRTkzOUJCQTJCMTcyQUVFNkYwOTVDQTkwOUI5RjI1MDBDRTJGLmpwZw.jpg"
+    },
+    {
+      "productId": "2f5de403-98a9-483c-8340-bce131003d9a",
+      "sku": "DB-LDL-ROUTER-252",
+      "databaseName": "Router",
+      "lidlName": "Router Bit Set, 30 pieces",
+      "matchType": "substring_match",
+      "confidenceScore": "85%",
+      "oldImageUrl": "https://www.lidl.com.mt/assets/gcpef5d235299d74736b391a722ca43ef15.png",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcpbc6acc51e222483bb9a0aa5556e49b8f.png"
+    },
+    {
+      "productId": "b0fd7aea-0365-4b14-a140-067311ea8af4",
+      "sku": "DB-LDL-MARINATED--179",
+      "databaseName": "Marinated Salmon Fillet",
+      "lidlName": "Salmon Fillet",
+      "matchType": "substring_match",
+      "confidenceScore": "85%",
+      "oldImageUrl": "https://www.lidl.com.mt/assets/gcp3eae8a7085a2416fb17bd5c94e1aed62.png",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcp706ace87dc2f4730afdf9a6b912dba90.png"
+    },
+    {
+      "productId": "5f5965a0-2f17-4dbd-b594-4d4c3969f44f",
+      "sku": "DB-LDL-6-MINI-PIZ-014",
+      "databaseName": "6 mini pizzas",
+      "lidlName": "Sansevieria Mini",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "50%",
+      "oldImageUrl": "https://imgproxy-retcat.assets.schwarz/3K8DaiGsaY18Zn8I-7fWizF3LD6gay875dUciuBEr-w/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS9BOTFDNjA4RTkwN0MyMkFEREIxOURCRjA/zNzlDRDE4QUQ5NzE2RDYzM0NDRjIwMThDMTZFRTMyNzNGMDA0RDZFLmpwZw.jpg",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcpf1ca707c23304ffe9529813dcb05a768.png"
+    },
+    {
+      "productId": "b1f57509-029d-4e60-9366-262eb31cee05",
+      "sku": "DB-LDL-12-PUFF-PA-005",
+      "databaseName": "12 puff pastry with sausage",
+      "lidlName": "Sausage Croissant",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "50%",
+      "oldImageUrl": "https://imgproxy-retcat.assets.schwarz/Ii1ad6P2ogkff4hiDi7k-zNGquSqZU82V22Bsr1bgt8/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS81MDQ3NzJBNUFBMTU2MTI2QUFCMzQ3M0E/5Q0MxOUYzOUJDQzAxRDZGODA4NDkzOUE1NjEwRjgxOTcwNjMzRTFGLmpwZw.jpg",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcp74322f5add2947248748d65937982b8f.png"
+    },
+    {
+      "productId": "d17a9d70-56f6-4329-8b7c-82be9ae10aeb",
+      "sku": "DB-LDL-CHICKEN-SA-052",
+      "databaseName": "Chicken Salad",
+      "lidlName": "Seafood Salad",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "50%",
+      "oldImageUrl": "https://www.lidl.com.mt/assets/gcpb358667ea147468dbbf9edaf8788676e.png",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcp0fce5e0fe892486ca801afaca617f553.png"
+    },
+    {
+      "productId": "8b240bdc-3b79-428f-8a01-61a5922bb4e3",
+      "sku": "DB-LDL-LACTOSE-FR-165",
+      "databaseName": "Lactose-free Semi-skimmed Milk",
+      "lidlName": "Semi-skimmed Milk XXL",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "68%",
+      "oldImageUrl": "https://www.lidl.com.mt/assets/gcpdf57014adce1499ebe0e501b8aff5fcb.png",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcp6491099db9984995bccdc0cf7047a499.png"
+    },
+    {
+      "productId": "1b67604a-d73f-4d15-b0af-2facef928282",
+      "sku": "DB-LDL-BUCKWHEAT--033",
+      "databaseName": "Buckwheat Bread with Walnuts",
+      "lidlName": "Sesame bread",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "50%",
+      "oldImageUrl": "https://www.lidl.com.mt/assets/gcp65cb592b2a794e98ab86155f4dfe11e5.png",
+      "newImageUrl": "https://imgproxy-retcat.assets.schwarz/Ntm5PhrIj7YPEx2ajkxNxPKo38mqkqm9ye4-ADxyJrY/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS8zOTIxMTExQTNDMjkzOUNERjUzNkNFRTM/zQ0U4NTREQjRFMTA1QjZCODlGQTM0MTczMDAwNUEwMzk3QUMwNUEwLmpwZw.jpg"
+    },
+    {
+      "productId": "2c9148ea-ae43-464e-a6b1-228f51234494",
+      "sku": "DB-LDL-4-WAY-WHEE-012",
+      "databaseName": "4-Way Wheel Wrench Set, 6 pieces",
+      "lidlName": "Set of cups \"Bialetti\", 4 pieces",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "50%",
+      "oldImageUrl": "https://www.lidl.com.mt/assets/gcpe7307de3b0154c3fbd72f64ad7682b96.png",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcp29da457a7ed54a0c846e61c903bccc99.png"
+    },
+    {
+      "productId": "1b67604a-d73f-4d15-b0af-2facef928282",
+      "sku": "DB-LDL-BUCKWHEAT--033",
+      "databaseName": "Buckwheat Bread with Walnuts",
+      "lidlName": "Shelled Walnuts",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "50%",
+      "oldImageUrl": "https://www.lidl.com.mt/assets/gcp65cb592b2a794e98ab86155f4dfe11e5.png",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcp6a074c06007849fd9dd2547a21fe034a.png"
+    },
+    {
+      "productId": "8be37bb6-3f5c-4160-8253-7182552ad2a0",
+      "sku": "DB-LDL-SLICED-CHI-272",
+      "databaseName": "Sliced Chicken Breast",
+      "lidlName": "Sliced Chicken Breast Fillet",
+      "matchType": "substring_match",
+      "confidenceScore": "85%",
+      "oldImageUrl": "https://www.lidl.com.mt/assets/gcp291c16e0e9f74b95a358778ef866098d.png",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcp5f1fd51434314cc0b9875f14ade11cee.png"
+    },
+    {
+      "productId": "8be37bb6-3f5c-4160-8253-7182552ad2a0",
+      "sku": "DB-LDL-SLICED-CHI-272",
+      "databaseName": "Sliced Chicken Breast",
+      "lidlName": "Sliced Turkey Breast",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "62%",
+      "oldImageUrl": "https://www.lidl.com.mt/assets/gcp291c16e0e9f74b95a358778ef866098d.png",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcpf9ff9e6a6b0a4218be4e0537a66e83ff.png"
+    },
+    {
+      "productId": "8a956e9d-ff65-459c-bc5d-0baf143e598f",
+      "sku": "DB-LDL-DRIED-FRUI-093",
+      "databaseName": "Dried Fruit",
+      "lidlName": "Soft Dried Fruit",
+      "matchType": "substring_match",
+      "confidenceScore": "85%",
+      "oldImageUrl": "https://www.lidl.com.mt/assets/gcpfee2897878f84c79bcfab581f9bb3880.png",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcp8b9a1b4e40374f0b9deb60c8b019780a.png"
+    },
+    {
+      "productId": "081041f5-857e-4d93-a3af-6e7453bd8efb",
+      "sku": "DB-LDL-CONCENTRAT-068",
+      "databaseName": "Concentrated Fabric Softener",
+      "lidlName": "Soft Drink",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "50%",
+      "oldImageUrl": "https://www.lidl.com.mt/assets/gcpe6affe911eba438ca1143453a4e5cd21.png",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcp5c4ac5710f924e4393dfa4f6bdeb9418.png"
+    },
+    {
+      "productId": "efbfe820-4c25-441e-9001-006e971857dc",
+      "sku": "DB-LDL-PARISIAN-S-206",
+      "databaseName": "Parisian softbread",
+      "lidlName": "Soft bread",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "85%",
+      "oldImageUrl": "https://imgproxy-retcat.assets.schwarz/K70EWq2sptKWRhFpk-nYjsds5tL7Wcw_0Y_ewxhs_Dk/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS82RDBCRkY0MzUxNzUwRjdEMjI3NTE0NTd/COTRGMURDNjg5QTI0RjJDMTZGMTJDNDRBQzVDRDlEQTg5RTUwQkM3LmpwZw.jpg",
+      "newImageUrl": "https://imgproxy-retcat.assets.schwarz/R1PixaFdLEhjTIsbTyDua3T5rKs-8GvJ9bOWYNRTneQ/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS8yQjYxQjQ3NjBEQ0Q3NzkxQjgwMURGQUZ/CQTg1RTMzQzk5ODI2Qjk4MTJGMjYyNDk3MTc4NjhCQkE4QzQ0QkMyLmpwZw.jpg"
+    },
+    {
+      "productId": "c4a63b4d-6126-4fdd-b369-1d4ecf11343b",
+      "sku": "DB-LDL-GREEN-OLIV-128",
+      "databaseName": "Green Olives Manzanilla",
+      "lidlName": "Spanish Green Olives",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "62%",
+      "oldImageUrl": "https://www.lidl.com.mt/assets/gcp81f93862532b4c61bccc445b3796d6d9.png",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcp97638ae1933e4597a4494616ca36f197.png"
+    },
+    {
+      "productId": "2c9148ea-ae43-464e-a6b1-228f51234494",
+      "sku": "DB-LDL-4-WAY-WHEE-012",
+      "databaseName": "4-Way Wheel Wrench Set, 6 pieces",
+      "lidlName": "Spring Clamp Set, 8 or 12 pieces",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "50%",
+      "oldImageUrl": "https://www.lidl.com.mt/assets/gcpe7307de3b0154c3fbd72f64ad7682b96.png",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcp46f83d0ea840456aa592587069f5b4b8.png"
+    },
+    {
+      "productId": "00c7f84d-8cbf-47aa-810a-52b2c7dec8f8",
+      "sku": "DB-LDL-PLAIN-GIAN-221",
+      "databaseName": "Plain Giant Pacific Squid Rings",
+      "lidlName": "Squid Rings in Batter",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "62%",
+      "oldImageUrl": "https://www.lidl.com.mt/assets/gcp249c6b6207784e0996081ac0455f80dc.png",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcp30a37652752a44eab269a12f912bf39a.png"
+    },
+    {
+      "productId": "23f77f9f-7ccd-40fc-8ae6-83e01e079cec",
+      "sku": "DB-LDL-RIVET-NUT--249",
+      "databaseName": "Rivet Nut Tool With Accessories, 151 pieces",
+      "lidlName": "Tool Kit, 23 pieces",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "62%",
+      "oldImageUrl": "https://www.lidl.com.mt/assets/gcp240283f67b2e4903a7f9174018171c93.png",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcp8691de05154c4e1babe8de1a72e7f3b4.png"
+    },
+    {
+      "productId": "2c9148ea-ae43-464e-a6b1-228f51234494",
+      "sku": "DB-LDL-4-WAY-WHEE-012",
+      "databaseName": "4-Way Wheel Wrench Set, 6 pieces",
+      "lidlName": "Torque Wrench Set, 5 pieces",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "68%",
+      "oldImageUrl": "https://www.lidl.com.mt/assets/gcpe7307de3b0154c3fbd72f64ad7682b96.png",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcp08717accb0f04983aa6e8db2648833b1.png"
+    },
+    {
+      "productId": "d516b7be-4d0c-4449-90b5-d312b2793a78",
+      "sku": "DB-LDL-CHICKEN-AN-053",
+      "databaseName": "Chicken and Turkey Sausages with Cheese",
+      "lidlName": "Turkey Nuggets",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "50%",
+      "oldImageUrl": "https://www.lidl.com.mt/assets/gcp97638ae1933e4597a4494616ca36f197.png",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcpe3fe9fd8513e4de9a9981ff8ced1dd5c.png"
+    },
+    {
+      "productId": "e2025734-c6dc-4013-af2a-472025b7990a",
+      "sku": "DB-LDL-BEEF-AND-P-027",
+      "databaseName": "Beef and Pork Minced Meat",
+      "lidlName": "Turkey and Pork Meatballs",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "50%",
+      "oldImageUrl": "https://www.lidl.com.mt/assets/gcpf888886425634b97b2241d820600235c.png",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcp78913eb3470646df923aff792e32e77e.png"
+    },
+    {
+      "productId": "36fff675-7e62-4867-92f7-49fc007893f1",
+      "sku": "DB-LDL-ITALIAN-RO-145",
+      "databaseName": "Italian Rolled Pork Sausage",
+      "lidlName": "Tuscan-Style Pork Sausage",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "50%",
+      "oldImageUrl": "https://www.lidl.com.mt/assets/gcp839fe44319b140f893fa1fd914fc3e7b.png",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcp673cf2c7ea604d59b2e6be37558f8eeb.png"
+    },
+    {
+      "productId": "01ffaf9f-7cf1-4fce-bf95-f06f53fbb0dd",
+      "sku": "DB-LDL-WAFERS-WIT-306",
+      "databaseName": "Wafers with Cocoa Cream",
+      "lidlName": "Wafers with Vanilla Flavour Cream",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "57%",
+      "oldImageUrl": "https://www.lidl.com.mt/assets/gcp30fc19c97f6b4bfb91f7c51cb7446b63.png",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcp900fdb1797eb46da86ff8f38ed904fe7.png"
+    },
+    {
+      "productId": "f2719896-c4cc-48ac-ba89-fb0ed1d48993",
+      "sku": "DB-LDL-WALL-ORGAN-308",
+      "databaseName": "Wall Organiser & Storage Set, 30 pieces",
+      "lidlName": "Wall Scanner",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "50%",
+      "oldImageUrl": "https://www.lidl.com.mt/assets/gcp19a763a70f2b4984885c1e6fd7a28d5c.png",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcp24c672362ea94db49d54b6b37467c46d.png"
+    },
+    {
+      "productId": "1b5fe439-fde3-496e-90cc-6e0cdfdc0a15",
+      "sku": "DB-LDL-MALTESE-WH-175",
+      "databaseName": "Maltese white bread",
+      "lidlName": "White Grapes",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "50%",
+      "oldImageUrl": "https://imgproxy-retcat.assets.schwarz/9loK4jVxLNU4bSh8K9D9C-CEegr_7Pxs1qFzKUyDlNU/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS9FM0Y5ODU0MkM4Mzg5OTQwMzYxMTg5MDg/wQzZGNkVCNTExREJGREI5MzBCNjk5MTEzRTBDRjY1REFFRUEzMTg0LmpwZw.jpg",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcp06ca1cb1798a47b6ba96548fddfffe71.png"
+    },
+    {
+      "productId": "30757bc3-f979-496a-bc50-195d9e790ff6",
+      "sku": "DB-LDL-DONUTS-WIT-092",
+      "databaseName": "Donuts with toffee-flavoured filling",
+      "lidlName": "Wholemeal Tarts with Red Fruit Filling",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "50%",
+      "oldImageUrl": "https://imgproxy-retcat.assets.schwarz/loMwtnIZhnh8jgEOWwEJ47TChHsOgDTwxekkIkLJ0WU/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS9BNTBCQUVBRkVENzkxNkMxQkQyODUyNzQ/2NEEzMkM3MDMwMUQzMkRFMjY5QTlFOURGMjFFRDg2RTBGMUZFQ0RFLmpwZw.jpg",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcp86c5e56cc1fc47f0a85c79b2214a8454.png"
+    },
+    {
+      "productId": "49251080-059b-415c-ac94-c9e43b50777f",
+      "sku": "DB-LDL-MULTI-FUNC-189",
+      "databaseName": "Multi-Functional Workbench Set",
+      "lidlName": "Workbench",
+      "matchType": "substring_match",
+      "confidenceScore": "85%",
+      "oldImageUrl": "https://www.lidl.com.mt/assets/gcp0cad82ef070a4d869a417eda1ffacdb9.png",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcpe0c2d70aabf148cbb303ef33a688f8a0.png"
+    },
+    {
+      "productId": "f0386db9-9016-4dff-b725-7284f260d065",
+      "sku": "DB-LDL-FLATBREAD--107",
+      "databaseName": "Flatbread with extra v. olive oil",
+      "lidlName": "Yellowfin Tuna in Olive Oil",
+      "matchType": "fuzzy_token_match",
+      "confidenceScore": "50%",
+      "oldImageUrl": "https://imgproxy-retcat.assets.schwarz/LQguU3wZxEjJR_fHkWHKzNlz-LMgCYwgDjuGI5hgQ7g/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS9CRjlDNzY1QUIxM0Q0Qjc0MTZGMUZERUZ/DOTNCNDdFQjNDRUY1OEU0M0VEMzQ0RUNFQjM5QUFDMEIwRTRDNzgwLmpwZw.jpg",
+      "newImageUrl": "https://www.lidl.com.mt/assets/gcpe53633b9ef064a8891cf8de48a0a8989.png"
+    }
+  ],
+  "insertedProducts": [
+    {
+      "productId": "5134b0ba-bcb0-437e-9282-588d083acbb3",
+      "sku": "DB-LDL-1-KG-POWDE-001",
+      "name": "1 Kg Powder Fire Extinguisher \"ANAF",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcpd64fc1cdf06342fc96cb0b9ed0469480.png"
+    },
+    {
+      "productId": "7a8f624d-85f2-46d3-a8c1-b5e505f60265",
+      "sku": "DB-LDL-10-PANZERO-002",
+      "name": "10 Panzerottini mozzarella cheese and ham",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp7dfc07e5bc954e1189facd57f70cc480.png"
+    },
+    {
+      "productId": "637cd6ae-4ce3-4479-8550-89c98e149834",
+      "sku": "DB-LDL-100-PEANUT-004",
+      "name": "100% Peanut Butter",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp88ccb47573ae4fbc81958ca486a1e1fc.png"
+    },
+    {
+      "productId": "b1f57509-029d-4e60-9366-262eb31cee05",
+      "sku": "DB-LDL-12-PUFF-PA-005",
+      "name": "12 puff pastry with sausage",
+      "brand": "Lidl",
+      "imageUrl": "https://imgproxy-retcat.assets.schwarz/Ii1ad6P2ogkff4hiDi7k-zNGquSqZU82V22Bsr1bgt8/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS81MDQ3NzJBNUFBMTU2MTI2QUFCMzQ3M0E/5Q0MxOUYzOUJDQzAxRDZGODA4NDkzOUE1NjEwRjgxOTcwNjMzRTFGLmpwZw.jpg"
+    },
+    {
+      "productId": "dda2d626-869a-428e-a9dd-296751a8a41d",
+      "sku": "DB-LDL-2-IN-1-PLI-007",
+      "name": "2-in-1 Pliers & Wrench",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp690621f049e44980bf6b43204b412d6a.png"
+    },
+    {
+      "productId": "ab94f691-da83-4d2f-be09-4584aa380cfb",
+      "sku": "DB-LDL-4-PARTY-DO-008",
+      "name": "4 Party Donut",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp0da3da84ff324d53bd821697f5128975.png"
+    },
+    {
+      "productId": "274d9782-cca7-46f4-8a6f-5caddb055ba3",
+      "sku": "DB-LDL-4-RAINBOW--009",
+      "name": "4 Rainbow Donuts",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp7ddfb36545724ed982134f920f2a4eb3.png"
+    },
+    {
+      "productId": "2c9148ea-ae43-464e-a6b1-228f51234494",
+      "sku": "DB-LDL-4-WAY-WHEE-012",
+      "name": "4-Way Wheel Wrench Set, 6 pieces",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcpe7307de3b0154c3fbd72f64ad7682b96.png"
+    },
+    {
+      "productId": "5f5965a0-2f17-4dbd-b594-4d4c3969f44f",
+      "sku": "DB-LDL-6-MINI-PIZ-014",
+      "name": "6 mini pizzas",
+      "brand": "Lidl",
+      "imageUrl": "https://imgproxy-retcat.assets.schwarz/3K8DaiGsaY18Zn8I-7fWizF3LD6gay875dUciuBEr-w/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS9BOTFDNjA4RTkwN0MyMkFEREIxOURCRjA/zNzlDRDE4QUQ5NzE2RDYzM0NDRjIwMThDMTZFRTMyNzNGMDA0RDZFLmpwZw.jpg"
+    },
+    {
+      "productId": "a310d560-e56c-4f58-a378-aad9e100fb02",
+      "sku": "DB-LDL-9-HEART-SH-015",
+      "name": "9 Heart-shaped puff pastry pizza",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcpde1a1f87a2154ad1a9816111283da39b.png"
+    },
+    {
+      "productId": "b5bf55d4-3c62-4b9c-b6cc-7bbf08073f71",
+      "sku": "DB-LDL-9-MINI-HAZ-016",
+      "name": "9 mini hazelnut croissants",
+      "brand": "Lidl",
+      "imageUrl": "https://imgproxy-retcat.assets.schwarz/Sh8TjxLeCMXE9DYZ4souksqS7AC8SBsawpGe207D-3A/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS8wODU5NkI1OUU0M0EwQTg3OEJCMzI1Mzg/wOTM1MUY0QjIxMkYxN0M3QTc1M0JDOTIxRjI4NDM1MjYzNzU0NEUxLmpwZw.jpg"
+    },
+    {
+      "productId": "9bfe47bd-f846-4d3d-aaac-a0184d73b3f6",
+      "sku": "DB-LDL-ACRYLIC-PA-017",
+      "name": "Acrylic Paints, 24 pieces",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcpf4b1b670f90d4448b86dc7603d32c967.png"
+    },
+    {
+      "productId": "56bd51a5-20ad-485f-937b-482eae68f49b",
+      "sku": "DB-LDL-ADULT-CAT--018",
+      "name": "Adult Cat Pate",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcpf9b4e7e39fa241aea476a71f41d59c92.png"
+    },
+    {
+      "productId": "ad4372da-48d3-48b0-b76a-83d03d178488",
+      "sku": "DB-LDL-AIR-HOSE-1-019",
+      "name": "Air Hose 10m",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp11c55b1471ee429f9edfbc89a90f8370.png"
+    },
+    {
+      "productId": "b5fc6aa6-73d2-4786-a88e-456cc40e4d3c",
+      "sku": "DB-LDL-ANDALUSIAN-020",
+      "name": "Andalusian Style Paella",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp55ff3f302a254f40ab6428d99a14caba.png"
+    },
+    {
+      "productId": "3ab9aae6-de6f-44e5-b9a4-bc50b0f2c3b7",
+      "sku": "DB-LDL-ASIAN-STYL-023",
+      "name": "Asian Style Oils",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcpa03ee5f505324b4f9217a80290c5e43b.png"
+    },
+    {
+      "productId": "c4414920-8ffc-4ccd-9eb7-c2a48bae0377",
+      "sku": "DB-LDL-AVOCADO-024",
+      "name": "Avocado",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcpb2180f4d79d644d5a78b41e61e5220cb.png"
+    },
+    {
+      "productId": "6db5c5e3-7631-4a9a-bc54-da700c2dfea2",
+      "sku": "DB-LDL-BBQ-FLAVOU-025",
+      "name": "BBQ Flavour Corn Snack",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp65e5c9722dd74b4383a7b5999bdb24f0.png"
+    },
+    {
+      "productId": "3d9b8a5f-2bdf-4880-b5bd-571470999530",
+      "sku": "DB-LDL-BAGUETTE-026",
+      "name": "Baguette",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcpbb8fe968a7444146b7211c8e11f613f9.png"
+    },
+    {
+      "productId": "e2025734-c6dc-4013-af2a-472025b7990a",
+      "sku": "DB-LDL-BEEF-AND-P-027",
+      "name": "Beef and Pork Minced Meat",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcpf888886425634b97b2241d820600235c.png"
+    },
+    {
+      "productId": "085dfb5e-d906-4ca6-9c79-cfbf3a51550f",
+      "sku": "DB-LDL-BISCUITS-W-028",
+      "name": "Biscuits with Cereals and Cranberries",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcpc317931c50d1462eb0abfd5fe7291902.png"
+    },
+    {
+      "productId": "0353a35b-07a0-4174-b162-ae7c0bbbbe76",
+      "sku": "DB-LDL-BOYS-DENIM-030",
+      "name": "Boys' Denim Joggers",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp37d3345e9059497996f2d3e23e4bfb98.png"
+    },
+    {
+      "productId": "e7278eda-a3b3-4f47-809f-826893a7034f",
+      "sku": "DB-LDL-BRITISH-MI-031",
+      "name": "British Mild Grated Cheddar",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp97638ae1933e4597a4494616ca36f197.png"
+    },
+    {
+      "productId": "6d327467-864c-4748-a811-e06eb44f3196",
+      "sku": "DB-LDL-BROWN-RICE-032",
+      "name": "Brown Rice Bar with Chocolate",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp6d7d9f7bf9f44a269373e9b31dec458d.png"
+    },
+    {
+      "productId": "1b67604a-d73f-4d15-b0af-2facef928282",
+      "sku": "DB-LDL-BUCKWHEAT--033",
+      "name": "Buckwheat Bread with Walnuts",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp65cb592b2a794e98ab86155f4dfe11e5.png"
+    },
+    {
+      "productId": "c429334c-84a0-4361-b76b-a83bd449bdf8",
+      "sku": "DB-LDL-BUNCH-TOMA-035",
+      "name": "Bunch Tomatoes",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcpa21c9f4e9c2842f4afdc770620abd19b.png"
+    },
+    {
+      "productId": "eaab25d0-254b-42c9-8405-a17dae3c8f8f",
+      "sku": "DB-LDL-BUTTERNUT--038",
+      "name": "Butternut Pumpkin",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp6f7181981d6548bd9e9e4526f6db25a5.png"
+    },
+    {
+      "productId": "e1e35367-48c5-48a6-afcc-57093655de4e",
+      "sku": "DB-LDL-B-REK-039",
+      "name": "Börek",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp50f281944a9f40cb9886c592b1ec3ecb.png"
+    },
+    {
+      "productId": "c01dc6cc-d1e1-48d9-8bc8-f85edc9b1bdf",
+      "sku": "DB-LDL-CALLUNA-VU-040",
+      "name": "Calluna vulgaris",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcpf51432616f5848108f76490a2166b005.png"
+    },
+    {
+      "productId": "af5a1439-87bb-4755-8548-a39c8bb46840",
+      "sku": "DB-LDL-CAR-MOTORC-042",
+      "name": "Car & Motorcycle Battery Charger",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcpe17e7755c348455d8453f53537925642.png"
+    },
+    {
+      "productId": "d0d5de41-1472-4c69-a7ab-bc5827e13f6e",
+      "sku": "DB-LDL-CAR-BOOT-B-043",
+      "name": "Car Boot Bag or Non-Slip Mat",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcpa808244b29e44d588a118713b8b8de96.png"
+    },
+    {
+      "productId": "393c8797-d5e4-452a-a4bf-9aa8d73b8efb",
+      "sku": "DB-LDL-CAR-TRIM-R-045",
+      "name": "Car Trim Removal Tools or Fastening Clips & Cable Ties",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcpea8f4b941825417eb36a53161b546c2c.png"
+    },
+    {
+      "productId": "f339fe1b-f633-4c98-9526-be8058b6c182",
+      "sku": "DB-LDL-CARMEN-PEA-046",
+      "name": "Carmen Pears",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp8cc28c97a0364b79828212419e9788e8.jpg"
+    },
+    {
+      "productId": "6abc8f48-06b1-4f7b-b6f4-4a650361c57a",
+      "sku": "DB-LDL-CHEESEBURG-049",
+      "name": "Cheeseburger with Ketchup",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp5e6e320d15cd437c836f7a2cfc247e37.png"
+    },
+    {
+      "productId": "67d4390f-d1aa-40ba-aa60-821f50f3e45e",
+      "sku": "DB-LDL-CHERRY-TOM-050",
+      "name": "Cherry Tomatoes Pachino PGI",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp0a45351bc1fd4d8cb11ae8b61f022642.png"
+    },
+    {
+      "productId": "a1180b9b-dcde-48fd-aad9-fcffd0748251",
+      "sku": "DB-LDL-CHIANTI-SU-051",
+      "name": "Chianti Superiore DOCG",
+      "brand": "Lidl",
+      "imageUrl": "https://imgproxy-retcat.assets.schwarz/jZlRZj_MEKI588uYijb_TM_RCj5yFYdo6Sm4H0mSQVw/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS81REY4OEVFQjNDOUY3MDExQ0Q1NjdCRDM/xNzRGNEREM0MzMDhGM0ExQzExNjlCRjJBNDEzRUZBRUYzRDdBMEVCLmpwZw.jpg"
+    },
+    {
+      "productId": "d17a9d70-56f6-4329-8b7c-82be9ae10aeb",
+      "sku": "DB-LDL-CHICKEN-SA-052",
+      "name": "Chicken Salad",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcpb358667ea147468dbbf9edaf8788676e.png"
+    },
+    {
+      "productId": "d516b7be-4d0c-4449-90b5-d312b2793a78",
+      "sku": "DB-LDL-CHICKEN-AN-053",
+      "name": "Chicken and Turkey Sausages with Cheese",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp97638ae1933e4597a4494616ca36f197.png"
+    },
+    {
+      "productId": "f6444e54-ad49-4fa3-948f-00067332fd15",
+      "sku": "DB-LDL-CHICKPEAS-054",
+      "name": "Chickpeas",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcpbdf5b2e0a4094584bef515f9075da92b.png"
+    },
+    {
+      "productId": "c4f7826f-7761-4bc6-a971-7342697ad30a",
+      "sku": "DB-LDL-CHIP-DUST--055",
+      "name": "Chip & Dust Extractor",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcpbe72c6beca7645b1a172b3e29d3b0ba3.png"
+    },
+    {
+      "productId": "9a615d21-b3a4-42be-b931-acf8357f5ea8",
+      "sku": "DB-LDL-CHOCO-DUO--056",
+      "name": "Choco Duo Spread",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp4edfe8365d1c46b9ad1ce05a91e175a7.png"
+    },
+    {
+      "productId": "6649ee12-f1ee-46cf-9e10-a017a21dfb63",
+      "sku": "DB-LDL-CHOCOLATE--057",
+      "name": "Chocolate Brioche Croissant",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcpfaa3556b751a46ea98503e7aabea6e83.png"
+    },
+    {
+      "productId": "6468765d-b8af-4564-bfdc-8768f87db3ea",
+      "sku": "DB-LDL-CHRYSANTHE-060",
+      "name": "Chrysanthemums",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp5ed8973da5ba470891a56e7244d6c66c.png"
+    },
+    {
+      "productId": "91eb580c-4d2c-4552-b58f-4be32289b97a",
+      "sku": "DB-LDL-CHURROS-062",
+      "name": "Churros",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp55ff3f302a254f40ab6428d99a14caba.png"
+    },
+    {
+      "productId": "0ab33486-1984-42e3-9b45-b9ad6fd64642",
+      "sku": "DB-LDL-CIRCULAR-S-063",
+      "name": "Circular Saw",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcpb8a0a63ac36543e3acf172f6a53ccdeb.png"
+    },
+    {
+      "productId": "93044b14-7cd1-40f2-8ede-5b614e7296e1",
+      "sku": "DB-LDL-CITRUS-JUI-064",
+      "name": "Citrus Juicer",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcpeb309b28b48f4510bd24b05ff3376008.png"
+    },
+    {
+      "productId": "7d1abb89-00d1-4703-a24a-8f10090cae10",
+      "sku": "DB-LDL-CLASSIC-PO-065",
+      "name": "Classic Potato Crisps",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp7f8e2fd09f874c33b92429495655a198.png"
+    },
+    {
+      "productId": "22432bef-fae9-4519-853a-4febde15cb91",
+      "sku": "DB-LDL-COFFEE-MAK-066",
+      "name": "Coffee maker \"Bialetti\", 3 cups",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcpe1a06fafdabd46bd8f4dc804acf88304.png"
+    },
+    {
+      "productId": "c8e36221-0820-4bb3-851e-ff5be12f7cd6",
+      "sku": "DB-LDL-COMPRESSOR-067",
+      "name": "Compressor 24L",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp1dd66872e4b345c08a604c2e03292905.png"
+    },
+    {
+      "productId": "081041f5-857e-4d93-a3af-6e7453bd8efb",
+      "sku": "DB-LDL-CONCENTRAT-068",
+      "name": "Concentrated Fabric Softener",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcpe6affe911eba438ca1143453a4e5cd21.png"
+    },
+    {
+      "productId": "a57cfcfa-c81e-45fb-90ef-e6f546027990",
+      "sku": "DB-LDL-CONIFERS-069",
+      "name": "Conifers",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcpbbde8c433bcd42d1a8e16471d6ce3e0f.png"
+    },
+    {
+      "productId": "68d17a84-2ef8-4137-96c1-f7f2690c823b",
+      "sku": "DB-LDL-CORDLESS-I-071",
+      "name": "Cordless Impact Wrench",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp18876c89510d4e668c1a44d8fe385477.png"
+    },
+    {
+      "productId": "972bb253-bd23-44c8-9060-dcd2b7353936",
+      "sku": "DB-LDL-CORDLESS-S-073",
+      "name": "Cordless Soldering Iron",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp340fba364a1a468998515df846ab5388.png"
+    },
+    {
+      "productId": "94b0ebd5-976e-4106-8129-ea605c2be6c4",
+      "sku": "DB-LDL-CREAM-PAST-075",
+      "name": "Cream pasticciotto",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp74962fc5586346229470ce6df2793197.jpg"
+    },
+    {
+      "productId": "e0016230-0251-4026-95c6-5ab451131253",
+      "sku": "DB-LDL-CREPES-076",
+      "name": "Crepes",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcpe37b2fb934a84c6d8305f43f50ebd30f.png"
+    },
+    {
+      "productId": "41bc2590-1dae-4e3a-a944-79b8e82eaca0",
+      "sku": "DB-LDL-CRINKLE-CU-077",
+      "name": "Crinkle Cut Crisps",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp82167109ca164901a72949e805a25f8c.png"
+    },
+    {
+      "productId": "1a874132-8097-4881-9627-78658961adb4",
+      "sku": "DB-LDL-CRISPBREAD-078",
+      "name": "Crispbread",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp60513b98cc954f799448edb515ca40f6.png"
+    },
+    {
+      "productId": "862ec7fc-c5b5-411e-896a-a3f8a871392f",
+      "sku": "DB-LDL-CRISPY-CHI-079",
+      "name": "Crispy Chicken Burger XXL",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcpeb901038fc6049238870807edbe2d145.png"
+    },
+    {
+      "productId": "607a0f17-9c41-4d0f-a5d9-495de687731b",
+      "sku": "DB-LDL-CRISPY-COA-081",
+      "name": "Crispy Coated Peanuts",
+      "brand": "Alesto",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp57726a2a4f7e449daced2fbefbc64acf.png"
+    },
+    {
+      "productId": "5cf4dd75-30f3-4b35-80ab-ea661ad93a5d",
+      "sku": "DB-LDL-CROQUETTES-082",
+      "name": "Croquettes with Jamón Serrano and Queso Manchego",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp55ff3f302a254f40ab6428d99a14caba.png"
+    },
+    {
+      "productId": "ba4101d6-a6d5-4e05-8bae-6b5db4bda707",
+      "sku": "DB-LDL-CRUNCHY-SN-083",
+      "name": "Crunchy Snack Mix",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp74926eee2d284108a58675b7e4d3047b.png"
+    },
+    {
+      "productId": "bb279927-17fb-4161-8b62-1d9d3448adad",
+      "sku": "DB-LDL-CYCLAMENS-084",
+      "name": "Cyclamens",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp951c09faaec64fa89f4072fca8502d5a.png"
+    },
+    {
+      "productId": "d5b80c55-3af5-4f27-acf9-2655cd63ff35",
+      "sku": "DB-LDL-DAISIES-085",
+      "name": "Daisies",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcpabd00f5a1a244226892debfd88933a62.png"
+    },
+    {
+      "productId": "203fa6da-44b3-4c0d-b235-a567dd3bc31a",
+      "sku": "DB-LDL-DECAF-TEA--086",
+      "name": "Decaf Tea Bags",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcpefc7fac2d8534a55a1de060ab5604b5a.png"
+    },
+    {
+      "productId": "7dac9d78-d9c2-4436-ac79-49c558d3ec51",
+      "sku": "DB-LDL-DEMOLITION-087",
+      "name": "Demolition Hammer",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcpe59bee1442c645719996deefd4f7e6d8.png"
+    },
+    {
+      "productId": "0241d77f-f703-4e67-b9eb-44344f938eb8",
+      "sku": "DB-LDL-DIANTHUS-C-088",
+      "name": "Dianthus Caryophyllus",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp1b9873bf78e840cb835920ef9a9f9daa.png"
+    },
+    {
+      "productId": "63956ce6-f0ad-47d5-a659-0e9bd819edb0",
+      "sku": "DB-LDL-DIGITAL-TY-089",
+      "name": "Digital Tyre Inflator",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp8bb92d5370fb486baea485985be2c784.png"
+    },
+    {
+      "productId": "867c6cfd-87aa-44fe-af83-36c4e016c529",
+      "sku": "DB-LDL-DOG-KIBBLE-090",
+      "name": "Dog Kibble",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp31e35445f65e4d2a8461433b16ad6f04.png"
+    },
+    {
+      "productId": "49c0f67e-4def-41ff-a488-098425d76105",
+      "sku": "DB-LDL-DONUT-WITH-091",
+      "name": "Donut with sugar",
+      "brand": "Lidl",
+      "imageUrl": "https://imgproxy-retcat.assets.schwarz/yz2Mmkc30t2dqZmBj7AxHE1sQSVmekuTB22pkllWdAQ/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS8zQTNEMTY1QTYyN0Q3RTgzQTg1QzQyNUJ/BNDQyRDVFRDI5NUQ0MzkxNEZCMjExNjVGREQ0OThDQUUwQUFDODM4LmpwZw.jpg"
+    },
+    {
+      "productId": "30757bc3-f979-496a-bc50-195d9e790ff6",
+      "sku": "DB-LDL-DONUTS-WIT-092",
+      "name": "Donuts with toffee-flavoured filling",
+      "brand": "Lidl",
+      "imageUrl": "https://imgproxy-retcat.assets.schwarz/loMwtnIZhnh8jgEOWwEJ47TChHsOgDTwxekkIkLJ0WU/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS9BNTBCQUVBRkVENzkxNkMxQkQyODUyNzQ/2NEEzMkM3MDMwMUQzMkRFMjY5QTlFOURGMjFFRDg2RTBGMUZFQ0RFLmpwZw.jpg"
+    },
+    {
+      "productId": "8a956e9d-ff65-459c-bc5d-0baf143e598f",
+      "sku": "DB-LDL-DRIED-FRUI-093",
+      "name": "Dried Fruit",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcpfee2897878f84c79bcfab581f9bb3880.png"
+    },
+    {
+      "productId": "e5a10bad-e297-4239-8a01-19f8d58813f4",
+      "sku": "DB-LDL-DURUM-WHEA-097",
+      "name": "Durum wheat roll",
+      "brand": "Lidl",
+      "imageUrl": "https://imgproxy-retcat.assets.schwarz/OX-JKJJXtCoTydnVp5G1biUrVmxM6CN8VeZtZEu9I7k/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS84NjBCMDE0NjQxNUMzOUJENDU1MURGOUU/0QTlGQkRDMEQyQzg5NDg1RTFGQkNDMkM0RDhCMzU1MTY1QUYzRUEyLmpwZw.jpg"
+    },
+    {
+      "productId": "cc979600-033d-49af-996d-5e9097394a6d",
+      "sku": "DB-LDL-ELECTRIC-T-098",
+      "name": "Electric Tacker",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp3bda7989136142ae92c3f57f1c3f5228.png"
+    },
+    {
+      "productId": "4dfdab40-1e18-4ca7-8853-202da6a698cf",
+      "sku": "DB-LDL-EMPANADAS-099",
+      "name": "Empanadas",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp97638ae1933e4597a4494616ca36f197.png"
+    },
+    {
+      "productId": "1bc06275-0c8b-4dbe-9b0f-9141ed1a2559",
+      "sku": "DB-LDL-ESPRESSO-M-100",
+      "name": "Espresso Machine",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcpc434b06a42b04e20898a39eeaf67365c.png"
+    },
+    {
+      "productId": "43d32499-f774-48c4-b3b0-558ef92d6bcf",
+      "sku": "DB-LDL-EXOTIC-PLA-101",
+      "name": "Exotic Plants Mix",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp1814b5aa728a43eaa497f032a0ed0d33.png"
+    },
+    {
+      "productId": "e5099ab5-ade7-44c9-8f15-66f52b4aea8a",
+      "sku": "DB-LDL-EXTENDABLE-102",
+      "name": "Extendable Ratchet or Socket Set, 19 pieces",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp116e2909c7254463bf06cd62068ad12a.png"
+    },
+    {
+      "productId": "cd5881f8-00b9-4380-b78e-ac876882017b",
+      "sku": "DB-LDL-EXTENSION--103",
+      "name": "Extension Cable, 10m",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp0c5cd4892eb64da391068cea45db596c.png"
+    },
+    {
+      "productId": "ff4dffda-bade-4130-a371-9f94101a4576",
+      "sku": "DB-LDL-FALANGHINA-105",
+      "name": "Falanghina Benevento IGP",
+      "brand": "Lidl",
+      "imageUrl": "https://imgproxy-retcat.assets.schwarz/dzAJQ498DIayCJu_gQ5j0vobednocch2btLvIiGaIfo/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS8zOTg0NEVFQkJCRUNCRUEzNzE1RUYxOEE/yREI0ODU3RTg4MEQ0MTBBNEE5RDNCNEU1MDYzNTlBRkIwOTRFM0M0LmpwZw.jpg"
+    },
+    {
+      "productId": "65d9110c-5903-4b41-9ed5-1839173ee54b",
+      "sku": "DB-LDL-FISH-PARCE-106",
+      "name": "Fish Parcels",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp55ff3f302a254f40ab6428d99a14caba.png"
+    },
+    {
+      "productId": "f0386db9-9016-4dff-b725-7284f260d065",
+      "sku": "DB-LDL-FLATBREAD--107",
+      "name": "Flatbread with extra v. olive oil",
+      "brand": "Lidl",
+      "imageUrl": "https://imgproxy-retcat.assets.schwarz/LQguU3wZxEjJR_fHkWHKzNlz-LMgCYwgDjuGI5hgQ7g/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS9CRjlDNzY1QUIxM0Q0Qjc0MTZGMUZERUZ/DOTNCNDdFQjNDRUY1OEU0M0VEMzQ0RUNFQjM5QUFDMEIwRTRDNzgwLmpwZw.jpg"
+    },
+    {
+      "productId": "453b878d-2271-4be6-a6c7-b46fbf1b810f",
+      "sku": "DB-LDL-FOCACCIA-T-108",
+      "name": "Focaccia twist with goat cheese",
+      "brand": "Lidl",
+      "imageUrl": "https://imgproxy-retcat.assets.schwarz/HswCTH5MJ2loSUzZSfIQUhcqT9CbwA6f4cnM_c4B3a8/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS8zN0RBMjc2OTc0NDlGRUE4RDk2QTkyMzM/4N0U5NThBRkYyRUI4QTcyRTY0RkEzMUY5MzYzQzVGMTdCMjY1NDFFLmpwZw.jpg"
+    },
+    {
+      "productId": "30c5b8bd-2faa-4671-b548-1591a8d09155",
+      "sku": "DB-LDL-FOCACCIA-W-109",
+      "name": "Focaccia with Tomatoes and Olives",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcpc40ebd6954af473d8e8abba7cf6cae0d.jpg"
+    },
+    {
+      "productId": "53de1392-090a-432e-b929-ac6c75dcf01d",
+      "sku": "DB-LDL-FRESH-FIGS-111",
+      "name": "Fresh Figs",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp992e1be67dd742da89791a75455d0427.png"
+    },
+    {
+      "productId": "f568c80d-5b6f-4cf6-a67a-afbacd2cb8f1",
+      "sku": "DB-LDL-FRUIT-JUIC-112",
+      "name": "Fruit Juice and Pulp",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcpc454c660b7e84fc4adfb11fd7701a769.png"
+    },
+    {
+      "productId": "bb67c8f6-1f98-43f6-9832-5956f9c6463c",
+      "sku": "DB-LDL-FTIRA-BIG-115",
+      "name": "Ftira big",
+      "brand": "Lidl",
+      "imageUrl": "https://imgproxy-retcat.assets.schwarz/XbzpaMQJeWsVxyNOXXhy5pHMESVQ2hWZoPcr6KpkhZo/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS9BMjMwNkRDOTBCRUI0MzFGOEJCOUJERTY/xNjJDQTcyMzc4NDlBQzlFMUFFRjdBMkREREZBQkI0QjQ4MENBMThDLmpwZw.jpg"
+    },
+    {
+      "productId": "2db9fb72-54f1-4456-aff7-018853030da8",
+      "sku": "DB-LDL-FUCSIE-117",
+      "name": "Fucsie",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcpded895fa004949d6bf67e2e3bd0f2eef.png"
+    },
+    {
+      "productId": "0ac3259e-506e-4405-9dbb-5e18c07abd6f",
+      "sku": "DB-LDL-FULL-CAR-C-118",
+      "name": "Full Car Cover",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcpdae632649bb847e3a5efe9dd90e13460.png"
+    },
+    {
+      "productId": "a9557ab0-09b3-4b35-8d68-deb3868d176e",
+      "sku": "DB-LDL-GARAGE-DIR-119",
+      "name": "Garage Dirt Trapper Mat, 76 x 150cm",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp61a9e0c9bb614a2c8ba15fa8b08ec9a4.png"
+    },
+    {
+      "productId": "239a5f82-5e11-482c-9f4d-570114a922ee",
+      "sku": "DB-LDL-GARLIC-CLO-120",
+      "name": "Garlic Cloves",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp63eaee4eefc94e79a87ff66f81f50928.png"
+    },
+    {
+      "productId": "825085e6-f3ab-4e7f-851b-dcdb3f1ddbca",
+      "sku": "DB-LDL-GIANT-SUNF-123",
+      "name": "Giant Sunflower Seeds",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcpc8abe010bf524b0a851ffec44da2184a.png"
+    },
+    {
+      "productId": "156e4975-e93a-43b8-8b3f-dcb539babaed",
+      "sku": "DB-LDL-GIRLS-JEGG-124",
+      "name": "Girls' Jeggings",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp7c3c9cca3aac4834ad674e2da67c727c.png"
+    },
+    {
+      "productId": "4f0d4b86-685b-4ebe-ab60-a3b069c752f6",
+      "sku": "DB-LDL-GIRLS-LEGG-125",
+      "name": "Girls' Leggings, 2 pieces",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp6d0e13669fdb473891394d63cf47eb1f.png"
+    },
+    {
+      "productId": "40c9db19-bca9-4c27-9b88-05f4e27167c0",
+      "sku": "DB-LDL-GRAN-MEREN-126",
+      "name": "Gran Merenda",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp6a8b6db079e440c4b649419a603e5838.png"
+    },
+    {
+      "productId": "3f747114-820d-44bc-81c6-d7c6473a8921",
+      "sku": "DB-LDL-GREEN-APPL-127",
+      "name": "Green Apples XXL Alto Adige PGI",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp8bc16f01f0684a6b90eaf6ff828e2626.png"
+    },
+    {
+      "productId": "c4a63b4d-6126-4fdd-b369-1d4ecf11343b",
+      "sku": "DB-LDL-GREEN-OLIV-128",
+      "name": "Green Olives Manzanilla",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp81f93862532b4c61bccc445b3796d6d9.png"
+    },
+    {
+      "productId": "e2840155-c71f-4094-a2d2-2c1f75f6de63",
+      "sku": "DB-LDL-GRILLED-SI-130",
+      "name": "Grilled Side Dish",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcpb1e9faca6abc46639ea1170dca7b5a2f.png"
+    },
+    {
+      "productId": "30fd260a-1898-4f8c-999c-89dbce20a7b4",
+      "sku": "DB-LDL-HAND-BLEND-132",
+      "name": "Hand Blender Set",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcpe304b5c73bde47e99cb895107ae82ca4.png"
+    },
+    {
+      "productId": "bc60edc8-39ef-4a8a-be24-6e566bd536c5",
+      "sku": "DB-LDL-HEADLIGHT--135",
+      "name": "Headlight Restoration Kit",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp9b875d93f4a94c71a14f8fde537c2ac5.png"
+    },
+    {
+      "productId": "9880e900-5342-4e51-94bb-c69c7ed0b97b",
+      "sku": "DB-LDL-HIGH-PROTE-136",
+      "name": "High Protein Peanut Cream",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcpbeea7937919a400a8a925ae4c7f25a93.png"
+    },
+    {
+      "productId": "9dc5bdfb-3765-4f78-a30d-ca5aa3f7c70c",
+      "sku": "DB-LDL-HOUSEPLANT-138",
+      "name": "Houseplants",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp71e67c7971234c45b99c8f0961a8749d.png"
+    },
+    {
+      "productId": "d7fec500-deed-4f62-9e45-bf09bf9f5902",
+      "sku": "DB-LDL-HUMMUS-CHI-139",
+      "name": "Hummus Chips Truffle & Parmesan",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp491311b9f64f4097a34aa662cb4c9994.png"
+    },
+    {
+      "productId": "83c6e820-524f-42cc-80d1-32e1b2013dd1",
+      "sku": "DB-LDL-HUNGARIAN--140",
+      "name": "Hungarian Salami",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp97638ae1933e4597a4494616ca36f197.png"
+    },
+    {
+      "productId": "c1b13fcc-9de2-4e79-89c4-360eae4414ff",
+      "sku": "DB-LDL-ICE-CREAM--141",
+      "name": "Ice Cream Cones",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcpefe8354e42584c2bb354990603803685.png"
+    },
+    {
+      "productId": "2393038a-9514-47a3-9e58-0bae71c18143",
+      "sku": "DB-LDL-IMPACT-WHE-142",
+      "name": "Impact Wheel Socket Set, Impact Wrench Adaptor or Ball Joint Socket Set",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp0e0869c2cc0b494a9de6c2165db6588a.png"
+    },
+    {
+      "productId": "713ecd07-5190-447e-8e25-68e085ee9510",
+      "sku": "DB-LDL-INTERNATIO-143",
+      "name": "International Party Selection",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp55ff3f302a254f40ab6428d99a14caba.png"
+    },
+    {
+      "productId": "61e3bbba-c174-48eb-b6bc-0d65fb31fb6a",
+      "sku": "DB-LDL-IOD-POTATO-144",
+      "name": "Iodì Potatoes",
+      "brand": "Iodì",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp36a34e9076a6430fa6c51e089369a927.png"
+    },
+    {
+      "productId": "36fff675-7e62-4867-92f7-49fc007893f1",
+      "sku": "DB-LDL-ITALIAN-RO-145",
+      "name": "Italian Rolled Pork Sausage",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp839fe44319b140f893fa1fd914fc3e7b.png"
+    },
+    {
+      "productId": "d8cb8eab-ab2b-4293-959e-385292c0ad13",
+      "sku": "DB-LDL-KALANCHOE-148",
+      "name": "Kalanchoe",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp088bcda9eee744c888d6f0575c34eede.png"
+    },
+    {
+      "productId": "62766a86-293b-468f-b1a0-6cf8b7cd79f6",
+      "sku": "DB-LDL-KETTLE-149",
+      "name": "Kettle",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcpf0093a6ca2794f7f851fbd24b2a257e8.png"
+    },
+    {
+      "productId": "32f83c6d-99e7-4375-9e92-756d7ff94c7a",
+      "sku": "DB-LDL-KIDS-FINE--150",
+      "name": "Kids' Fine Knit Jumper",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcpf2ace7ace21f4f2a9701db1eef05e9fb.png"
+    },
+    {
+      "productId": "92f4dfcb-2ee9-4441-b247-3f132c807329",
+      "sku": "DB-LDL-KIDS-LIGHT-152",
+      "name": "Kids' Lightweight Jacket",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp5625e24e45d847a5b713b075fbc6820d.png"
+    },
+    {
+      "productId": "6f308f51-1476-4b0c-b29d-48d04a8a399d",
+      "sku": "DB-LDL-KIDS-LONG--154",
+      "name": "Kids' Long Sleeve Top",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp0c518e39e5ba4eedbc3819b2333eef3e.png"
+    },
+    {
+      "productId": "bf1da356-b540-40ea-857c-78eafde9988e",
+      "sku": "DB-LDL-KIDS-PYJAM-156",
+      "name": "Kids' Pyjamas \"CR7",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcpa474a2afdc4a4ad3af85d86c2f28b2a8.png"
+    },
+    {
+      "productId": "4369955b-d019-4ee7-a132-2afa9750ac7e",
+      "sku": "DB-LDL-KIDS-SOCKS-157",
+      "name": "Kids' Socks, 7 pairs",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp9550630bb35c4543a495d5992e908aa5.png"
+    },
+    {
+      "productId": "f753337b-7f7f-4bc1-b150-0aa031f0ce85",
+      "sku": "DB-LDL-KIDS-WELLI-161",
+      "name": "Kids' Wellington Boots",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcpf56ef8f5f6dd4e4f84a7d8b42ab3e78c.png"
+    },
+    {
+      "productId": "fc9451f2-42cd-4d71-aa52-827e6e32e465",
+      "sku": "DB-LDL-KIDS-WATER-162",
+      "name": "Kids’ Water-Repellent Trousers",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcpa8c9bf706e5942f4b5dc9d57edf6a248.png"
+    },
+    {
+      "productId": "396a9442-af1c-45d5-897c-cddbb9900ab2",
+      "sku": "DB-LDL-KONJAC-163",
+      "name": "Konjac",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcpa3705dbdcd1c41aa99c13331ac30290d.png"
+    },
+    {
+      "productId": "b911b26d-12dd-456f-9d8d-efef4b0924a5",
+      "sku": "DB-LDL-LACTOSE-FR-164",
+      "name": "Lactose-free Fior di Latte Yogurt with Cereals and Chocolate Biscuits",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp97638ae1933e4597a4494616ca36f197.png"
+    },
+    {
+      "productId": "8b240bdc-3b79-428f-8a01-61a5922bb4e3",
+      "sku": "DB-LDL-LACTOSE-FR-165",
+      "name": "Lactose-free Semi-skimmed Milk",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcpdf57014adce1499ebe0e501b8aff5fcb.png"
+    },
+    {
+      "productId": "b42cc0f1-0d78-4c82-b481-f2ff9ea8b407",
+      "sku": "DB-LDL-LASAGNA-168",
+      "name": "Lasagna",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp97638ae1933e4597a4494616ca36f197.png"
+    },
+    {
+      "productId": "5071821d-d6e6-48a7-b529-2c088e5901e0",
+      "sku": "DB-LDL-LEGUME-BAS-169",
+      "name": "Legume Based Snack",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp783b0d927a6f4eb9ba7a299d2f1394a4.png"
+    },
+    {
+      "productId": "30922f29-5cf3-4877-9019-03a2ca93e4f0",
+      "sku": "DB-LDL-LIGHT-RAW--170",
+      "name": "Light Raw Ham",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp97638ae1933e4597a4494616ca36f197.png"
+    },
+    {
+      "productId": "a6566a08-ea6a-4886-9aea-9a914658c3f9",
+      "sku": "DB-LDL-MAGDALENAS-171",
+      "name": "Magdalenas",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcpf561c5aedd1f4be58ba0bfb81cf09384.png"
+    },
+    {
+      "productId": "ebe9be65-5fa6-4f62-bf09-1b9774c77279",
+      "sku": "DB-LDL-MAGNETIC-T-172",
+      "name": "Magnetic Tray or Magnetic Tray Set, 2 pieces",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcpf180e9ebbbb64e6b94955331c4097362.png"
+    },
+    {
+      "productId": "74f4ca88-f503-47ea-9cc1-30cec932ce03",
+      "sku": "DB-LDL-MALTESE-CI-174",
+      "name": "Maltese ciabatta",
+      "brand": "Lidl",
+      "imageUrl": "https://imgproxy-retcat.assets.schwarz/PCg0q6xhTD1c8Bvp8L5a-wwJv8uM1CelkgEv8WMj2mM/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS81M0VBMzUwMTRGNjA0OTJGQzc5RjBCMUN/DMDU1Njk0MjQ2MTVCRUEwMUNCNzk5NDc4QThEQTNGNTMxQTY2MTE3LmpwZw.jpg"
+    },
+    {
+      "productId": "1b5fe439-fde3-496e-90cc-6e0cdfdc0a15",
+      "sku": "DB-LDL-MALTESE-WH-175",
+      "name": "Maltese white bread",
+      "brand": "Lidl",
+      "imageUrl": "https://imgproxy-retcat.assets.schwarz/9loK4jVxLNU4bSh8K9D9C-CEegr_7Pxs1qFzKUyDlNU/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS9FM0Y5ODU0MkM4Mzg5OTQwMzYxMTg5MDg/wQzZGNkVCNTExREJGREI5MzBCNjk5MTEzRTBDRjY1REFFRUEzMTg0LmpwZw.jpg"
+    },
+    {
+      "productId": "1d094916-db9a-4ae2-a909-7be073bc6e7e",
+      "sku": "DB-LDL-MANGO-176",
+      "name": "Mango",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcpa447c28a7d3847fe9fc221de326e70ed.png"
+    },
+    {
+      "productId": "b0fd7aea-0365-4b14-a140-067311ea8af4",
+      "sku": "DB-LDL-MARINATED--179",
+      "name": "Marinated Salmon Fillet",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp3eae8a7085a2416fb17bd5c94e1aed62.png"
+    },
+    {
+      "productId": "7b7ae8fe-87d7-4f0b-afa6-3a7bbd3b8b3d",
+      "sku": "DB-LDL-MEN-S-FLAN-180",
+      "name": "Men's Flannel Shirt",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcpf95423d0170b4236b95e6ed5ddfeae66.png"
+    },
+    {
+      "productId": "fc0d6b39-3d55-4f5d-8673-71f8f14bfb30",
+      "sku": "DB-LDL-MEN-S-WORK-182",
+      "name": "Men's Work Trousers",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp45208c7353414381bea48722422a9377.png"
+    },
+    {
+      "productId": "49251080-059b-415c-ac94-c9e43b50777f",
+      "sku": "DB-LDL-MULTI-FUNC-189",
+      "name": "Multi-Functional Workbench Set",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp0cad82ef070a4d869a417eda1ffacdb9.png"
+    },
+    {
+      "productId": "80ce9d4e-af4c-4eaa-907b-3b7db0f20fc6",
+      "sku": "DB-LDL-MULTIGRAIN-190",
+      "name": "Multigrain breadstick",
+      "brand": "Lidl",
+      "imageUrl": "https://imgproxy-retcat.assets.schwarz/x_XsIFf3_eafct6pEEa7548pkr_XX2ZAR4aBBH6yMrM/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS8wMkIyMzVGRUI3NzNCMkY2RDhDNEZENzc/0MDczODk4Q0ZBOEIzOTM5QkYxQzdCNUFGOUEyNUI4ODMxOTlGNjU4LmpwZw.jpg"
+    },
+    {
+      "productId": "d9cd6e8d-ee7a-4390-a581-a86fd502edeb",
+      "sku": "DB-LDL-MUSHROOMS-192",
+      "name": "Mushrooms",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp621d46f57e654e2b8b4891e8d925454b.png"
+    },
+    {
+      "productId": "cb465df0-fba7-4bff-86cd-cdfb07818707",
+      "sku": "DB-LDL-OCTOPUS-TE-194",
+      "name": "Octopus Tentacles",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcpedf2c9732cec433b98c0df9cb173c771.png"
+    },
+    {
+      "productId": "ceefdfce-59f8-4aff-b023-e4c0f9253a26",
+      "sku": "DB-LDL-ORIGINAL-202",
+      "name": "Original",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp8ac9cc526d154b20b5282f1a1e48f064.png"
+    },
+    {
+      "productId": "9a22bd1d-ced1-46b6-a545-81bf48d29a37",
+      "sku": "DB-LDL-ORVIETO-CL-203",
+      "name": "Orvieto Classico DOP",
+      "brand": "Lidl",
+      "imageUrl": "https://imgproxy-retcat.assets.schwarz/i3w1nU97s3LEbwfdwSEb0iknePpfci8wWs8w6jiTHNc/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS81RjBGMDk1QjU1RTczQjQ5QzI0MTJEQkU/yRTczNEFFRTAxOEQ0MjlDNUNGMkNBMUQ2QjVBMjlEMEQ0Q0VFMjAzLmpwZw.jpg"
+    },
+    {
+      "productId": "84b6c3b2-201f-4cab-88bb-fd33263514e8",
+      "sku": "DB-LDL-PHALAENOPS-204",
+      "name": "PHALAENOPSIS",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcpcfdfad67ab674e33a7e6f4cd1d979d92.png"
+    },
+    {
+      "productId": "efbfe820-4c25-441e-9001-006e971857dc",
+      "sku": "DB-LDL-PARISIAN-S-206",
+      "name": "Parisian softbread",
+      "brand": "Lidl",
+      "imageUrl": "https://imgproxy-retcat.assets.schwarz/K70EWq2sptKWRhFpk-nYjsds5tL7Wcw_0Y_ewxhs_Dk/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS82RDBCRkY0MzUxNzUwRjdEMjI3NTE0NTd/COTRGMURDNjg5QTI0RjJDMTZGMTJDNDRBQzVDRDlEQTg5RTUwQkM3LmpwZw.jpg"
+    },
+    {
+      "productId": "91f816ee-227d-4f10-aa84-fdda5f4fd055",
+      "sku": "DB-LDL-PARKSIDE-D-208",
+      "name": "Parkside Doughnut",
+      "brand": "Parkside",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcpdf74fd4f6c0e4cd3b5bf0f84ce11e7cd.png"
+    },
+    {
+      "productId": "0e32bf7e-dfbc-4e2b-8614-641275f2c864",
+      "sku": "DB-LDL-PECAN-NUTS-210",
+      "name": "Pecan nuts plait",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp23015119d0d0426d936379390b9dd51d.png"
+    },
+    {
+      "productId": "6e128994-82dc-4572-91e2-0c13c9a4eec2",
+      "sku": "DB-LDL-PEPPERONI--211",
+      "name": "Pepperoni Stonebaked Thin",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcpb611d5f8b174410c9822ee9efc15d85f.png"
+    },
+    {
+      "productId": "a18165e4-e49b-4159-8852-682f86f81815",
+      "sku": "DB-LDL-PICKLED-GR-212",
+      "name": "Pickled Green Chillies",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp1003387ee34048b98bcfc364e24ee739.png"
+    },
+    {
+      "productId": "d152c826-f8b5-4ef7-b5f6-c1ae8ae58dfe",
+      "sku": "DB-LDL-PIRI-PIRI--214",
+      "name": "Piri-Piri Chilli Hot Sauce",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcpd3b18200442f454fbfe328b56990cd56.png"
+    },
+    {
+      "productId": "b44b60a1-bb8d-4c63-b23b-3425f59a8d32",
+      "sku": "DB-LDL-PISTACHIO--215",
+      "name": "Pistachio Cornetto",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcpd0b0a78bed1048a3842a1638f4ea7d6b.png"
+    },
+    {
+      "productId": "8c94ca71-ba5c-4985-8c3f-40f935bdde15",
+      "sku": "DB-LDL-PISTACHIO--216",
+      "name": "Pistachio Spread XXL",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp39a87b8f370643de8ee2bd34cd3f81c8.png"
+    },
+    {
+      "productId": "0224b5dd-667a-4c17-ab19-b706ee777774",
+      "sku": "DB-LDL-PISTACHIOS-217",
+      "name": "Pistachios",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp1dac5453cddf4aeea5818d2fc2f6f58a.png"
+    },
+    {
+      "productId": "cd2ec61c-b9a7-49d9-b534-d65eafb481eb",
+      "sku": "DB-LDL-PIZZA-WITH-219",
+      "name": "Pizza with Spicy Salami",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp42ca456653eb413ab63e6e1a02699ea9.png"
+    },
+    {
+      "productId": "00c7f84d-8cbf-47aa-810a-52b2c7dec8f8",
+      "sku": "DB-LDL-PLAIN-GIAN-221",
+      "name": "Plain Giant Pacific Squid Rings",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp249c6b6207784e0996081ac0455f80dc.png"
+    },
+    {
+      "productId": "0201a8ae-5979-43e0-a524-c16944a3b7c0",
+      "sku": "DB-LDL-PLUMS-222",
+      "name": "Plums",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcpe5582f28b1dd4c90ad96cd52a365d471.jpg"
+    },
+    {
+      "productId": "2fde76b5-77c6-483b-a86f-239a549c4766",
+      "sku": "DB-LDL-POCKET-HOL-224",
+      "name": "Pocket Hole Jig Set or Dowel Jig Set",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp0584944ab58546ec9e092478cce229cd.png"
+    },
+    {
+      "productId": "9555c1cf-f0c2-4485-99e6-79b3187db756",
+      "sku": "DB-LDL-PORK-COLLA-225",
+      "name": "Pork Collar Joint",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp0ba1db657cbb4120b367ae65ad5cdf56.png"
+    },
+    {
+      "productId": "f92de323-c441-4b83-8e9c-313ce2b71882",
+      "sku": "DB-LDL-POWERBANK--231",
+      "name": "Powerbank with Compressor",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp0324a2e35dc14c18bae4a21f8bbd8e43.png"
+    },
+    {
+      "productId": "f4cdef93-116c-4327-8020-f428532855bd",
+      "sku": "DB-LDL-PREMIUM-CH-232",
+      "name": "Premium Chicken Pie",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp589077fa291140009bfb54288ee51549.png"
+    },
+    {
+      "productId": "a1dcf132-69c7-4f81-b3da-978083dbd1c4",
+      "sku": "DB-LDL-PREMIUM-PI-233",
+      "name": "Premium Pils Beer",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp4e8d86fba0ca47eebf984006226ceef0.png"
+    },
+    {
+      "productId": "3f4d1007-2713-491b-b4c1-7df2cade16f6",
+      "sku": "DB-LDL-PRETZEL-234",
+      "name": "Pretzel",
+      "brand": "Lidl",
+      "imageUrl": "https://imgproxy-retcat.assets.schwarz/m4QpvctTajDUIjKD4j-MubVP6TuUj-e_xRE9_mKy86s/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS8yODlDNzFFODU0NDE1QUU0RTJEOEUwMkN/FRkJFQjRDQjJFQTc4NDVBODI2MkFBQTE5RTc3NkRFRDg0MTRDNjZFLmpwZw.jpg"
+    },
+    {
+      "productId": "36ffe493-35ae-4c0f-bfda-a0e68d2b4a73",
+      "sku": "DB-LDL-PROSECCO-S-235",
+      "name": "Prosecco Spumante Conegliano Valdobbiadene DOCG",
+      "brand": "Lidl",
+      "imageUrl": "https://imgproxy-retcat.assets.schwarz/ZrtOPCf8AtkErsyDqBE9PpSSo6hnpXgRi9LuLDFFH9E/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS85ODM1NTA5NzZFRTM4MERCMURDMkI0Qzk/yNzlCQzI0MTY4MTNBNkMwMDA2RDEzNTUwRTBFMjU5MDlCMDRCRkEwLmpwZw.jpg"
+    },
+    {
+      "productId": "e85d5760-8fcd-4557-95f0-dc9fbe692278",
+      "sku": "DB-LDL-PROTEIN-BA-236",
+      "name": "Protein Bar Coconut and Chocolate Flavour",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp1b2d93703ee64cc0995c5dc2a3ea20ad.png"
+    },
+    {
+      "productId": "3441d494-910a-4b73-86ea-0fc81138730a",
+      "sku": "DB-LDL-PUFF-PASTR-242",
+      "name": "Puff pastry tomato and mozzarella",
+      "brand": "Lidl",
+      "imageUrl": "https://imgproxy-retcat.assets.schwarz/WYKGiEFBLTQqnLA-NnizOWkUvZ5JRzFDqjqeNPUwJw8/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS8xRDU2RjBBREYxRjlEQTBCQkYxRERGREF/GRUY3NzRGNEZGOTlFQTY4QUE0ODg1MUFEQzk4MjExRjlBMTZENjc4LmpwZw.jpg"
+    },
+    {
+      "productId": "107063e2-171f-423b-99d2-c8e884b00909",
+      "sku": "DB-LDL-PUMPKIN-SE-244",
+      "name": "Pumpkin seed roll",
+      "brand": "Lidl",
+      "imageUrl": "https://imgproxy-retcat.assets.schwarz/59y-_a2gt9MIfU63r46Dgn5X9tq7GOzNEfg3ZFh9sWs/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS80Q0E2NEM5NDg2RjEyMTM0MjM0NDM2NDY/0QTY3RTMyRTc5QzM1QjVCRjc4QTc2MEMzOTgzNjdFN0U4NTFGRjQ1LmpwZw.jpg"
+    },
+    {
+      "productId": "db0c2630-6d82-4438-a9ae-911f251a993b",
+      "sku": "DB-LDL-RAISIN-SNA-245",
+      "name": "Raisin Snails",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcpad30051f17c24a5ab16529fe426fbcff.png"
+    },
+    {
+      "productId": "04516957-7d1a-4dde-902a-ae850f14db1d",
+      "sku": "DB-LDL-RED-GLOBE--247",
+      "name": "Red Globe Grapes",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp0ef4de10002a44dfa09411f23639de49.png"
+    },
+    {
+      "productId": "1fce3554-5524-49af-97bd-64fccf12974d",
+      "sku": "DB-LDL-RHODODENDR-248",
+      "name": "Rhododendron",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp19b0f1e0f8984f7f8c4671366b2f708e.png"
+    },
+    {
+      "productId": "23f77f9f-7ccd-40fc-8ae6-83e01e079cec",
+      "sku": "DB-LDL-RIVET-NUT--249",
+      "name": "Rivet Nut Tool With Accessories, 151 pieces",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp240283f67b2e4903a7f9174018171c93.png"
+    },
+    {
+      "productId": "03e45d8b-432c-4fa6-9bb3-4475bb65a68a",
+      "sku": "DB-LDL-ROASTED-AN-250",
+      "name": "Roasted and Salted Mixed Nuts",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp0accd577d11b4dc09a021ad97ebeda98.png"
+    },
+    {
+      "productId": "2f5de403-98a9-483c-8340-bce131003d9a",
+      "sku": "DB-LDL-ROUTER-252",
+      "name": "Router",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcpef5d235299d74736b391a722ca43ef15.png"
+    },
+    {
+      "productId": "ca81a4c5-d71a-431b-80cc-e19574a9c688",
+      "sku": "DB-LDL-SALICE-SAL-254",
+      "name": "Salice Salentino DOC Negroamaro Riserva",
+      "brand": "Lidl",
+      "imageUrl": "https://imgproxy-retcat.assets.schwarz/6HnPmrHCM3GdJnPbwGmKeHqptdHaOAA4tXLnXNDGZ4Y/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS8yMjIyMjQ0RjQwOTQ5QkRFQkFDQTVCOEN/CNEM2RjAyRTFCOUY3NkY1Q0IxRjhCQ0UxOTFGMzNCNDAyQ0Y2QTZDLmpwZw.jpg"
+    },
+    {
+      "productId": "b4f1f23b-f37d-4087-ab75-50d602533aba",
+      "sku": "DB-LDL-SAN-SEBAST-256",
+      "name": "San Sebastián Style Mini Cheesecake",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp55ff3f302a254f40ab6428d99a14caba.png"
+    },
+    {
+      "productId": "626d0953-67c8-4196-ba72-50df69244f2b",
+      "sku": "DB-LDL-SANSEVERIA-257",
+      "name": "Sanseveria",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp81693e8fa6124a649b66944c2fea999b.png"
+    },
+    {
+      "productId": "e2b3cb7c-fca7-4a24-a38f-463777b200e8",
+      "sku": "DB-LDL-SCOTTISH-S-260",
+      "name": "Scottish Smoked Salmon",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp97638ae1933e4597a4494616ca36f197.png"
+    },
+    {
+      "productId": "612f5244-d3a6-4be4-bd22-a8c7f181d61f",
+      "sku": "DB-LDL-SCOTTONA-B-261",
+      "name": "Scottona Beef Smash Burger",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcpdd6133d38e234e6ba368432ac2e32885.png"
+    },
+    {
+      "productId": "08aad935-48ae-407e-9633-e84d2860593b",
+      "sku": "DB-LDL-SEEDLESS-D-263",
+      "name": "Seedless Dark Grapes",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp058b0ef4fcd44bdc99e5c2618a0d491b.png"
+    },
+    {
+      "productId": "acf49b71-8f18-4367-9110-a762f3106159",
+      "sku": "DB-LDL-SELECTION--264",
+      "name": "Selection of Spanish Cheese & Jamón Serrano STG",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp97638ae1933e4597a4494616ca36f197.png"
+    },
+    {
+      "productId": "43521f4a-012a-4e7b-b4b9-c46e329f4050",
+      "sku": "DB-LDL-SELENELLA--265",
+      "name": "Selenella Potatoes",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp21fab4958d2d4bc294963719f2c2b0e3.png"
+    },
+    {
+      "productId": "db28641f-05e5-42d6-887d-2956b7020906",
+      "sku": "DB-LDL-SESAME-BAG-267",
+      "name": "Sesame bagel",
+      "brand": "Lidl",
+      "imageUrl": "https://imgproxy-retcat.assets.schwarz/55BZq1IMm9AcegP9ipvCFqKMqD0m5Iclk9x4ydT9xzc/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS8yODMxODg3NjZCREQ5NkJGMjUzMTlDRkU/5NTY1QUQ3RUQ3OUY3RDg4QzA2NjNFOTA3M0Q0MkUxRERFMTcwMjdCLmpwZw.jpg"
+    },
+    {
+      "productId": "c68587db-7eef-439c-a980-5c1a27dfef08",
+      "sku": "DB-LDL-SHELLED-AN-271",
+      "name": "Shelled and Peeled Almonds",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp9690e8dd2d1e43ea82a0e495df6387a1.png"
+    },
+    {
+      "productId": "8be37bb6-3f5c-4160-8253-7182552ad2a0",
+      "sku": "DB-LDL-SLICED-CHI-272",
+      "name": "Sliced Chicken Breast",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp291c16e0e9f74b95a358778ef866098d.png"
+    },
+    {
+      "productId": "1bebab62-922f-40b3-8d3c-49352cd23468",
+      "sku": "DB-LDL-SMALL-WHIT-275",
+      "name": "Small White Roll",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcpc9a1a4ff05f145a89a6a887f440ad74d.png"
+    },
+    {
+      "productId": "188f54a3-3ed2-4694-acce-cc1a67c17b1f",
+      "sku": "DB-LDL-SMOKED-SCA-276",
+      "name": "Smoked Scamorzine Cheese",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp97638ae1933e4597a4494616ca36f197.png"
+    },
+    {
+      "productId": "47fd6eb8-b358-40fb-b913-72590106e4e8",
+      "sku": "DB-LDL-SOFT-CHEES-277",
+      "name": "Soft Cheese Spread",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp97638ae1933e4597a4494616ca36f197.png"
+    },
+    {
+      "productId": "4fcea229-9ace-4e55-8ecb-2df4662242fa",
+      "sku": "DB-LDL-SPATHIPHYL-282",
+      "name": "Spathiphyllum",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp33cb6981ec4241488f143183c994929c.png"
+    },
+    {
+      "productId": "16b9ace3-c2bb-4eed-b004-83648ed7a6bc",
+      "sku": "DB-LDL-SPICY-CHIC-283",
+      "name": "Spicy Chicken Skewers with Pork",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp155611b0269349499730dbd2f42bb085.png"
+    },
+    {
+      "productId": "730f3d6b-352f-4e94-8812-44de39a2e585",
+      "sku": "DB-LDL-SPINACH-AN-284",
+      "name": "Spinach and Tuna Pie",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp03fa7112a5654895b82bdc38096b8af6.png"
+    },
+    {
+      "productId": "c80bbaf1-ac1d-4ffc-aba4-ddce1649060f",
+      "sku": "DB-LDL-SPUMANTE-B-286",
+      "name": "Spumante brut Millesimato",
+      "brand": "Lidl",
+      "imageUrl": "https://imgproxy-retcat.assets.schwarz/0KCK7nyXTYg3DlYUw7iUBoRKqDzU9ATj8eAWeqsbcoA/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS8zQzk4NkY0OThFMDdBMjVEMDA1MTI1QkE/xQjhGQTBFMUQ0ODcxNDNBMkU4RDY5MjRFQjgwNTdGMEEwRUI5M0QxLmpwZw.jpg"
+    },
+    {
+      "productId": "7a0407a3-a843-46cb-bf57-f5d4a8850bce",
+      "sku": "DB-LDL-SUERTE-GRO-288",
+      "name": "Suerte Ground Coffee",
+      "brand": "Lavazza Suerte",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp24ee48248dfa4a85bbe1e88f8e43e06e.png"
+    },
+    {
+      "productId": "6e8ab1e0-7876-49d3-8d22-f1b29f6c33a5",
+      "sku": "DB-LDL-SUSHI-BOX-289",
+      "name": "Sushi Box",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp27d86916f8ad411e8c27772d7e0cf763.png"
+    },
+    {
+      "productId": "c7c1372d-9a98-4bb2-a690-be4801766143",
+      "sku": "DB-LDL-SWEET-TANG-290",
+      "name": "Sweet Tango Apples",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcpe1f0d8d01c0246ee82997dbef172999d.png"
+    },
+    {
+      "productId": "6e50e3fe-9526-4b8f-8638-cf6f024971da",
+      "sku": "DB-LDL-TEENAGERS--291",
+      "name": "Teenagers' Boxers, 2 pieces \"CR7",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcpb96f713252074268b9eb32fa89e9d1d1.png"
+    },
+    {
+      "productId": "3799edc4-99b8-4010-93b1-3f13cc63c8fb",
+      "sku": "DB-LDL-TEMPRANILL-292",
+      "name": "Tempranillo Tinto La Mancha DO",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp5a6c14ded82c445e888ea592dea24445.png"
+    },
+    {
+      "productId": "c843b970-1a63-4ebf-b702-ad8660f8576b",
+      "sku": "DB-LDL-THE-SMURFS-293",
+      "name": "The Smurfs Biscuits",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcpf77b2302bcd044faa2154e0f467fc211.png"
+    },
+    {
+      "productId": "4accc798-3195-400b-bcf0-33ef42c4c0e8",
+      "sku": "DB-LDL-THERMAL-WI-294",
+      "name": "Thermal Windscreen Protector",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcpac02f447b7aa41a19517b597b341e552.png"
+    },
+    {
+      "productId": "e282707d-cd3a-429e-aab6-ae21703bc0a0",
+      "sku": "DB-LDL-TISSUE-FAC-295",
+      "name": "Tissue Face Mask",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp0892cbe190b64544ae9446d530c93092.png"
+    },
+    {
+      "productId": "6e7b2e1e-b53c-47ba-8699-1e3752ac6609",
+      "sku": "DB-LDL-TRADITIONA-298",
+      "name": "Traditional Gazpacho",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp97638ae1933e4597a4494616ca36f197.png"
+    },
+    {
+      "productId": "cb766e4c-e3c6-4221-99ad-01177e4a55fb",
+      "sku": "DB-LDL-TURKEY-COR-299",
+      "name": "Turkey Cordon Bleu",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcpf2eeb5a5f79e43d7bb497b45512c2ed3.png"
+    },
+    {
+      "productId": "c16c1094-bf22-4b70-8665-561b99f0696c",
+      "sku": "DB-LDL-UNSMOKED-D-303",
+      "name": "Unsmoked Diced Bacon",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp97638ae1933e4597a4494616ca36f197.png"
+    },
+    {
+      "productId": "7476d686-ec36-4571-a4f0-275b8a28ac6c",
+      "sku": "DB-LDL-VEGAN-PORR-304",
+      "name": "Vegan Porridge",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp3d202325c22d482e89568cfd3d837924.png"
+    },
+    {
+      "productId": "37449b87-897b-42da-8c54-a7a600337428",
+      "sku": "DB-LDL-VERMENTINO-305",
+      "name": "Vermentino di Sardegna DOC",
+      "brand": "Lidl",
+      "imageUrl": "https://imgproxy-retcat.assets.schwarz/lEjK5aE4lCaNqkSaG11q2QQZ_ygt-1eB09KDeUyCYuc/sm:1/w:1278/h:959/cz/M6Ly9wcm9kLWNhd/GFsb2ctbWVkaWEvbXQvMS8yRkI0OEQ4OUQ2QURFOTRBQTFENzNCRTU/yMzM1MjQ5NTcwQUYwOUZCRENBMkEwQTk2N0NDMEEzMjQ5MDMwOEE4LmpwZw.jpg"
+    },
+    {
+      "productId": "01ffaf9f-7cf1-4fce-bf95-f06f53fbb0dd",
+      "sku": "DB-LDL-WAFERS-WIT-306",
+      "name": "Wafers with Cocoa Cream",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp30fc19c97f6b4bfb91f7c51cb7446b63.png"
+    },
+    {
+      "productId": "f2719896-c4cc-48ac-ba89-fb0ed1d48993",
+      "sku": "DB-LDL-WALL-ORGAN-308",
+      "name": "Wall Organiser & Storage Set, 30 pieces",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp19a763a70f2b4984885c1e6fd7a28d5c.png"
+    },
+    {
+      "productId": "b9a53277-eba1-4c91-9808-b863b67d410d",
+      "sku": "DB-LDL-WHOLEMEAL--311",
+      "name": "Wholemeal Oat Flakes",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcpb1fcf67a29dd4c80b30bfa45539bc21b.png"
+    },
+    {
+      "productId": "33ec969b-cb69-420f-bd7d-c041c5765a4b",
+      "sku": "DB-LDL-WHOLEMEAL--312",
+      "name": "Wholemeal Sandwich Bread XXL",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcpb4c21e0e17ea4ff488352e232ddd25f3.png"
+    },
+    {
+      "productId": "ffaf4567-27e9-414d-9116-10ee84e5864d",
+      "sku": "DB-LDL-WORLD-WINE-315",
+      "name": "World Wines Collection",
+      "brand": "Lidl",
+      "imageUrl": "https://www.lidl.com.mt/assets/gcp6dd1b3eca64347d8a9becdb374ddb76e.png"
+    }
+  ],
+  "skippedProducts": [],
+  "errors": []
+}
