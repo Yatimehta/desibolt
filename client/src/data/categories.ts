@@ -61,7 +61,7 @@ export const CATEGORIES: Category[] = [
     shortName: 'Snacks & Sweets',
     icon: 'Cookie',
     count: 1120,
-    image: 'https://images.unsplash.com/photo-1599488615731-7e5c2823ff28?w=600&auto=format&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1606491956689-2ea866880c84?w=600&auto=format&fit=crop&q=80',
     description: 'Haldiram bhujia, murukku, roasted dry fruits, Gulab Jamun, Rasgulla, and premium chocolates.'
   },
   {
@@ -70,7 +70,7 @@ export const CATEGORIES: Category[] = [
     shortName: 'Beverages & Chai',
     icon: 'Coffee',
     count: 690,
-    image: 'https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=600&auto=format&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1561336313-0bd5e0b27ec8?w=600&auto=format&fit=crop&q=80',
     description: 'Assam CTC tea, Masala chai blends, filter coffee, mango lassi, coconut water, and juices.'
   },
   {
@@ -79,7 +79,7 @@ export const CATEGORIES: Category[] = [
     shortName: 'Bakery & Breads',
     icon: 'UtensilsCrossed',
     count: 412,
-    image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=600&auto=format&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1601050690117-94f5f6fa8bd7?w=600&auto=format&fit=crop&q=80',
     description: 'Fresh tandoori naans, pav buns, elaichi rusks, sourdough breads, and biscuits.'
   },
   {
@@ -88,7 +88,7 @@ export const CATEGORIES: Category[] = [
     shortName: 'Household & Care',
     icon: 'Sparkles',
     count: 480,
-    image: 'https://images.unsplash.com/photo-1583947215259-38e31be8751f?w=600&auto=format&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1600857544200-b2f666a9a2ec?w=600&auto=format&fit=crop&q=80',
     description: 'Ayurvedic soaps, incenses (Agarbatti), puja essentials, surface cleaners, and kitchen foils.'
   }
 ];

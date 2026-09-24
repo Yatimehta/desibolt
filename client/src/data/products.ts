@@ -167,7 +167,7 @@ export const BASE_PRODUCTS: Product[] = [
     price: 11.90,
     originalPrice: 13.50,
     unit: '1 L Tin',
-    image: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=600&auto=format&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=600&auto=format&fit=crop&q=80',
     stock: 60,
     inStock: true,
     rating: 5.0,
@@ -188,7 +188,7 @@ export const BASE_PRODUCTS: Product[] = [
     subCategory: 'Milk',
     price: 1.15,
     unit: '1 L Carton',
-    image: 'https://images.unsplash.com/photo-1563636619-e9143da7973b?w=600&auto=format&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1550583724-b2692b85b150?w=600&auto=format&fit=crop&q=80',
     stock: 120,
     inStock: true,
     rating: 4.8,
@@ -210,7 +210,7 @@ export const BASE_PRODUCTS: Product[] = [
     price: 14.50,
     originalPrice: 16.50,
     unit: '10 kg Bag',
-    image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=600&auto=format&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?w=600&auto=format&fit=crop&q=80',
     stock: 90,
     inStock: true,
     rating: 4.9,
@@ -275,7 +275,7 @@ export const BASE_PRODUCTS: Product[] = [
     price: 3.20,
     originalPrice: 3.75,
     unit: '1 kg',
-    image: 'https://images.unsplash.com/photo-1585994192701-f1a505c817ea?w=600&auto=format&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=600&auto=format&fit=crop&q=80',
     stock: 110,
     inStock: true,
     rating: 4.9,
@@ -336,7 +336,7 @@ export const BASE_PRODUCTS: Product[] = [
     subCategory: 'Ground Spices',
     price: 1.95,
     unit: '100 g',
-    image: 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=600&auto=format&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1627916607164-7b20241db935?w=600&auto=format&fit=crop&q=80',
     stock: 140,
     inStock: true,
     rating: 4.9,
@@ -356,7 +356,7 @@ export const BASE_PRODUCTS: Product[] = [
     subCategory: 'Blended Masalas',
     price: 2.10,
     unit: '100 g',
-    image: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?w=600&auto=format&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=600&auto=format&fit=crop&q=80',
     stock: 95,
     inStock: true,
     rating: 4.9,
@@ -441,7 +441,7 @@ export const BASE_PRODUCTS: Product[] = [
     price: 2.75,
     originalPrice: 3.20,
     unit: '400 g',
-    image: 'https://images.unsplash.com/photo-1599488615731-7e5c2823ff28?w=600&auto=format&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1606491956689-2ea866880c84?w=600&auto=format&fit=crop&q=80',
     stock: 120,
     inStock: true,
     rating: 4.9,
@@ -463,7 +463,7 @@ export const BASE_PRODUCTS: Product[] = [
     price: 5.50,
     originalPrice: 6.50,
     unit: '1 kg Tin (~16 pcs)',
-    image: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=600&auto=format&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1668236543090-82eba5ee5976?w=600&auto=format&fit=crop&q=80',
     stock: 80,
     inStock: true,
     rating: 4.9,
@@ -487,7 +487,7 @@ export const BASE_PRODUCTS: Product[] = [
     price: 6.95,
     originalPrice: 7.95,
     unit: '1 kg Pack',
-    image: 'https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=600&auto=format&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1561336313-0bd5e0b27ec8?w=600&auto=format&fit=crop&q=80',
     stock: 95,
     inStock: true,
     rating: 4.9,
@@ -508,7 +508,7 @@ export const BASE_PRODUCTS: Product[] = [
     subCategory: 'Cold Drinks',
     price: 4.50,
     unit: '6 x 200ml Tetra',
-    image: 'https://images.unsplash.com/photo-1622597467836-f3285f2131b8?w=600&auto=format&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1546173159-315724a31696?w=600&auto=format&fit=crop&q=80',
     stock: 85,
     inStock: true,
     rating: 4.8,
@@ -529,7 +529,7 @@ export const BASE_PRODUCTS: Product[] = [
     subCategory: 'Fresh Breads',
     price: 2.50,
     unit: 'Pack of 3',
-    image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=600&auto=format&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1601050690117-94f5f6fa8bd7?w=600&auto=format&fit=crop&q=80',
     stock: 60,
     inStock: true,
     rating: 4.9,
@@ -550,7 +550,7 @@ export const BASE_PRODUCTS: Product[] = [
     subCategory: 'Rusks & Cookies',
     price: 2.25,
     unit: '400 g Pack',
-    image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=600&auto=format&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=600&auto=format&fit=crop&q=80',
     stock: 90,
     inStock: true,
     rating: 4.8,
@@ -589,7 +589,7 @@ export const BASE_PRODUCTS: Product[] = [
     subCategory: 'Soaps & Care',
     price: 3.50,
     unit: 'Pack of 3 (125g each)',
-    image: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=600&auto=format&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1600857544200-b2f666a9a2ec?w=600&auto=format&fit=crop&q=80',
     stock: 70,
     inStock: true,
     rating: 4.8,
@@ -668,30 +668,35 @@ export function generateFullCatalog(): Product[] {
     ],
     'rice-atta': [
       'https://images.unsplash.com/photo-1586201375761-83865001e31c?w=600&auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=600&auto=format&fit=crop&q=80'
+      'https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?w=600&auto=format&fit=crop&q=80'
     ],
     'dal-pulses': [
-      'https://images.unsplash.com/photo-1585994192701-f1a505c817ea?w=600&auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=600&auto=format&fit=crop&q=80',
       'https://images.unsplash.com/photo-1515543237350-b3eea1ec8082?w=600&auto=format&fit=crop&q=80'
     ],
     'spices-masalas': [
       'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=600&auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1601050690597-df0568f70950?w=600&auto=format&fit=crop&q=80'
+      'https://images.unsplash.com/photo-1627916607164-7b20241db935?w=600&auto=format&fit=crop&q=80'
     ],
     'frozen-ready': [
-      'https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?w=600&auto=format&fit=crop&q=80'
+      'https://images.unsplash.com/photo-1601050690597-df0568f70950?w=600&auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1626074353765-517a681e40be?w=600&auto=format&fit=crop&q=80'
     ],
     'snacks-sweets': [
-      'https://images.unsplash.com/photo-1599488615731-7e5c2823ff28?w=600&auto=format&fit=crop&q=80'
+      'https://images.unsplash.com/photo-1606491956689-2ea866880c84?w=600&auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1668236543090-82eba5ee5976?w=600&auto=format&fit=crop&q=80'
     ],
     'beverages-tea': [
-      'https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=600&auto=format&fit=crop&q=80'
+      'https://images.unsplash.com/photo-1561336313-0bd5e0b27ec8?w=600&auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1546173159-315724a31696?w=600&auto=format&fit=crop&q=80'
     ],
     'bakery-breads': [
-      'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=600&auto=format&fit=crop&q=80'
+      'https://images.unsplash.com/photo-1601050690117-94f5f6fa8bd7?w=600&auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=600&auto=format&fit=crop&q=80'
     ],
     'household-care': [
-      'https://images.unsplash.com/photo-1583947215259-38e31be8751f?w=600&auto=format&fit=crop&q=80'
+      'https://images.unsplash.com/photo-1600857544200-b2f666a9a2ec?w=600&auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1602928321679-560bb453f190?w=600&auto=format&fit=crop&q=80'
     ]
   };
 
