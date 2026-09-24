@@ -11,9 +11,9 @@ interface HeroBannerProps {
 export const HeroBanner: React.FC<HeroBannerProps> = ({ onCategorySelect, onExploreClick }) => {
   const { addToCart } = useCart();
 
-  const tomatoItem = BASE_PRODUCTS.find((p) => p.id === 'fp-01') || BASE_PRODUCTS[0];
-  const mangoItem = BASE_PRODUCTS.find((p) => p.id === 'fp-06') || BASE_PRODUCTS[1];
-  const paneerItem = BASE_PRODUCTS.find((p) => p.id === 'dy-02') || BASE_PRODUCTS[2];
+  const bhujiaItem = BASE_PRODUCTS.find((p) => p.id === 'ss-01') || BASE_PRODUCTS[0];
+  const gheeItem = BASE_PRODUCTS.find((p) => p.id === 'dp-02') || BASE_PRODUCTS[1];
+  const chilliItem = BASE_PRODUCTS.find((p) => p.id === 'sm-01') || BASE_PRODUCTS[2];
 
   return (
     <div className="-mt-4 md:-mt-6 space-y-12">
@@ -46,13 +46,13 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({ onCategorySelect, onExpl
             {/* Headline */}
             <div className="space-y-2">
               <h1 className="text-3xl sm:text-5xl md:text-6xl font-black tracking-tight text-white font-heading leading-tight">
-                Fresh & Yummy.<br />
+                Fresh & Authentic.<br />
                 <span className="font-cursive text-4xl sm:text-6xl md:text-7xl text-[#F4B41A] font-bold drop-shadow-md">
                   Delivered in 15-30m!
                 </span>
               </h1>
               <p className="text-xs sm:text-sm text-red-100/90 leading-relaxed max-w-md mx-auto lg:mx-0 font-medium">
-                The fastest way to get farm-fresh organic produce, paneer, basmati, and 7,000+ groceries delivered right to your kitchen in Malta.
+                Haldiram's, Amul, MDH, Aashirvaad, Daawat, and 7,000+ authentic groceries & fresh Maltese produce delivered to your doorstep.
               </p>
             </div>
 
@@ -67,10 +67,10 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({ onCategorySelect, onExpl
               </button>
 
               <button
-                onClick={() => onCategorySelect('fp')}
+                onClick={() => onCategorySelect('snacks-sweets')}
                 className="w-full sm:w-auto px-6 py-4 rounded-2xl bg-white/15 hover:bg-white/25 text-white font-bold text-xs sm:text-sm backdrop-blur-md border border-white/25 transition-all"
               >
-                Explore Organic Fruits
+                Explore Famous Sweets & Snacks
               </button>
             </div>
 
@@ -84,7 +84,7 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({ onCategorySelect, onExpl
             </div>
           </div>
 
-          {/* Center Column: High-Res Appetizing Gourmet Platter */}
+          {/* Center Column: Famous Product Hero Showcase */}
           <div className="lg:col-span-4 relative flex items-center justify-center py-2">
             {/* Soft Radial Glow */}
             <div className="absolute w-72 h-72 rounded-full bg-amber-400/20 blur-3xl -z-10" />
@@ -92,15 +92,15 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({ onCategorySelect, onExpl
             {/* Central Platter Circle with Gold Border */}
             <div className="relative w-64 sm:w-80 md:w-88 rounded-full p-2 bg-white/10 backdrop-blur-md border-4 border-[#F4B41A]/60 shadow-2xl">
               <img
-                src="https://images.unsplash.com/photo-1540420773420-3366772f4999?w=800&auto=format&fit=crop&q=80"
-                alt="Fresh Organic Grocery Dish Platter"
+                src="/products/ss-02_haldirams_gulab_jamun.jpg"
+                alt="Haldiram's Gulab Jamun Famous Sweets"
                 className="w-full h-full object-cover rounded-full aspect-square shadow-inner"
               />
 
-              {/* Floating Badge 1: 100% Farm Fresh */}
+              {/* Floating Badge 1: 100% Authentic */}
               <div className="absolute -top-3 -left-2 bg-white text-[#1F2421] px-3.5 py-1.5 rounded-2xl shadow-xl border border-amber-200 text-[11px] font-extrabold flex items-center gap-1.5 animate-float-subtle">
                 <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
-                100% Farm Organic
+                100% Authentic Brands
               </div>
 
               {/* Floating Badge 2: Bolt Speed */}
@@ -111,26 +111,26 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({ onCategorySelect, onExpl
             </div>
           </div>
 
-          {/* Right Column: Floating Cute Interactive Item Cards */}
+          {/* Right Column: Floating Famous Best-Seller Cards */}
           <div className="lg:col-span-3 space-y-3.5 max-w-xs mx-auto w-full">
             <div className="text-xs font-black tracking-wider uppercase text-amber-300 text-center lg:text-left flex items-center gap-1.5">
-              <Sparkles className="w-3.5 h-3.5" /> Fast Add Favorites
+              <Sparkles className="w-3.5 h-3.5" /> Famous Best-Sellers
             </div>
 
-            {/* Card 1 */}
+            {/* Card 1: Haldiram's Aloo Bhujia */}
             <div className="bg-white/95 backdrop-blur-md rounded-2xl p-3 shadow-lg text-[#1F2421] flex items-center justify-between gap-3 border border-white/40 hover:scale-102 transition-transform">
               <img
-                src={tomatoItem.image}
-                alt={tomatoItem.name}
-                className="w-13 h-13 object-cover rounded-xl border border-slate-100"
+                src={bhujiaItem.image}
+                alt={bhujiaItem.name}
+                className="w-13 h-13 object-cover rounded-xl border border-slate-100 bg-white"
               />
               <div className="flex-1 min-w-0">
-                <h4 className="text-xs font-bold text-slate-900 truncate">{tomatoItem.name}</h4>
-                <p className="text-[10px] text-slate-500">{tomatoItem.unit}</p>
-                <div className="text-xs font-black text-[#C81D25] mt-0.5">€{tomatoItem.price.toFixed(2)}</div>
+                <h4 className="text-xs font-bold text-slate-900 truncate">{bhujiaItem.name}</h4>
+                <p className="text-[10px] text-slate-500">{bhujiaItem.unit}</p>
+                <div className="text-xs font-black text-[#C81D25] mt-0.5">€{bhujiaItem.price.toFixed(2)}</div>
               </div>
               <button
-                onClick={() => addToCart(tomatoItem, 1)}
+                onClick={() => addToCart(bhujiaItem, 1)}
                 className="w-8 h-8 rounded-xl cute-gold-btn flex items-center justify-center transition-colors shadow-xs"
                 title="Add to cart"
               >
@@ -138,20 +138,20 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({ onCategorySelect, onExpl
               </button>
             </div>
 
-            {/* Card 2 */}
+            {/* Card 2: Amul Pure Cow Ghee */}
             <div className="bg-white/95 backdrop-blur-md rounded-2xl p-3 shadow-lg text-[#1F2421] flex items-center justify-between gap-3 border border-white/40 hover:scale-102 transition-transform">
               <img
-                src={mangoItem.image}
-                alt={mangoItem.name}
-                className="w-13 h-13 object-cover rounded-xl border border-slate-100"
+                src={gheeItem.image}
+                alt={gheeItem.name}
+                className="w-13 h-13 object-cover rounded-xl border border-slate-100 bg-white"
               />
               <div className="flex-1 min-w-0">
-                <h4 className="text-xs font-bold text-slate-900 truncate">{mangoItem.name}</h4>
-                <p className="text-[10px] text-slate-500">Ratnagiri Mango Box</p>
-                <div className="text-xs font-black text-[#C81D25] mt-0.5">€{mangoItem.price.toFixed(2)}</div>
+                <h4 className="text-xs font-bold text-slate-900 truncate">{gheeItem.name}</h4>
+                <p className="text-[10px] text-slate-500">{gheeItem.unit}</p>
+                <div className="text-xs font-black text-[#C81D25] mt-0.5">€{gheeItem.price.toFixed(2)}</div>
               </div>
               <button
-                onClick={() => addToCart(mangoItem, 1)}
+                onClick={() => addToCart(gheeItem, 1)}
                 className="w-8 h-8 rounded-xl cute-gold-btn flex items-center justify-center transition-colors shadow-xs"
                 title="Add to cart"
               >
@@ -159,20 +159,20 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({ onCategorySelect, onExpl
               </button>
             </div>
 
-            {/* Card 3 */}
+            {/* Card 3: MDH Deggi Mirch */}
             <div className="bg-white/95 backdrop-blur-md rounded-2xl p-3 shadow-lg text-[#1F2421] flex items-center justify-between gap-3 border border-white/40 hover:scale-102 transition-transform">
               <img
-                src={paneerItem.image}
-                alt={paneerItem.name}
-                className="w-13 h-13 object-cover rounded-xl border border-slate-100"
+                src={chilliItem.image}
+                alt={chilliItem.name}
+                className="w-13 h-13 object-cover rounded-xl border border-slate-100 bg-white"
               />
               <div className="flex-1 min-w-0">
-                <h4 className="text-xs font-bold text-slate-900 truncate">{paneerItem.name}</h4>
-                <p className="text-[10px] text-slate-500">{paneerItem.unit}</p>
-                <div className="text-xs font-black text-[#C81D25] mt-0.5">€{paneerItem.price.toFixed(2)}</div>
+                <h4 className="text-xs font-bold text-slate-900 truncate">{chilliItem.name}</h4>
+                <p className="text-[10px] text-slate-500">{chilliItem.unit}</p>
+                <div className="text-xs font-black text-[#C81D25] mt-0.5">€{chilliItem.price.toFixed(2)}</div>
               </div>
               <button
-                onClick={() => addToCart(paneerItem, 1)}
+                onClick={() => addToCart(chilliItem, 1)}
                 className="w-8 h-8 rounded-xl cute-gold-btn flex items-center justify-center transition-colors shadow-xs"
                 title="Add to cart"
               >
@@ -268,12 +268,12 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({ onCategorySelect, onExpl
                 </div>
                 <div className="space-y-1.5">
                   <div className="bg-white p-1.5 rounded-lg border border-slate-200 flex items-center gap-1.5">
-                    <img src={tomatoItem.image} className="w-6 h-6 rounded-md object-cover" />
-                    <div className="truncate font-semibold text-slate-800">Maltese Tomatoes</div>
+                    <img src={bhujiaItem.image} className="w-6 h-6 rounded-md object-cover bg-white" />
+                    <div className="truncate font-semibold text-slate-800">Haldiram's Bhujia</div>
                   </div>
                   <div className="bg-white p-1.5 rounded-lg border border-slate-200 flex items-center gap-1.5">
-                    <img src={mangoItem.image} className="w-6 h-6 rounded-md object-cover" />
-                    <div className="truncate font-semibold text-slate-800">Mango Box</div>
+                    <img src={gheeItem.image} className="w-6 h-6 rounded-md object-cover bg-white" />
+                    <div className="truncate font-semibold text-slate-800">Amul Pure Ghee</div>
                   </div>
                 </div>
               </div>
