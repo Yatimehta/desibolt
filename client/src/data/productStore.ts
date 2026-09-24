@@ -1,13 +1,17 @@
 import { ALL_PRODUCTS } from './products';
 import { Product } from '../types';
 
-const STORAGE_KEY = 'desibolt_custom_catalog';
+const STORAGE_KEY = 'desibolt_catalog_v2';
 
 /**
  * Retrieves the active catalog from localStorage or initial product seed
  */
 export function getStoredProducts(): Product[] {
   try {
+    // Clear legacy stale cache if present
+    if (localStorage.getItem('desibolt_custom_catalog')) {
+      localStorage.removeItem('desibolt_custom_catalog');
+    }
     const saved = localStorage.getItem(STORAGE_KEY);
     if (saved) {
       const parsed = JSON.parse(saved);
