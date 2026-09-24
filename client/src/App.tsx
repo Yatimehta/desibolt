@@ -55,10 +55,43 @@ export const StorefrontView: React.FC<{
         return res.json();
       })
       .then((data) => {
-        const fetched = Array.isArray(data) ? data : data.products;
-        if (Array.isArray(fetched) && fetched.length > 0) {
-          setProductsList(fetched);
-          saveProducts(fetched);
+        const rawList = Array.isArray(data) ? data : (data.products || []);
+        if (Array.isArray(rawList) && rawList.length > 0) {
+          const normalized: Product[] = rawList.map((item: any) => {
+            const primaryImg = item.image || (Array.isArray(item.images) && item.images.length > 0 ? item.images[0] : (item.image_url || ''));
+            const allImgs = Array.isArray(item.images) && item.images.length > 0 ? item.images : [primaryImg];
+            const catId = typeof item.category === 'object' && item.category !== null 
+              ? (item.category.slug || item.category.id || 'snacks-sweets')
+              : (item.category_id || item.category || 'snacks-sweets');
+
+            return {
+              id: String(item.id || Math.random()),
+              name: item.name || '',
+              brand: item.brand || 'DESI BOLT',
+              category: catId as CategoryId,
+              subCategory: item.subCategory || (typeof item.category === 'object' ? item.category?.name : undefined),
+              price: Number(item.price) || 0,
+              originalPrice: item.originalPrice || item.compareAtPrice ? Number(item.originalPrice || item.compareAtPrice) : undefined,
+              unit: item.unit || item.weight || '1 unit',
+              image: primaryImg,
+              images: allImgs,
+              stock: item.stock !== undefined ? Number(item.stock) : 50,
+              inStock: item.inStock !== undefined ? item.inStock : (Number(item.stock) > 0),
+              rating: Number(item.rating || item.avgRating || 4.9),
+              reviewCount: Number(item.reviewCount ?? item.reviews?.length ?? 18),
+              description: item.description || '',
+              origin: item.origin || item.originCountry || 'India',
+              isOrganic: !!item.isOrganic,
+              isVegetarian: item.isVegetarian !== undefined ? !!item.isVegetarian : true,
+              isBestSeller: !!item.isBestSeller,
+              isFeatured: !!item.isFeatured,
+              vatRate: Number(item.vatRate ?? item.vat_rate ?? 0),
+              sku: item.sku || `DB-${item.id}`
+            };
+          });
+
+          setProductsList(normalized);
+          saveProducts(normalized);
         }
       })
       .catch((err) => {
