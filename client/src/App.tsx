@@ -5,7 +5,7 @@ import { AuthProvider } from './context/AuthContext';
 import { OrderProvider } from './context/OrderContext';
 import { ALL_PRODUCTS } from './data/products';
 import { Product, CategoryId, Order } from './types';
-import { getStoredProducts } from './data/productStore';
+import { getStoredProducts, saveProducts } from './data/productStore';
 
 // Error Boundary & 404
 import { ErrorBoundary } from './components/common/ErrorBoundary';
@@ -48,6 +48,24 @@ export const StorefrontView: React.FC<{
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
   React.useEffect(() => {
+    // 1. Fetch live products dynamically from backend API
+    fetch('/api/products?limit=500')
+      .then((res) => {
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        return res.json();
+      })
+      .then((data) => {
+        const fetched = Array.isArray(data) ? data : data.products;
+        if (Array.isArray(fetched) && fetched.length > 0) {
+          setProductsList(fetched);
+          saveProducts(fetched);
+        }
+      })
+      .catch((err) => {
+        console.warn('[DESI BOLT] Dynamic API fetch fallback:', err.message);
+      });
+
+    // 2. Listen to custom catalog events
     const handleUpdate = () => {
       setProductsList(getStoredProducts());
     };
