@@ -1,19 +1,26 @@
 import React from 'react';
 import { Zap, Clock, ShieldCheck, ArrowRight, Plus, Sparkles, Truck, CheckCircle2, Heart, Star } from 'lucide-react';
 import { useCart } from '../../context/CartContext';
-import { BASE_PRODUCTS } from '../../data/products';
+import { Product } from '../../types';
 
 interface HeroBannerProps {
   onCategorySelect: (categoryId: string) => void;
   onExploreClick: () => void;
+  products?: Product[];
 }
 
-export const HeroBanner: React.FC<HeroBannerProps> = ({ onCategorySelect, onExploreClick }) => {
+export const HeroBanner: React.FC<HeroBannerProps> = ({ onCategorySelect, onExploreClick, products = [] }) => {
   const { addToCart } = useCart();
 
-  const bhujiaItem = BASE_PRODUCTS.find((p) => p.id === 'ss-01') || BASE_PRODUCTS[0];
-  const gheeItem = BASE_PRODUCTS.find((p) => p.id === 'dp-02') || BASE_PRODUCTS[1];
-  const chilliItem = BASE_PRODUCTS.find((p) => p.id === 'sm-01') || BASE_PRODUCTS[2];
+  // Dynamically pick 3 showcase products from live catalog (prefer those with real images)
+  const withImages = products.filter((p) => p.image && !p.image.includes('unsplash'));
+  const showcase = [...withImages].sort((a, b) => b.price - a.price).slice(0, 3);
+  const bhujiaItem = showcase[0] || products[0];
+  const gheeItem = showcase[1] || products[1];
+  const chilliItem = showcase[2] || products[2];
+
+  // Fallback image for hero cards while products load
+  const placeholderImg = 'https://images.unsplash.com/photo-1542838132-92c53300491e?w=600&auto=format&fit=crop&q=80';
 
   return (
     <div className="-mt-4 md:-mt-6 space-y-12">
@@ -111,75 +118,85 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({ onCategorySelect, onExpl
             </div>
           </div>
 
-          {/* Right Column: Floating Famous Best-Seller Cards */}
+          {/* Right Column: Floating Live Product Cards */}
           <div className="lg:col-span-3 space-y-3.5 max-w-xs mx-auto w-full">
             <div className="text-xs font-black tracking-wider uppercase text-amber-300 text-center lg:text-left flex items-center gap-1.5">
-              <Sparkles className="w-3.5 h-3.5" /> Famous Best-Sellers
+              <Sparkles className="w-3.5 h-3.5" /> Top Products
             </div>
 
-            {/* Card 1: Haldiram's Aloo Bhujia */}
-            <div className="bg-white/95 backdrop-blur-md rounded-2xl p-3 shadow-lg text-[#1F2421] flex items-center justify-between gap-3 border border-white/40 hover:scale-102 transition-transform">
-              <img
-                src={bhujiaItem.image}
-                alt={bhujiaItem.name}
-                className="w-13 h-13 object-cover rounded-xl border border-slate-100 bg-white"
-              />
-              <div className="flex-1 min-w-0">
-                <h4 className="text-xs font-bold text-slate-900 truncate">{bhujiaItem.name}</h4>
-                <p className="text-[10px] text-slate-500">{bhujiaItem.unit}</p>
-                <div className="text-xs font-black text-[#C81D25] mt-0.5">€{bhujiaItem.price.toFixed(2)}</div>
+            {/* Card 1 */}
+            {bhujiaItem && (
+              <div className="bg-white/95 backdrop-blur-md rounded-2xl p-3 shadow-lg text-[#1F2421] flex items-center justify-between gap-3 border border-white/40 hover:scale-102 transition-transform">
+                <img
+                  src={bhujiaItem.image || placeholderImg}
+                  alt={bhujiaItem.name}
+                  onError={(e) => { (e.target as HTMLImageElement).src = placeholderImg; }}
+                  className="w-13 h-13 object-cover rounded-xl border border-slate-100 bg-white flex-shrink-0"
+                />
+                <div className="flex-1 min-w-0">
+                  <h4 className="text-xs font-bold text-slate-900 truncate">{bhujiaItem.name}</h4>
+                  <p className="text-[10px] text-slate-500">{bhujiaItem.unit}</p>
+                  <div className="text-xs font-black text-[#C81D25] mt-0.5">€{bhujiaItem.price.toFixed(2)}</div>
+                </div>
+                <button
+                  onClick={() => addToCart(bhujiaItem, 1)}
+                  className="w-8 h-8 rounded-xl cute-gold-btn flex items-center justify-center transition-colors shadow-xs flex-shrink-0"
+                  title="Add to cart"
+                >
+                  <Plus className="w-4 h-4 text-[#1F2421]" />
+                </button>
               </div>
-              <button
-                onClick={() => addToCart(bhujiaItem, 1)}
-                className="w-8 h-8 rounded-xl cute-gold-btn flex items-center justify-center transition-colors shadow-xs"
-                title="Add to cart"
-              >
-                <Plus className="w-4 h-4 text-[#1F2421]" />
-              </button>
-            </div>
+            )}
 
-            {/* Card 2: Amul Pure Cow Ghee */}
-            <div className="bg-white/95 backdrop-blur-md rounded-2xl p-3 shadow-lg text-[#1F2421] flex items-center justify-between gap-3 border border-white/40 hover:scale-102 transition-transform">
-              <img
-                src={gheeItem.image}
-                alt={gheeItem.name}
-                className="w-13 h-13 object-cover rounded-xl border border-slate-100 bg-white"
-              />
-              <div className="flex-1 min-w-0">
-                <h4 className="text-xs font-bold text-slate-900 truncate">{gheeItem.name}</h4>
-                <p className="text-[10px] text-slate-500">{gheeItem.unit}</p>
-                <div className="text-xs font-black text-[#C81D25] mt-0.5">€{gheeItem.price.toFixed(2)}</div>
+            {/* Card 2 */}
+            {gheeItem && (
+              <div className="bg-white/95 backdrop-blur-md rounded-2xl p-3 shadow-lg text-[#1F2421] flex items-center justify-between gap-3 border border-white/40 hover:scale-102 transition-transform">
+                <img
+                  src={gheeItem.image || placeholderImg}
+                  alt={gheeItem.name}
+                  onError={(e) => { (e.target as HTMLImageElement).src = placeholderImg; }}
+                  className="w-13 h-13 object-cover rounded-xl border border-slate-100 bg-white flex-shrink-0"
+                />
+                <div className="flex-1 min-w-0">
+                  <h4 className="text-xs font-bold text-slate-900 truncate">{gheeItem.name}</h4>
+                  <p className="text-[10px] text-slate-500">{gheeItem.unit}</p>
+                  <div className="text-xs font-black text-[#C81D25] mt-0.5">€{gheeItem.price.toFixed(2)}</div>
+                </div>
+                <button
+                  onClick={() => addToCart(gheeItem, 1)}
+                  className="w-8 h-8 rounded-xl cute-gold-btn flex items-center justify-center transition-colors shadow-xs flex-shrink-0"
+                  title="Add to cart"
+                >
+                  <Plus className="w-4 h-4 text-[#1F2421]" />
+                </button>
               </div>
-              <button
-                onClick={() => addToCart(gheeItem, 1)}
-                className="w-8 h-8 rounded-xl cute-gold-btn flex items-center justify-center transition-colors shadow-xs"
-                title="Add to cart"
-              >
-                <Plus className="w-4 h-4 text-[#1F2421]" />
-              </button>
-            </div>
+            )}
 
-            {/* Card 3: MDH Deggi Mirch */}
-            <div className="bg-white/95 backdrop-blur-md rounded-2xl p-3 shadow-lg text-[#1F2421] flex items-center justify-between gap-3 border border-white/40 hover:scale-102 transition-transform">
-              <img
-                src={chilliItem.image}
-                alt={chilliItem.name}
-                className="w-13 h-13 object-cover rounded-xl border border-slate-100 bg-white"
-              />
-              <div className="flex-1 min-w-0">
-                <h4 className="text-xs font-bold text-slate-900 truncate">{chilliItem.name}</h4>
-                <p className="text-[10px] text-slate-500">{chilliItem.unit}</p>
-                <div className="text-xs font-black text-[#C81D25] mt-0.5">€{chilliItem.price.toFixed(2)}</div>
+            {/* Card 3 */}
+            {chilliItem && (
+              <div className="bg-white/95 backdrop-blur-md rounded-2xl p-3 shadow-lg text-[#1F2421] flex items-center justify-between gap-3 border border-white/40 hover:scale-102 transition-transform">
+                <img
+                  src={chilliItem.image || placeholderImg}
+                  alt={chilliItem.name}
+                  onError={(e) => { (e.target as HTMLImageElement).src = placeholderImg; }}
+                  className="w-13 h-13 object-cover rounded-xl border border-slate-100 bg-white flex-shrink-0"
+                />
+                <div className="flex-1 min-w-0">
+                  <h4 className="text-xs font-bold text-slate-900 truncate">{chilliItem.name}</h4>
+                  <p className="text-[10px] text-slate-500">{chilliItem.unit}</p>
+                  <div className="text-xs font-black text-[#C81D25] mt-0.5">€{chilliItem.price.toFixed(2)}</div>
+                </div>
+                <button
+                  onClick={() => addToCart(chilliItem, 1)}
+                  className="w-8 h-8 rounded-xl cute-gold-btn flex items-center justify-center transition-colors shadow-xs flex-shrink-0"
+                  title="Add to cart"
+                >
+                  <Plus className="w-4 h-4 text-[#1F2421]" />
+                </button>
               </div>
-              <button
-                onClick={() => addToCart(chilliItem, 1)}
-                className="w-8 h-8 rounded-xl cute-gold-btn flex items-center justify-center transition-colors shadow-xs"
-                title="Add to cart"
-              >
-                <Plus className="w-4 h-4 text-[#1F2421]" />
-              </button>
-            </div>
+            )}
           </div>
+
         </div>
 
         {/* Decorative Wave Divider */}

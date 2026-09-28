@@ -11,8 +11,15 @@ interface PopularSectionProps {
 export const PopularSection: React.FC<PopularSectionProps> = ({ products, onSelectProduct }) => {
   const { addToCart, updateQuantity, getItemQuantity } = useCart();
 
-  // Pick top 4 best sellers
-  const popularItems = products.filter((p) => p.isBestSeller).slice(0, 4);
+  // Pick top 8 products: prefer best sellers, then products with real images sorted by price desc
+  const popularItems = React.useMemo(() => {
+    const withImages = products.filter((p) => p.image && !p.image.includes('unsplash'));
+    const bestSellers = withImages.filter((p) => p.isBestSeller);
+    if (bestSellers.length >= 8) return bestSellers.slice(0, 8);
+    return [...withImages].sort((a, b) => b.price - a.price).slice(0, 8);
+  }, [products]);
+
+  if (popularItems.length === 0) return null;
 
   return (
     <section className="bg-[#607345] rounded-3xl p-8 md:p-12 text-white shadow-xl relative overflow-hidden my-12">
@@ -20,18 +27,18 @@ export const PopularSection: React.FC<PopularSectionProps> = ({ products, onSele
       <div className="absolute -top-10 -right-10 w-48 h-48 rounded-full bg-white/5 blur-2xl pointer-events-none" />
       <div className="absolute -bottom-10 -left-10 w-48 h-48 rounded-full bg-black/10 blur-2xl pointer-events-none" />
 
-      {/* Header with Cursive Title (Matching Image 1) */}
+      {/* Header */}
       <div className="text-center mb-8 space-y-1 relative z-10">
         <h2 className="font-cursive text-3xl sm:text-4xl md:text-5xl font-bold text-[#FFEAA7]">
-          Самые популярные продукты / Most Popular
+          Top Picks from Our Catalog
         </h2>
         <p className="text-xs text-[#E8F0DE] font-medium">
           Daily top picks ordered by hundreds of Maltese households
         </p>
       </div>
 
-      {/* 4 Vertical Clean Product Cards (Matching Image 1) */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 relative z-10">
+      {/* 8 Product Cards in responsive grid */}
+      <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-4 gap-4 relative z-10">
         {popularItems.map((prod) => {
           const quantity = getItemQuantity(prod.id);
 
@@ -45,8 +52,11 @@ export const PopularSection: React.FC<PopularSectionProps> = ({ products, onSele
                 {/* Product Image */}
                 <div className="relative pt-[80%] rounded-xl overflow-hidden bg-slate-50 mb-3">
                   <img
-                    src={prod.image}
+                    src={prod.image || 'https://images.unsplash.com/photo-1542838132-92c53300491e?w=600&auto=format&fit=crop&q=80'}
                     alt={prod.name}
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1542838132-92c53300491e?w=600&auto=format&fit=crop&q=80';
+                    }}
                     className="absolute inset-0 w-full h-full object-cover group-hover:scale-108 transition-transform duration-500"
                   />
                   {prod.discountPercent && (

@@ -48,19 +48,33 @@ export const StorefrontView: React.FC<{
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
   React.useEffect(() => {
-    // 1. Fetch live products dynamically from backend API
-    fetch('/api/products?limit=500')
-      .then((res) => {
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        return res.json();
-      })
-      .then((data) => {
-        const rawList = Array.isArray(data) ? data : (data.products || []);
-        if (Array.isArray(rawList) && rawList.length > 0) {
-          const normalized: Product[] = rawList.map((item: any) => {
-            const primaryImg = item.image || (Array.isArray(item.images) && item.images.length > 0 ? item.images[0] : (item.image_url || ''));
-            const allImgs = Array.isArray(item.images) && item.images.length > 0 ? item.images : [primaryImg];
-            const catId = typeof item.category === 'object' && item.category !== null 
+    // Fetch ALL products via pagination (handles large catalogs like 9,438 products)
+    const fetchAllProducts = async () => {
+      const allRaw: any[] = [];
+      let page = 1;
+      const pageSize = 500;
+
+      try {
+        while (true) {
+          const res = await fetch(`/api/products?limit=${pageSize}&page=${page}`);
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+          const data = await res.json();
+          const batch = Array.isArray(data) ? data : (data.products || []);
+          if (batch.length === 0) break;
+          allRaw.push(...batch);
+          if (batch.length < pageSize || allRaw.length >= (data.total || Infinity)) break;
+          page++;
+        }
+
+        if (allRaw.length > 0) {
+          const normalized: Product[] = allRaw.map((item: any) => {
+            // Clean Shopify CDN image URLs (unescape backslashes from JSON)
+            let primaryImg = item.image || (Array.isArray(item.images) && item.images.length > 0 ? item.images[0] : (item.image_url || ''));
+            if (typeof primaryImg === 'string') primaryImg = primaryImg.replace(/\\/g, '');
+            const allImgs = Array.isArray(item.images) && item.images.length > 0
+              ? item.images.map((i: string) => typeof i === 'string' ? i.replace(/\\/g, '') : i)
+              : [primaryImg];
+            const catId = typeof item.category === 'object' && item.category !== null
               ? (item.category.slug || item.category.id || 'snacks-sweets')
               : (item.category_id || item.category || 'snacks-sweets');
 
@@ -91,14 +105,19 @@ export const StorefrontView: React.FC<{
           });
 
           setProductsList(normalized);
-          saveProducts(normalized);
+          // Only cache in localStorage if catalog is small enough (<2000 products)
+          if (normalized.length <= 2000) {
+            saveProducts(normalized);
+          }
         }
-      })
-      .catch((err) => {
+      } catch (err: any) {
         console.warn('[DESI BOLT] Dynamic API fetch fallback:', err.message);
-      });
+      }
+    };
 
-    // 2. Listen to custom catalog events
+    fetchAllProducts();
+
+    // Listen to custom catalog events
     const handleUpdate = () => {
       setProductsList(getStoredProducts());
     };
@@ -203,6 +222,7 @@ export const StorefrontView: React.FC<{
         {currentView === 'store' && (
           <div className="max-w-7xl mx-auto px-4 py-4 space-y-12">
             <HeroBanner
+              products={productsList}
               onCategorySelect={(cat) => {
                 setSelectedCategory(cat as any);
                 handleScrollToCatalog();
