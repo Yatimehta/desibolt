@@ -39,12 +39,15 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onOpenModal }
       {/* Product Image Clickable Area */}
       <div
         onClick={() => onOpenModal(product)}
-        className="relative pt-[85%] bg-[#FAF4EC] cursor-pointer overflow-hidden"
+        className="relative pt-[85%] bg-white cursor-pointer overflow-hidden border-b border-[#F0E6D8]"
       >
         <img
-          src={product.image}
+          src={product.image || 'https://images.unsplash.com/photo-1542838132-92c53300491e?w=600&auto=format&fit=crop&q=80'}
           alt={product.name}
-          className="absolute inset-0 w-full h-full object-cover group-hover:scale-108 transition-transform duration-500"
+          onError={(e) => {
+            (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1542838132-92c53300491e?w=600&auto=format&fit=crop&q=80';
+          }}
+          className="absolute inset-0 w-full h-full object-contain p-2.5 group-hover:scale-105 transition-transform duration-300"
           loading="lazy"
         />
         {/* Fast dispatch overlay icon */}

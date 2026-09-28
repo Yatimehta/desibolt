@@ -48,67 +48,72 @@ export const StorefrontView: React.FC<{
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
   React.useEffect(() => {
-    // Fetch ALL products via pagination (handles large catalogs like 9,438 products)
+    let isMounted = true;
+
+    const normalizeProduct = (item: any): Product => {
+      // Clean Shopify CDN image URLs (unescape backslashes from JSON)
+      let primaryImg = item.image || (Array.isArray(item.images) && item.images.length > 0 ? item.images[0] : (item.image_url || ''));
+      if (typeof primaryImg === 'string') primaryImg = primaryImg.replace(/\\/g, '');
+      const allImgs = Array.isArray(item.images) && item.images.length > 0
+        ? item.images.map((i: string) => typeof i === 'string' ? i.replace(/\\/g, '') : i)
+        : [primaryImg];
+      const catId = typeof item.category === 'object' && item.category !== null
+        ? (item.category.slug || item.category.id || 'snacks-sweets')
+        : (item.category_id || item.category || 'snacks-sweets');
+
+      return {
+        id: String(item.id || Math.random()),
+        name: item.name || '',
+        brand: item.brand || 'DESI BOLT',
+        category: catId as CategoryId,
+        subCategory: item.subCategory || (typeof item.category === 'object' ? item.category?.name : undefined),
+        price: Number(item.price) || 0,
+        originalPrice: item.originalPrice || item.compareAtPrice ? Number(item.originalPrice || item.compareAtPrice) : undefined,
+        unit: item.unit || item.weight || '1 unit',
+        image: primaryImg,
+        images: allImgs,
+        stock: item.stock !== undefined ? Number(item.stock) : 50,
+        inStock: item.inStock !== undefined ? item.inStock : (Number(item.stock) > 0),
+        rating: Number(item.rating || item.avgRating || 4.9),
+        reviewCount: Number(item.reviewCount ?? item.reviews?.length ?? 18),
+        description: item.description || '',
+        origin: item.origin || item.originCountry || 'India',
+        isOrganic: !!item.isOrganic,
+        isVegetarian: item.isVegetarian !== undefined ? !!item.isVegetarian : true,
+        isBestSeller: !!item.isBestSeller,
+        isFeatured: !!item.isFeatured,
+        vatRate: Number(item.vatRate ?? item.vat_rate ?? 0),
+        sku: item.sku || `DB-${item.id}`
+      };
+    };
+
+    // Fetch ALL products via progressive pagination (renders first batch immediately, then appends remaining)
     const fetchAllProducts = async () => {
-      const allRaw: any[] = [];
+      const allAccumulated: Product[] = [];
       let page = 1;
       const pageSize = 500;
 
       try {
-        while (true) {
+        while (isMounted) {
           const res = await fetch(`/api/products?limit=${pageSize}&page=${page}`);
           if (!res.ok) throw new Error(`HTTP ${res.status}`);
           const data = await res.json();
           const batch = Array.isArray(data) ? data : (data.products || []);
           if (batch.length === 0) break;
-          allRaw.push(...batch);
-          if (batch.length < pageSize || allRaw.length >= (data.total || Infinity)) break;
+
+          const normalizedBatch = batch.map(normalizeProduct);
+          allAccumulated.push(...normalizedBatch);
+
+          if (isMounted) {
+            setProductsList([...allAccumulated]);
+          }
+
+          if (batch.length < pageSize || allAccumulated.length >= (data.total || Infinity)) break;
           page++;
         }
 
-        if (allRaw.length > 0) {
-          const normalized: Product[] = allRaw.map((item: any) => {
-            // Clean Shopify CDN image URLs (unescape backslashes from JSON)
-            let primaryImg = item.image || (Array.isArray(item.images) && item.images.length > 0 ? item.images[0] : (item.image_url || ''));
-            if (typeof primaryImg === 'string') primaryImg = primaryImg.replace(/\\/g, '');
-            const allImgs = Array.isArray(item.images) && item.images.length > 0
-              ? item.images.map((i: string) => typeof i === 'string' ? i.replace(/\\/g, '') : i)
-              : [primaryImg];
-            const catId = typeof item.category === 'object' && item.category !== null
-              ? (item.category.slug || item.category.id || 'snacks-sweets')
-              : (item.category_id || item.category || 'snacks-sweets');
-
-            return {
-              id: String(item.id || Math.random()),
-              name: item.name || '',
-              brand: item.brand || 'DESI BOLT',
-              category: catId as CategoryId,
-              subCategory: item.subCategory || (typeof item.category === 'object' ? item.category?.name : undefined),
-              price: Number(item.price) || 0,
-              originalPrice: item.originalPrice || item.compareAtPrice ? Number(item.originalPrice || item.compareAtPrice) : undefined,
-              unit: item.unit || item.weight || '1 unit',
-              image: primaryImg,
-              images: allImgs,
-              stock: item.stock !== undefined ? Number(item.stock) : 50,
-              inStock: item.inStock !== undefined ? item.inStock : (Number(item.stock) > 0),
-              rating: Number(item.rating || item.avgRating || 4.9),
-              reviewCount: Number(item.reviewCount ?? item.reviews?.length ?? 18),
-              description: item.description || '',
-              origin: item.origin || item.originCountry || 'India',
-              isOrganic: !!item.isOrganic,
-              isVegetarian: item.isVegetarian !== undefined ? !!item.isVegetarian : true,
-              isBestSeller: !!item.isBestSeller,
-              isFeatured: !!item.isFeatured,
-              vatRate: Number(item.vatRate ?? item.vat_rate ?? 0),
-              sku: item.sku || `DB-${item.id}`
-            };
-          });
-
-          setProductsList(normalized);
-          // Only cache in localStorage if catalog is small enough (<2000 products)
-          if (normalized.length <= 2000) {
-            saveProducts(normalized);
-          }
+        if (allAccumulated.length > 0 && allAccumulated.length <= 2000) {
+          saveProducts(allAccumulated);
         }
       } catch (err: any) {
         console.warn('[DESI BOLT] Dynamic API fetch fallback:', err.message);
@@ -122,7 +127,11 @@ export const StorefrontView: React.FC<{
       setProductsList(getStoredProducts());
     };
     window.addEventListener('desibolt_catalog_updated', handleUpdate);
-    return () => window.removeEventListener('desibolt_catalog_updated', handleUpdate);
+
+    return () => {
+      isMounted = false;
+      window.removeEventListener('desibolt_catalog_updated', handleUpdate);
+    };
   }, []);
 
   // Search & Filter State

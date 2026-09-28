@@ -12,12 +12,11 @@ interface HeroBannerProps {
 export const HeroBanner: React.FC<HeroBannerProps> = ({ onCategorySelect, onExploreClick, products = [] }) => {
   const { addToCart } = useCart();
 
-  // Dynamically pick 3 showcase products from live catalog (prefer those with real images)
-  const withImages = products.filter((p) => p.image && !p.image.includes('unsplash'));
-  const showcase = [...withImages].sort((a, b) => b.price - a.price).slice(0, 3);
-  const bhujiaItem = showcase[0] || products[0];
-  const gheeItem = showcase[1] || products[1];
-  const chilliItem = showcase[2] || products[2];
+  // Dynamically pick 3 iconic showcase products from live catalog (prefer those with real images)
+  const withImages = products.filter((p) => p.image && !p.image.includes('unsplash') && p.image.startsWith('http'));
+  const bhujiaItem = withImages.find(p => /bhujia/i.test(p.name)) || withImages[0] || products[0];
+  const gheeItem = withImages.find(p => /ghee/i.test(p.name)) || withImages[1] || products[1];
+  const chilliItem = withImages.find(p => /chilli|masala|spice|mirch/i.test(p.name)) || withImages[2] || products[2];
 
   // Fallback image for hero cards while products load
   const placeholderImg = 'https://images.unsplash.com/photo-1542838132-92c53300491e?w=600&auto=format&fit=crop&q=80';

@@ -77,9 +77,12 @@ export const ProductModal: React.FC<ProductModalProps> = ({ product, onClose }) 
           <div className="space-y-3">
             <div className="relative pt-[100%] rounded-2xl overflow-hidden bg-slate-50 border border-slate-200">
               <img
-                src={product.image}
+                src={product.image || 'https://images.unsplash.com/photo-1542838132-92c53300491e?w=600&auto=format&fit=crop&q=80'}
                 alt={product.name}
-                className="absolute inset-0 w-full h-full object-cover"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1542838132-92c53300491e?w=600&auto=format&fit=crop&q=80';
+                }}
+                className="absolute inset-0 w-full h-full object-contain p-4 bg-white"
               />
               {product.discountPercent && (
                 <span className="absolute top-3 left-3 bg-[#E63946] text-white text-xs font-black px-2.5 py-1 rounded-lg">

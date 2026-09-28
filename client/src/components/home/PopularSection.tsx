@@ -11,12 +11,58 @@ interface PopularSectionProps {
 export const PopularSection: React.FC<PopularSectionProps> = ({ products, onSelectProduct }) => {
   const { addToCart, updateQuantity, getItemQuantity } = useCart();
 
-  // Pick top 8 products: prefer best sellers, then products with real images sorted by price desc
+  // Pick top 8 products: prioritize iconic best-sellers (Bhujia, Amul Ghee, Basmati Rice, Spices, etc.)
   const popularItems = React.useMemo(() => {
-    const withImages = products.filter((p) => p.image && !p.image.includes('unsplash'));
-    const bestSellers = withImages.filter((p) => p.isBestSeller);
-    if (bestSellers.length >= 8) return bestSellers.slice(0, 8);
-    return [...withImages].sort((a, b) => b.price - a.price).slice(0, 8);
+    const withImages = products.filter((p) => p.image && !p.image.includes('unsplash') && p.image.startsWith('http'));
+    if (withImages.length === 0) return products.slice(0, 8);
+
+    const usedIds = new Set<string>();
+    const featured: Product[] = [];
+
+    const findItem = (filterFn: (p: Product) => boolean) => {
+      const found = withImages.find(p => !usedIds.has(p.id) && filterFn(p));
+      if (found) {
+        usedIds.add(found.id);
+        featured.push(found);
+      }
+      return found;
+    };
+
+    // 1. Aloo Bhujia / Bhujia
+    findItem(p => /bhujia/i.test(p.name));
+
+    // 2. Amul Ghee / Pure Ghee
+    findItem(p => /ghee/i.test(p.name) && (/amul/i.test(p.name) || /amrut/i.test(p.name) || /pure/i.test(p.name)))
+      || findItem(p => /ghee/i.test(p.name));
+
+    // 3. Amul Dairy Favourite (Butter / Basundi / Paneer)
+    findItem(p => (/amul/i.test(p.name) || /amul/i.test(p.brand)) && !/ghee/i.test(p.name));
+
+    // 4. Premium Basmati Rice (Kohinoor, Royal, Ankur)
+    findItem(p => /basmati/i.test(p.name));
+
+    // 5. Authentic Indian Spices & Masala (Biryani Masala, Curry Masala, Garam Masala)
+    findItem(p => /masala|mirch|haldi|curry powder/i.test(p.name) && p.price < 15);
+
+    // 6. Dal & Pulses or Atta staples
+    findItem(p => /dal|channa|moong|urad|toor|atta/i.test(p.name));
+
+    // 7. Popular Sweets & Namkeen snacks
+    findItem(p => /jamun|rasgulla|laddu|namkeen|biscuit|cookie/i.test(p.name) || p.category === 'snacks-sweets');
+
+    // 8. Traditional Tea & Chai (Wagh Bakri, Red Label, Tea)
+    findItem(p => /tea|chai|coffee/i.test(p.name) || p.category === 'beverages-tea');
+
+    // Fill remaining slots up to 8 with other products with clean images
+    for (const p of withImages) {
+      if (featured.length >= 8) break;
+      if (!usedIds.has(p.id) && p.price > 1 && p.price < 40) {
+        usedIds.add(p.id);
+        featured.push(p);
+      }
+    }
+
+    return featured.slice(0, 8);
   }, [products]);
 
   if (popularItems.length === 0) return null;
