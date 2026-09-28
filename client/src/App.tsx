@@ -38,7 +38,7 @@ import { CheckoutModal } from './components/checkout/CheckoutModal';
 import { LiveOrderTracking } from './components/tracking/LiveOrderTracking';
 import { AdminPortal } from './pages/AdminPortal';
 
-import { Zap } from 'lucide-react';
+import { Zap, ChevronLeft, ChevronRight } from 'lucide-react';
 
 export const StorefrontView: React.FC<{
   currentView: 'store' | 'tracking';
@@ -143,6 +143,14 @@ export const StorefrontView: React.FC<{
   const [minRating, setMinRating] = useState(0);
   const [sortBy, setSortBy] = useState<'popular' | 'price-low' | 'price-high' | 'rating'>('popular');
 
+  // Catalog Pagination State (48 products per page for smooth scrolling)
+  const [currentPage, setCurrentPage] = useState(1);
+  const ITEMS_PER_PAGE = 48;
+
+  React.useEffect(() => {
+    setCurrentPage(1);
+  }, [searchQuery, selectedCategory, priceRange, onlyOrganic, onlyInStock, minRating, sortBy]);
+
   // Checkout State
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
   const [appliedDiscount, setAppliedDiscount] = useState(0);
@@ -191,6 +199,20 @@ export const StorefrontView: React.FC<{
         return b.reviewCount - a.reviewCount;
       });
   }, [productsList, searchQuery, selectedCategory, priceRange, onlyOrganic, onlyInStock, minRating, sortBy]);
+
+  const totalPages = Math.ceil(filteredProducts.length / ITEMS_PER_PAGE) || 1;
+  const paginatedProducts = useMemo(() => {
+    const start = (currentPage - 1) * ITEMS_PER_PAGE;
+    return filteredProducts.slice(start, start + ITEMS_PER_PAGE);
+  }, [filteredProducts, currentPage]);
+
+  const handlePageChange = (newPage: number) => {
+    if (newPage < 1 || newPage > totalPages) return;
+    setCurrentPage(newPage);
+    if (catalogRef.current) {
+      catalogRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   const handleResetFilters = () => {
     setSelectedCategory('all');
@@ -328,15 +350,74 @@ export const StorefrontView: React.FC<{
                     </button>
                   </div>
                 ) : (
-                  <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-3.5 md:gap-4">
-                    {filteredProducts.map((product) => (
-                      <ProductCard
-                        key={product.id}
-                        product={product}
-                        onOpenModal={(p) => setSelectedProduct(p)}
-                      />
-                    ))}
-                  </div>
+                  <>
+                    <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-3.5 md:gap-4">
+                      {paginatedProducts.map((product) => (
+                        <ProductCard
+                          key={product.id}
+                          product={product}
+                          onOpenModal={(p) => setSelectedProduct(p)}
+                        />
+                      ))}
+                    </div>
+
+                    {/* Pagination Controls */}
+                    {totalPages > 1 && (
+                      <div className="mt-8 pt-6 border-t border-[#EAE4D9] flex flex-col sm:flex-row items-center justify-between gap-4">
+                        <div className="text-xs text-slate-500 font-semibold">
+                          Showing <span className="text-slate-900 font-bold">{(currentPage - 1) * ITEMS_PER_PAGE + 1}–{Math.min(currentPage * ITEMS_PER_PAGE, filteredProducts.length)}</span> of <span className="text-slate-900 font-bold">{filteredProducts.length.toLocaleString()}</span> products
+                        </div>
+
+                        <div className="flex items-center gap-1.5 flex-wrap justify-center">
+                          <button
+                            onClick={() => handlePageChange(currentPage - 1)}
+                            disabled={currentPage === 1}
+                            className="px-3 py-2 rounded-xl border border-[#E0D8CC] bg-white text-slate-700 disabled:opacity-30 disabled:cursor-not-allowed hover:bg-slate-50 text-xs font-bold transition-colors flex items-center gap-1"
+                          >
+                            <ChevronLeft className="w-4 h-4" />
+                            <span className="hidden sm:inline">Prev</span>
+                          </button>
+
+                          {/* Page Number Pills */}
+                          {Array.from({ length: totalPages }, (_, i) => i + 1)
+                            .filter(p => p === 1 || p === totalPages || Math.abs(p - currentPage) <= 2)
+                            .reduce((acc: (number | string)[], p, idx, arr) => {
+                              if (idx > 0 && p - (arr[idx - 1] as number) > 1) {
+                                acc.push('...');
+                              }
+                              acc.push(p);
+                              return acc;
+                            }, [])
+                            .map((item, idx) => typeof item === 'number' ? (
+                              <button
+                                key={idx}
+                                onClick={() => handlePageChange(item)}
+                                className={`w-9 h-9 rounded-xl text-xs font-black transition-all ${
+                                  currentPage === item
+                                    ? 'bg-[#E63946] text-white shadow-md shadow-red-500/20'
+                                    : 'bg-white border border-[#E0D8CC] text-slate-700 hover:bg-slate-50'
+                                }`}
+                              >
+                                {item}
+                              </button>
+                            ) : (
+                              <span key={idx} className="px-1 text-slate-400 font-bold text-xs select-none">
+                                •••
+                              </span>
+                            ))}
+
+                          <button
+                            onClick={() => handlePageChange(currentPage + 1)}
+                            disabled={currentPage === totalPages}
+                            className="px-3 py-2 rounded-xl border border-[#E0D8CC] bg-white text-slate-700 disabled:opacity-30 disabled:cursor-not-allowed hover:bg-slate-50 text-xs font-bold transition-colors flex items-center gap-1"
+                          >
+                            <span className="hidden sm:inline">Next</span>
+                            <ChevronRight className="w-4 h-4" />
+                          </button>
+                        </div>
+                      </div>
+                    )}
+                  </>
                 )}
               </div>
             </div>
